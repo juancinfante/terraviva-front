@@ -1,0 +1,168 @@
+header{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  
+    box-shadow: 0 3px 6px -4px rgba(0,0,0,.3);  
+  }
+  
+header::after{
+    content: "";
+    position: absolute;
+    background-color: rgba(128, 128, 128, 0.128);
+    height: 2px;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transition: all .3s;
+}
+/* header::before{
+    content: "";
+    position: absolute;
+    background-color: #e32121;
+    height: 2px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    transition: all .3s;
+} */
+  header .logo{
+    color: #2d2d2d;
+    font-size: 1.75em;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+  
+  header ul{
+    position: relative;
+  }
+  header ul li {
+    position: relative;
+    list-style: none;
+    float: left;
+  }
+  header ul li a {
+    color: #2d2d2d;
+    font-size: 1.1em;
+    padding: 15px 20px;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+  }
+  header ul li a::after{
+    content: "";
+    position: absolute;
+    background-color: #e32121;
+    height: 2px;
+    width: 0;
+    left: 0;
+    top: 0;
+    transition: all .3s;
+  }
+  
+  header ul li a:hover::after{
+    width: 100px;
+  }
+  
+  header ul li ul{
+    position: absolute;
+    left: 0;
+    width: 200px;
+    display: none;
+    background-color: white;
+  }
+  header ul li ul a:hover{
+    background-color: #e32121;
+    color: white !important;
+  }
+  header ul li:hover > ul{
+    display: block;
+  }
+  
+  
+  header ul li ul li{
+    position: relative;
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.2);
+  }
+  
+  header ul li ul li ul{
+    top: 0;
+    left: 200px;
+  }
+  
+  @media (max-width: 900px){
+    
+    header{
+      padding: 0 20px;
+    }
+    header nav{
+      position: absolute;
+      width: 100%;
+      top: 50px;
+      left: 0;
+      display: none;
+    }
+    header.active nav{
+      display: block;
+      transition: all 1s ease;
+      background-color: #fff;
+    }
+    header ul li{
+        border-bottom: 1px solid;
+    }
+    header nav ul li{
+      width: 100%;
+    }
+    header nav ul li ul{
+      position: relative;
+      width: 100%;
+      left: 0;
+    }
+  
+    header ul li ul li ul{
+      top: 0;
+      left: 0;
+    }
+  
+    .menuToggle{
+      position: relative;
+      width: 40px;
+      height: 50px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .menuToggle::before{
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background: #2d2d2d;
+      transform: translateY(-12px);
+      box-shadow: 0 12px #2d2d2d;
+    }
+    .menuToggle::after{
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background: #2d2d2d;
+      transform: translateY(12px);
+    }
+  
+    header.active .menuToggle::before{
+      transform: rotate(45deg);
+      box-shadow: 0 0 #fff;
+    }
+    header.active .menuToggle::after{
+      transform: rotate(315deg);
+    }
+    .display-none{
+      display: none !important;
+    }
+  
+  }
