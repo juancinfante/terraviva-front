@@ -7,7 +7,7 @@ const Footer = () => {
     <>
         <div className="footer">
             <div className="container-footer">
-                <img src="http://terraviva.com.ar/img/terraviva-white.png" alt="" />
+                <img src="https://res.cloudinary.com/dwjhbrsmf/image/upload/v1703806755/test-img/lddntygnvx1r7vbuc3jl.png" alt="" />
                 <p>Santiago del Estero, Argentina.</p>
                 <ul>
                     <li>
