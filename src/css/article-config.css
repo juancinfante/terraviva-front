@@ -1,0 +1,38 @@
+.article-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.section1{
+    width: 68%;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+}
+.section1 .header{
+    color: #6d6d6d;
+    font-size: .7em;
+    border-bottom:  1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+.section2{
+    width: 29%;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 900px){
+    .section1{
+        width: 100%;
+    }
+    .section2{
+        width: 100%;
+    }
+}

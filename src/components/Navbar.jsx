@@ -1,5 +1,7 @@
 import { useState } from "react"
 import '../css/navbar.css';
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
 
     const [active, setActive] = useState('');
@@ -25,7 +27,10 @@ const Navbar = () => {
         <div className="menuToggle" onClick={handleActive}></div>
             <nav>
                 <ul>
-                    <li><a href="#">Noticias</a></li>
+                    <li>
+                        <Link to={"/noticias"}>Noticias</Link>
+                    </li>
+                    
                     <li><a href="#" onClick={handleActiveDp}>Pais<b>+</b></a>
                         <ul className={activeDd ? "display-none" : ""}>
                             <li><a href="#">Santiago</a></li>
@@ -38,7 +43,9 @@ const Navbar = () => {
                         </ul>
                     </li>
                     <li><a href="#">Agenda</a></li>
-                    <li><a href="#">Entrevistas</a></li>
+                    <li>
+                        <Link to={"/entrevistas"}>Entrevistas</Link>
+                    </li>
                     <li><a href="#">Artistas</a></li>
                     {/* <li><input type="search" />Buscar</li> */}
                 </ul>

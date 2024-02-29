@@ -20,6 +20,7 @@
 }
 .container .article{
     width: 32%;
+    margin-bottom: 20px;
 }
 .container .article img{
     width: 100%;

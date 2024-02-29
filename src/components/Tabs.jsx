@@ -453,23 +453,25 @@ const Tabs = () => {
             </div>
             
             <div className="tabs-redes">
+                <div className="contenedor">
                     <p>SIGUENOS EN NUESTRAS REDES</p>
-                <div className="container">
-                    <div className="redes">
-                            <a href="#" className='icon fb'>
-                                <FontAwesomeIcon icon={faFacebook} />
-                            </a>
-                            <a href="#" className='icon ig'>
-                                <FontAwesomeIcon icon={faInstagram} />
-                            </a>
-                            <a href="#" className='icon tw'>
-                                <FontAwesomeIcon icon={faXTwitter} />
-                            </a>
+                    <div className="container">
+                        <div className="redes">
+                                <a href="#" className='icon fb'>
+                                    <FontAwesomeIcon icon={faFacebook} />
+                                </a>
+                                <a href="#" className='icon ig'>
+                                    <FontAwesomeIcon icon={faInstagram} />
+                                </a>
+                                <a href="#" className='icon tw'>
+                                    <FontAwesomeIcon icon={faXTwitter} />
+                                </a>
+                        </div>
+                        <div className="publi" style={{"backgroundImage" : "url('https://res.cloudinary.com/dwjhbrsmf/image/upload/v1703806957/test-img/kmu0bllulefam1fkslvc.jpg')"}}>
+                        </div>
                     </div>
-                    <div className="publi" style={{"backgroundImage" : "url('https://res.cloudinary.com/dwjhbrsmf/image/upload/v1703806957/test-img/kmu0bllulefam1fkslvc.jpg')"}}>
-                    </div>
-                </div>
-            </div>  
+                </div> 
+            </div>
         </div>
         
     </>
