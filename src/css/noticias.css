@@ -2,6 +2,9 @@ a{
     text-decoration: none;
     color: #2d2d2d;
 }
+p{
+    margin: 0 !important;
+}
 .article-container{
     margin-bottom: 30px;
 }
@@ -147,3 +150,43 @@ a{
         margin-bottom: 10px;
     }
 }
+.paginationn{
+    display: flex;
+    list-style: none;
+    width: 100%;
+    justify-content: center;
+    gap: 4px;
+}
+ul{
+    padding-left: 0 !important;
+}
+.paginationn li{
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    font-weight: 600;
+}
+.paginationn li:hover{
+    background-color: #ccc;
+}
+.activa{
+    background-color: red;
+    color: white !important;
+}
+.activa:hover{
+    background-color: red !important;
+}
+
+.disabled-pagination{
+    background: #ccc;
+    pointer-events: none;
+}
+.elipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    visibility: visible;
+}
+

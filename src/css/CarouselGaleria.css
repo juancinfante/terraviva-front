@@ -1,0 +1,40 @@
+.titulo-galeria{
+    overflow: hidden ;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    visibility: visible;
+}
+.titulo-galeria:hover{
+    color: rgb(206, 0, 0);
+}
+
+.border-section{
+    position: relative;
+    padding-bottom: 20px;
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+}
+.border-section::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #eee;
+    z-index: -1;
+}
+.border-section::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 5px;
+    background: #c00;
+}

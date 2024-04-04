@@ -44,6 +44,9 @@
 .texto-noticia{
     line-height: 1.8;
 }
+.texto-noticia img{
+    width: 100%;
+}
 
 .leer-mas{
     width: 100%;
@@ -92,10 +95,11 @@
 }
 .btn-vermas{
     width: 100%;
-    background-color: #e32121;
+    background: linear-gradient(285deg, #f92a28 27%, #da1752 100%, #fff 100%);
     border: none;
     padding: 7px 0;
-    color: #fff;
+    color: #fff !important;
+    font-weight: 600;
     text-align: center;
     border-radius: 5px;
     margin-top: 30px;

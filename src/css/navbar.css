@@ -5,6 +5,8 @@ header{
     justify-content: space-between;
     align-items: center;  
     box-shadow: 0 3px 6px -4px rgba(0,0,0,.3);  
+    background: linear-gradient(285deg, #f92a28 27%, #da1752 100%, #fff 100%);
+    height: 120px;
   }
   
 header::after{
@@ -37,6 +39,8 @@ header::after{
   
   header ul{
     position: relative;
+    z-index: 3;
+    padding-left: 0;
   }
   header ul li {
     position: relative;
@@ -44,8 +48,9 @@ header::after{
     float: left;
   }
   header ul li a {
-    color: #2d2d2d;
+    color: white !important;
     font-size: 1.1em;
+    font-weight: 500;
     padding: 15px 20px;
     text-decoration: none;
     display: flex;
@@ -141,17 +146,20 @@ header::after{
       position: absolute;
       width: 100%;
       height: 3px;
-      background: #2d2d2d;
+      background: #fff;
       transform: translateY(-12px);
-      box-shadow: 0 12px #2d2d2d;
+      box-shadow: 0 12px #fff;
     }
     .menuToggle::after{
       content: '';
       position: absolute;
       width: 100%;
       height: 3px;
-      background: #2d2d2d;
+      background: #fff;
       transform: translateY(12px);
+    }
+    nav{
+      height: 100% !important;
     }
   
     header.active .menuToggle::before{
@@ -166,3 +174,78 @@ header::after{
     }
   
   }
+  .dropdown-navbar{
+    margin-top: 0 !important;
+    margin-right: 10px;
+  }
+  .dropdown-toggle1{
+    background-color: #f92a28 !important;
+    border: none !important;
+    font-weight: 600 !important;
+  }
+
+  .menu2-navbar a{
+    color: white !important;
+    font-weight: 600 !important;
+
+  }
+
+  .input-modal{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    border: 1px solid #eee;
+    padding: 5px;
+  }
+  .input-modal input{
+    border: none;
+    border-right: 1px solid #eee;
+    width: 80%;
+    padding: 0 10px;
+  }
+  .input-modal input:focus{
+    outline: none;
+  }
+  .input-modal button{
+    border: none;
+    background: #fff;
+    width: 20%;
+  }
+  .dropdown{
+    margin-top: 30px;
+  }
+  .dropdown-toggle2{
+    background-color: white !important;
+    color: black !important;
+    border: none !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+  .menu-modal{
+    display: flex;
+    flex-direction: column;
+    padding-left: 12px;
+    margin-top: 20px;
+  }
+  .menu-modal a:nth-child(1){
+    margin-bottom: 24px;
+  }
+.encabezado{
+  background-color: black;
+  color: #fff;
+  padding: 10px 0;
+  font-weight: 600;
+  font-size: 13px;
+}
+.encabezado ul{
+  list-style: none;
+  margin: 0;
+}
+.encabezado ul li a{
+  color: white !important;
+}
+.encabezado ul li{
+  margin-right: 10px;
+}

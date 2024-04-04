@@ -1,0 +1,48 @@
+.redes-home{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    padding: 6px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.redes-home span:nth-child(3){
+    border-left: 1px solid rgb(255, 255, 255, 0.1);
+    padding: 4px 8px;
+}
+.redes-icon{
+    border-right: 1px solid rgb(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    font-size: 20px;
+}
+
+.blog-tags ul{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+}
+.blog-tags ul li a{
+    display: block;
+    margin-bottom: 5px;
+    padding: 7px 10px;
+    border: 1px solid #ddd;
+    margin-right: 2px;
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-right: 5px;
+}
+.blog-tags ul li a:hover{
+    background-color: #cc181e;
+    color: white !important;
+    transition: all .2s;
+}
+.vermas button{
+    background: linear-gradient(285deg, #f92a28 27%, #da1752 100%, #fff 100%);
+    color: white !important;
+    border: none;
+}
