@@ -69,6 +69,7 @@ const CarouselGalleria = () => {
                             </Carousel.Item>
                         ))}
                     </Carousel>
+                    
                     <Carousel interval={2000} className="mt-4 mb-5 overflow-hidden d-md-none d-lg-none" style={{ width: "100%", height: "300px" }} prevIcon={false} nextIcon={false} indicators={false}>
                         {dividirAlbumesEnGrupos1(albums).map((grupoAlbumes, indiceGrupo) => (
                             <Carousel.Item key={indiceGrupo}>
@@ -101,6 +102,16 @@ const CarouselGalleria = () => {
                             </Carousel.Item>
                         ))}
                     </Carousel>
+                    <div className="vermas">
+                                <button>
+                                    <Link to="/albums/9/1">
+                                        <span style={{color: "white", fontWeight: "bold"}}>
+                                        VER MAS
+                                        
+                                        </span>
+                                    </Link>
+                                </button>
+                            </div>
             </div>
 
         </>

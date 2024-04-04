@@ -179,7 +179,7 @@ header::after{
     margin-right: 10px;
   }
   .dropdown-toggle1{
-    background-color: #f92a28 !important;
+    background-color: transparent !important;
     border: none !important;
     font-weight: 600 !important;
   }

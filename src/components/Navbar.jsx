@@ -58,8 +58,23 @@ const Navbar = () => {
                                     <Dropdown.Item href="/noticias/Rosario/10/1">Rosario</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
+                            <Dropdown className="dropdown-navbar">
+                                <Dropdown.Toggle className="dropdown-toggle1" id="dropdown-basic">
+                                    Agenda
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="/noticias/10/1">Todas</Dropdown.Item>
+                                    <Dropdown.Item href="/noticias/Santiago del Estero/10/1">Santiago del Estero</Dropdown.Item>
+                                    <Dropdown.Item href="/noticias/Tucuman/10/1">Tucuman</Dropdown.Item>
+                                    <Dropdown.Item href="/noticias/Salta/10/1">Salta</Dropdown.Item>
+                                    <Dropdown.Item href="/noticias/Jujuy/10/1">Jujuy</Dropdown.Item>
+                                    <Dropdown.Item href="/noticias/Catamarca/10/1">Catamarca</Dropdown.Item>
+                                    <Dropdown.Item href="/noticias/Cordoba/10/1">Cordoba</Dropdown.Item>
+                                    <Dropdown.Item href="/noticias/Buenos Aires/10/1">Buenos Aires</Dropdown.Item>
+                                    <Dropdown.Item href="/noticias/Rosario/10/1">Rosario</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
                             <div className="menu2-navbar d-flex gap-4">
-                                <a href="">Agenda</a>
                                 <Link to={"/albums/9/1"}>Galeria</Link>
                                 <a href="">Nosotros</a>
                                 <a href="">Contacto</a>

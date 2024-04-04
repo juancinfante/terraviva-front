@@ -17,7 +17,7 @@ const MasNoticias = () => {
     const getNoticias = async () => {
         try {
             const resp = await api.get('api/noticias/20/1');
-            setNoticias(resp.data.noticias.docs)
+            setNoticias(resp.data.noticias.docs.reverse())
         } catch (error) {
             console.log(error)
         }
@@ -55,7 +55,7 @@ const MasNoticias = () => {
                         <h1 className="border-section mb-4">Mas noticias</h1>
                         <div className="row">
                             {
-                                noticias.slice(5, 14).map((element, index) => (
+                                noticias.slice(5,13).map((element, index) => (
                                     <div className="col-12 col-md-6 mb-4" key={index}>
                                         <a href={`/noticia/${element._id}`}>
                                             <img src={element.img_portada} alt="" style={{ width: "100%", height: "300px", objectFit: "cover" }} />

@@ -11,8 +11,9 @@ const NewBanner = () => {
 
     const getNoticias = async () => {
         try {
-            const resp = await api.get('/api/noticias/10/1');
-            setNoticias(resp.data.noticias.docs);
+            const resp = await api.get('/api/noticias/14/1');
+            setNoticias(resp.data.noticias.docs.reverse());
+            console.log(noticias)
         } catch (error) {
             console.log(error);
         }
