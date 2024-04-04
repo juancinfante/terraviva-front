@@ -98,7 +98,7 @@ const Navbar = () => {
                             </Dropdown>
                             <div className="menu-modal">
                                 <a href="">Agenda</a>
-                                <a href="">Noticias</a>
+                                <a href="/albums/9/1">Galeria</a>
                             </div>
 
                         </Offcanvas.Body>
