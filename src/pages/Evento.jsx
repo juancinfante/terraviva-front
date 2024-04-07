@@ -7,7 +7,6 @@ import publi4 from '../assets/publi4.png';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import '../css/evento.css'
-
 import api from "../api/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faWhatsapp, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
@@ -64,7 +63,7 @@ const Evento = () => {
                             <p className="titulo">{evento.titulo}</p>
                         </div>
                         <div className="d-flex w-100 justify-content-center mb-4 mt-4">
-                        <img src={evento.flayer} alt="" className="flayer w-75" />
+                        <img src={evento.flayer} alt="" className="flayer" />
 
                         </div>
                         <div className="d-flex gap-2 justify-content-end mb-3">
