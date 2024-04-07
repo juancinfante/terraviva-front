@@ -1,0 +1,65 @@
+.difu{
+    /* background: url("http://terraviva.com.ar/administrador/img/uploads/c53860_jose.jpg"); */
+
+}
+.agenda-flayer{
+    position: relative;
+    color: white;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* .agenda-flayer::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(0deg, rgb(0 0 0 / .5), rgb(0 0 0 / 0));
+} */
+.agenda-flayer img{
+    height: 400px;
+    width: 100%;
+    object-fit: fill;
+    transition: transform .75s;
+}
+
+.agenda-flayer .mas-info{
+    position: absolute;
+    z-index: 3;
+    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 90%;
+    display: none;
+
+}
+.agenda-flayer .mas-info h1{
+    color: BLACK;
+    background-color: #fff;
+    width: 100%;
+    font-size: 18px;
+    padding: 10px;
+    text-align: center;
+    font-weight: 700;
+}
+.agenda-flayer .mas-info h1:hover{
+    color: white;
+    background-color: red;
+}
+.agenda-flayer:hover .mas-info{
+    display: block;
+}
+
+.provincias-agenda{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.accordion-button:not(.collapsed){
+    background-color: white !important;
+}
+.accordion-button:focus{
+    box-shadow: none !important;
+}

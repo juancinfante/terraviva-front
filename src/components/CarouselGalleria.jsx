@@ -102,9 +102,9 @@ const CarouselGalleria = () => {
                             </Carousel.Item>
                         ))}
                     </Carousel>
-                    <div className="vermas">
+                    <div className="vermas w-100 d-flex justify-content-center">
                                 <button>
-                                    <Link to="/albums/9/1">
+                                    <Link className="p-3" to="/albums/9/1">
                                         <span style={{color: "white", fontWeight: "bold"}}>
                                         VER MAS
                                         

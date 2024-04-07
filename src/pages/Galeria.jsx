@@ -4,6 +4,7 @@ import '../css/galeria.css';
 import { useEffect, useState } from "react";
 import api from "../api/api";
 import { useParams } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Galeria = () => {
 
@@ -15,7 +16,6 @@ const Galeria = () => {
     const getAlbums = async () => {
         try {
             const resp = await api.get(`api/albums/${params.limit}/${params.page}`);
-            console.log(resp)
             setAlbums(resp.data.albums.docs);
             setData(resp.data.albums);
         } catch (error) {
@@ -93,7 +93,7 @@ const Galeria = () => {
                     </div>
                 </div>
             </div>
-
+            <Footer/>                        
         </>
     )
 }

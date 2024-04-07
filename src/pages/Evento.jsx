@@ -1,141 +1,109 @@
-/* eslint-disable no-unused-vars */
 import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
-import "../css/Noticia.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faInstagram, faTwitter, faWhatsapp, faXTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { Breadcrumb } from "react-bootstrap";
 import publi1 from '../assets/publi1.png';
 import publi2 from '../assets/publi2.png';
 import publi3 from '../assets/publi3.png';
 import publi4 from '../assets/publi4.png';
-import api from "../api/api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import '../css/evento.css'
 
+import api from "../api/api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faInstagram, faWhatsapp, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import Footer from "../components/Footer";
 
+const Evento = () => {
 
-const Noticia = () => {
+    const [evento, setEvento] = useState([]);
+    const [eventos, setEventos] = useState([]);
 
     const params = useParams();
-
-    const [noticia, setNoticia] = useState([]);
-    const [noticias, setNoticias] = useState([]);
     const [input, setInput] = useState("");
 
 
-    const getNoticia = async () => {
+    const getEvento = async () => {
         try {
-            const resp = await api.get(`api/noticia/${params.id}`);
-            setNoticia(resp.data.noticia[0]);
+            const resp = await api.get(`api/evento/${params.id}`);
+            setEvento(resp.data.evento[0]);
         } catch (error) {
             console.log(error);
         }
     }
-    const getNoticias = async () => {
+    const getEventos = async () => {
         try {
-            const resp = await api.get('api/noticias/6/1');
-            setNoticias(resp.data.noticias.docs)
+            const resp = await api.get("api/eventos/6/1");
+            setEventos(resp.data.eventos.docs);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
-
     function insertarHTML(html) {
         return { __html: html };
     }
 
-
-    function convertirFecha(fecha) {
-        // Obtenemos el nombre del día de la semana
-        const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-        const diaSemana = diasSemana[new Date(fecha).getDay()];
-
-        // Obtenemos el día del mes
-        const diaMes = new Date(fecha).getDate();
-
-        // Obtenemos el nombre del mes
-        const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-        const mes = meses[new Date(fecha).getMonth()];
-
-        // Obtenemos el año
-        const ano = new Date(fecha).getFullYear();
-
-        // Formateamos la fecha
-        const fechaFormateada = `${diaMes} / ${mes} / ${ano}`;
-
-        return fechaFormateada;
-    }
-
-
     useEffect(() => {
-        getNoticia();
-        getNoticias();
+        getEvento();
+        getEventos();
     }, [])
 
     return (
         <>
-
             <Navbar />
             <div className="container">
                 <Breadcrumb>
                     <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/noticias/10/1">
-                        Noticias
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item active>
-                        Santiago del Estero
+                    <Breadcrumb.Item href="/agenda/10/1">
+                        Agenda
                     </Breadcrumb.Item>
                 </Breadcrumb>
                 <div className="row mb-5">
                     <div className="col-12 col-lg-9">
-                        <h1 className="border-section mb-4">{noticia.provincia}</h1>
                         <div className="title-noticia">
-                            <p className="titulo">{noticia.titulo}</p>
-                            <p className="autor">
-                                <img src={noticia.fotoEditor} alt="" />
-                                <span style={{ fontSize: "14px" }}>{noticia.editor} - {convertirFecha(noticia.created_at)}</span>
-                            </p>
+                            <p className="titulo">{evento.titulo}</p>
                         </div>
-                        <img src={noticia.img_portada} alt="" className="noticia-img" />
+                        <div className="d-flex w-100 justify-content-center mb-4 mt-4">
+                        <img src={evento.flayer} alt="" className="flayer w-75" />
+
+                        </div>
                         <div className="d-flex gap-2 justify-content-end mb-3">
                             <a href="">
 
-                            <div className="d-flex align-items-center" style={{backgroundColor: "#3b5999", color: "white", fontSize:"13px", padding:"2px 3px"}}>
-                                <FontAwesomeIcon icon={faFacebook} className='redes-icon' style={{fontSize:"15px"}}/>
-                                <span>Facebook</span>
-                            </div>
+                                <div className="d-flex align-items-center" style={{ backgroundColor: "#3b5999", color: "white", fontSize: "13px", padding: "2px 3px" }}>
+                                    <FontAwesomeIcon icon={faFacebook} className='redes-icon' style={{ fontSize: "15px" }} />
+                                    <span>Facebook</span>
+                                </div>
                             </a>
-                            <div className="d-flex align-items-center" style={{backgroundColor: "#000", color: "white", fontSize:"13px", padding:"2px 3px"}}>
-                                <FontAwesomeIcon icon={faXTwitter} className='redes-icon' style={{fontSize:"15px"}}/>
+                            <div className="d-flex align-items-center" style={{ backgroundColor: "#000", color: "white", fontSize: "13px", padding: "2px 3px" }}>
+                                <FontAwesomeIcon icon={faXTwitter} className='redes-icon' style={{ fontSize: "15px" }} />
                                 <span>Twitter</span>
                             </div>
-                            <div className="d-flex align-items-center" style={{backgroundColor: "#25d366", color: "white", fontSize:"13px", padding:"2px 3px"}}>
-                                <FontAwesomeIcon icon={faWhatsapp} className='redes-icon' style={{fontSize:"15px"}}/>
+                            <div className="d-flex align-items-center" style={{ backgroundColor: "#25d366", color: "white", fontSize: "13px", padding: "2px 3px" }}>
+                                <FontAwesomeIcon icon={faWhatsapp} className='redes-icon' style={{ fontSize: "15px" }} />
                                 <span>Whatsapp</span>
                             </div>
                         </div>
-                        <p className="texto-noticia" dangerouslySetInnerHTML={insertarHTML(noticia.texto)}>
+                        <p className="texto-noticia" dangerouslySetInnerHTML={insertarHTML(evento.texto)}>
                         </p>
                         <div className="leer-mas">
                             <h1 className="border-section mb-4">Te puede interesar</h1>
                             <div className="row">
-                                {noticias.map((element, index) => (
-                                    <div className="col-4 leer-mas-article" key={index}>
-                                        <img src={element.img_portada} alt="" />
+                                {eventos.map((element, index) => (
+                                    <div className="col-12 col-sm-6 col-lg-4 leer-mas-article" key={index}>
+                                        <img src={element.flayer} alt="" />
                                         <p className="leer-mas-texto mt-2">
-                                            <a href={`/noticia/${element._id}`}>{element.titulo}</a>
+                                            <a href={`/evento/${element._id}`}>{element.titulo}</a>
                                         </p>
                                     </div>
                                 ))}
-                                <a href={`/noticias/10/1`} className="btn-vermas">VER MAS</a>
+                                <a href={`/agenda/12/1`} className="btn-vermas">VER MAS</a>
                             </div>
                         </div>
                     </div>
                     <div className="col-12 col-lg-3">
-                        <h1 className="border-section mb-4">Redes</h1>
-                        <div className="input-modal">
+                            <h1 className="border-section mb-4">Busqueda</h1>
+                            <div className="input-modal">
                                 <input type="text" placeholder="buscar" required value={input} onChange={(e) => setInput(e.target.value)}/>
                                 <button>
                                     <a href={`/noticias/b/${input}/10/1`}>
@@ -186,14 +154,12 @@ const Noticia = () => {
                                     <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
                                 </div>
                             </div>
-
-                    </div>
+                        </div>
                 </div>
-
             </div>
-            <Footer />
+            <Footer/>
         </>
     )
 }
 
-export default Noticia
+export default Evento

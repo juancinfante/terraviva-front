@@ -9,10 +9,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faYoutube, faInstagram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import '../css/masNoticias.css';
 import { Link } from 'react-router-dom';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const MasNoticias = () => {
 
     const [noticias, setNoticias] = useState([]);
+    const [input, setInput] = useState("");
 
     const getNoticias = async () => {
         try {
@@ -55,7 +57,7 @@ const MasNoticias = () => {
                         <h1 className="border-section mb-4">Mas noticias</h1>
                         <div className="row">
                             {
-                                noticias.slice(5,13).map((element, index) => (
+                                noticias.slice(5, 13).map((element, index) => (
                                     <div className="col-12 col-md-6 mb-4" key={index}>
                                         <a href={`/noticia/${element._id}`}>
                                             <img src={element.img_portada} alt="" style={{ width: "100%", height: "300px", objectFit: "cover" }} />
@@ -72,12 +74,11 @@ const MasNoticias = () => {
                                     </div>
                                 ))
                             }
-                            <div className="vermas">
+                            <div className="vermas w-100 d-flex justify-content-center">
                                 <button>
                                     <Link to="/noticias/10/1">
-                                        <span style={{color: "white", fontWeight: "bold"}}>
-                                        VER MAS
-                                        
+                                        <span className='p-3' style={{ color: "white", fontWeight: "bold" }}>
+                                            VER MAS
                                         </span>
                                     </Link>
                                 </button>
@@ -85,6 +86,15 @@ const MasNoticias = () => {
                         </div>
                     </div>
                     <div className="col-12 col-lg-3">
+                        <h1 className="border-section mb-4">Busqueda</h1>
+                        <div className="input-modal">
+                            <input type="text" placeholder="buscar" required value={input} onChange={(e) => setInput(e.target.value)} />
+                            <button>
+                                <a href={`/noticias/b/${input}/10/1`}>
+                                    <FontAwesomeIcon icon={faSearch} className='redes-icon' />
+                                </a>
+                            </button>
+                        </div>
                         <h1 className="border-section mb-4">Redes</h1>
                         <a href="https://www.facebook.com/terravivafolclore" target='blank'>
                             <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
@@ -114,9 +124,6 @@ const MasNoticias = () => {
                                 <span>Seguir</span>
                             </div>
                         </a>
-                        <div>
-
-                        </div>
                         <div className="row gap-3 mt-4">
                             <div className="col-12">
                                 <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
