@@ -91,7 +91,7 @@ const Evento = () => {
                             <h1 className="border-section mb-4">Te puede interesar</h1>
                             <div className="row">
                                 {eventos.map((element, index) => (
-                                    <div className="col-12 col-sm-6 col-lg-4 leer-mas-article" key={index}>
+                                    <div className="col-12 col-sm-6 col-md-4 leer-mas-article leer-mas-article" key={index}>
                                         <img src={element.flayer} alt="" />
                                         <p className="leer-mas-texto mt-2">
                                             <a href={`/evento/${element._id}`}>{element.titulo}</a>

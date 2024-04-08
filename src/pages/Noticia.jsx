@@ -122,8 +122,8 @@ const Noticia = () => {
                             <h1 className="border-section mb-4">Te puede interesar</h1>
                             <div className="row">
                                 {noticias.map((element, index) => (
-                                    <div className="col-4 leer-mas-article" key={index}>
-                                        <img src={element.img_portada} alt="" />
+                                    <div className="col-12 col-sm-6 col-md-4 leer-mas-article" key={index}>
+                                        <img src={element.img_portada} alt="" style={{height: "240px"}}/>
                                         <p className="leer-mas-texto mt-2">
                                             <a href={`/noticia/${element._id}`}>{element.titulo}</a>
                                         </p>
