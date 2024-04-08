@@ -189,4 +189,8 @@ ul{
     -webkit-box-orient: vertical;
     visibility: visible;
 }
-
+@media (max-width: 575px) {
+    .elipsis{
+        display: none;
+    }
+  }

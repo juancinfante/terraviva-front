@@ -50,6 +50,12 @@ const Busquedas = () => {
                         <div className="col-12 col-md-8 col-lg-9 d-flex flex-column gap-3 mas-noticias">
                             <h1 className="border-section mb-4">Resultados de: {params.busq} </h1>
                             {
+                                busquedas.length == 0 ? 
+                                <div className="d-flex justify-content-center">
+                                    <h1>NO HAY RESULTADOS</h1> 
+                                </div>  
+                                : 
+                                
                                 busquedas.map((element, index) => (
                                     <div className="row" key={index}>
                                         <div className="col-12 col-sm-6 col-lg-4">
@@ -71,7 +77,10 @@ const Busquedas = () => {
                                     </div>
 
                                 ))
+                            
+                                
                             }
+                            
                             <ul className="paginationn">
 
                                 {
@@ -129,15 +138,20 @@ const Busquedas = () => {
                                 }
                             </ul>
                         </div>
-                        <div className="col-12 col-md-4 col-lg-3">
-                            <h1 className="border-section mb-4">Busqueda</h1>
-                            <div className="input-modal">
-                                <input type="text" placeholder="buscar" required value={input} onChange={(e) => setInput(e.target.value)}/>
-                                <button>
-                                    <a href={`/noticias/b/${input}/10/1`}>
-                                        <FontAwesomeIcon icon={faSearch} className='redes-icon' />
-                                    </a>
-                                </button>
+                        <div className="col-12 col-md-4 col-lg-3 mt-5">
+                            <div className="row gap-3 mt-4">
+                                <div className="col-12">
+                                    <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                </div>
+                                <div className="col-12">
+                                    <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                </div>
+                                <div className="col-12">
+                                    <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                </div>
+                                <div className="col-12">
+                                    <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                </div>
                             </div>
                             <h1 className="border-section mb-4">Redes</h1>
                             <a href="https://www.facebook.com/terravivafolclore" target='blank'>
@@ -168,20 +182,6 @@ const Busquedas = () => {
                                     <span>Seguir</span>
                                 </div>
                             </a>
-                            <div className="row gap-3 mt-4">
-                                <div className="col-12">
-                                    <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

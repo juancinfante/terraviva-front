@@ -92,7 +92,7 @@ const Noticia = () => {
                     <div className="col-12 col-lg-9">
                         <h1 className="border-section mb-4">{noticia.provincia}</h1>
                         <div className="title-noticia">
-                            <p className="titulo">{noticia.titulo}</p>
+                            <p className="titulo mb-3">{noticia.titulo}</p>
                             <p className="autor">
                                 <img src={noticia.fotoEditor} alt="" />
                                 <span style={{ fontSize: "14px" }}>{noticia.editor} - {convertirFecha(noticia.created_at)}</span>
@@ -133,15 +133,20 @@ const Noticia = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-lg-3">
-                        <h1 className="border-section mb-4">Redes</h1>
-                        <div className="input-modal">
-                                <input type="text" placeholder="buscar" required value={input} onChange={(e) => setInput(e.target.value)}/>
-                                <button>
-                                    <a href={`/noticias/b/${input}/10/1`}>
-                                        <FontAwesomeIcon icon={faSearch} className='redes-icon' />
-                                    </a>
-                                </button>
+                    <div className="col-12 col-lg-3 pt-5">
+                            <div className="row gap-3 pt-4">
+                                <div className="col-12">
+                                    <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                </div>
+                                <div className="col-12">
+                                    <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                </div>
+                                <div className="col-12">
+                                    <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                </div>
+                                <div className="col-12">
+                                    <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                </div>
                             </div>
                             <h1 className="border-section mb-4">Redes</h1>
                             <a href="https://www.facebook.com/terravivafolclore" target='blank'>
@@ -172,21 +177,6 @@ const Noticia = () => {
                                     <span>Seguir</span>
                                 </div>
                             </a>
-                            <div className="row gap-3 mt-4">
-                                <div className="col-12">
-                                    <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                            </div>
-
                     </div>
                 </div>
 

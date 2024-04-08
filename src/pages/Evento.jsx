@@ -57,13 +57,15 @@ const Evento = () => {
                         Agenda
                     </Breadcrumb.Item>
                 </Breadcrumb>
+                <h1 className="border-section mb-4">Agenda</h1>
                 <div className="row mb-5">
+
                     <div className="col-12 col-lg-9">
                         <div className="title-noticia">
                             <p className="titulo">{evento.titulo}</p>
                         </div>
                         <div className="d-flex w-100 justify-content-center mb-4 mt-4">
-                        <img src={evento.flayer} alt="" className="flayer" />
+                            <img src={evento.flayer} alt="" className="flayer" />
 
                         </div>
                         <div className="d-flex gap-2 justify-content-end mb-3">
@@ -100,63 +102,54 @@ const Evento = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-lg-3">
-                            <h1 className="border-section mb-4">Busqueda</h1>
-                            <div className="input-modal">
-                                <input type="text" placeholder="buscar" required value={input} onChange={(e) => setInput(e.target.value)}/>
-                                <button>
-                                    <a href={`/noticias/b/${input}/10/1`}>
-                                        <FontAwesomeIcon icon={faSearch} className='redes-icon' />
-                                    </a>
-                                </button>
+                    <div className="col-12 col-lg-3 pt-5" style={{marginTop: "10px"}}>
+                        <div className="row gap-3 mt-4 pt-4">
+                            <div className="col-12">
+                                <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
                             </div>
-                            <h1 className="border-section mb-4">Redes</h1>
-                            <a href="https://www.facebook.com/terravivafolclore" target='blank'>
-                                <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
-                                    <FontAwesomeIcon icon={faFacebook} className='redes-icon' />
-                                    <span>+190mil</span>
-                                    <span>Like</span>
-                                </div>
-                            </a>
-                            <a href="https://twitter.com/terravivanoa" target='blank'>
-                                <div className='redes-home' style={{ backgroundColor: "#000" }}>
-                                    <FontAwesomeIcon icon={faXTwitter} className='redes-icon' />
-                                    <span>+1800</span>
-                                    <span>Seguir</span>
-                                </div>
-                            </a>
-                            <a href="https://www.youtube.com/user/terravivafolclore" target='blank'>
-                                <div className='redes-home' style={{ backgroundColor: "#cc181e" }}>
-                                    <FontAwesomeIcon icon={faYoutube} className='redes-icon' />
-                                    <span>+1000</span>
-                                    <span>Suscribir</span>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/terravivafolclore" target='blank'>
-                                <div className='redes-home ig'>
-                                    <FontAwesomeIcon icon={faInstagram} className='redes-icon' />
-                                    <span>+19mil</span>
-                                    <span>Seguir</span>
-                                </div>
-                            </a>
-                            <div className="row gap-3 mt-4">
-                                <div className="col-12">
-                                    <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
+                            <div className="col-12">
+                                <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                            </div>
+                            <div className="col-12">
+                                <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                            </div>
+                            <div className="col-12">
+                                <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
                             </div>
                         </div>
+                        <h1 className="border-section mb-4">Redes</h1>
+                        <a href="https://www.facebook.com/terravivafolclore" target='blank'>
+                            <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
+                                <FontAwesomeIcon icon={faFacebook} className='redes-icon' />
+                                <span>+190mil</span>
+                                <span>Like</span>
+                            </div>
+                        </a>
+                        <a href="https://twitter.com/terravivanoa" target='blank'>
+                            <div className='redes-home' style={{ backgroundColor: "#000" }}>
+                                <FontAwesomeIcon icon={faXTwitter} className='redes-icon' />
+                                <span>+1800</span>
+                                <span>Seguir</span>
+                            </div>
+                        </a>
+                        <a href="https://www.youtube.com/user/terravivafolclore" target='blank'>
+                            <div className='redes-home' style={{ backgroundColor: "#cc181e" }}>
+                                <FontAwesomeIcon icon={faYoutube} className='redes-icon' />
+                                <span>+1000</span>
+                                <span>Suscribir</span>
+                            </div>
+                        </a>
+                        <a href="https://www.instagram.com/terravivafolclore" target='blank'>
+                            <div className='redes-home ig'>
+                                <FontAwesomeIcon icon={faInstagram} className='redes-icon' />
+                                <span>+19mil</span>
+                                <span>Seguir</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
     )
 }

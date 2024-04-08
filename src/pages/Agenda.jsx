@@ -6,6 +6,13 @@ import '../css/agenda.css'
 import api from '../api/api';
 import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faInstagram, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import publi1 from '../assets/publi1.png';
+import publi2 from '../assets/publi2.png';
+import publi3 from '../assets/publi3.png';
+import publi4 from '../assets/publi4.png';
+
 const Agenda = () => {
 
     const params = useParams();
@@ -41,7 +48,8 @@ const Agenda = () => {
                     </Breadcrumb.Item>
                 </Breadcrumb>
                 <div className="row w-100">
-                    <div className="col-12">
+                    <div className="col-12 col-lg-9">
+                        
                         {
                             params.prov !== undefined ? 
                             <h1 className="border-section mb-4">Agenda: {params.prov} </h1>
@@ -97,7 +105,7 @@ const Agenda = () => {
                             }
                             {
                                 eventos.map((element, index) => (
-                                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" key={index}>
+                                    <div className="col-12 col-sm-6 col-xl-4 mb-4" key={index}>
                                         <a href={`/evento/${element._id}`}>
                                             <div className="agenda-flayer">
                                                 <img src={element.flayer} alt="" />
@@ -111,7 +119,23 @@ const Agenda = () => {
                             }
                         </div>
                     </div>
-                    {/* <div className="col-12">
+                    <div className="col-12 col-lg-3 pt-5">
+                        <div className="row gap-3 pt-5">
+                            <div className="col-12">
+                                <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                            </div>
+                            <div className="col-12">
+                                <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                            </div>
+                            <div className="col-12">
+                                <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                            </div>
+                            <div className="col-12">
+                                <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                            </div>
+                        </div>
+                        <div>
+
                         <h1 className="border-section mb-4">Redes</h1>
                         <a href="https://www.facebook.com/terravivafolclore" target='blank'>
                             <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
@@ -141,24 +165,9 @@ const Agenda = () => {
                                 <span>Seguir</span>
                             </div>
                         </a>
-                        <div>
-
+                            
                         </div>
-                        <div className="row gap-3 mt-4">
-                            <div className="col-12">
-                                <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                        </div>
-                    </div> */}
+                    </div>
                 </div>
             </div>
             <Footer />

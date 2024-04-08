@@ -5,10 +5,12 @@ import CarouselGalleria from '../components/CarouselGalleria'
 import MasNoticias from '../components/MasNoticias'
 import NewBanner from '../components/NewBanner'
 import BannerSantiago from '../components/BannerSantiago'
+import HeaderTop from '../components/HeaderTop'
 
 const Home = () => {
   return (
     <>
+        <HeaderTop/>
         <Navbar />
         <NewBanner />
         <BannerSantiago/>

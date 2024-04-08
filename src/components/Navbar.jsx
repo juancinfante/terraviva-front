@@ -14,6 +14,12 @@ const Navbar = () => {
 
     const [input, setInput] = useState("");
 
+    const handleBuscar = async () => {
+        if(input !== ""){
+            location.href = `/noticias/b/${input}/10/1`;
+        }
+    }
+
     return (
         <>
 
@@ -44,8 +50,14 @@ const Navbar = () => {
                             <div className="menu2-navbar d-flex gap-4">
                                 <Link to={"/agenda/9/1"}>Agenda</Link>
                                 <Link to={"/albums/9/1"}>Galeria</Link>
-                                <Link to={"/"}>Nosotros</Link>
-                                <Link to={"/"}>Contacto</Link>
+                            </div>
+                            <div className="input-modal">
+                                <input type="text" placeholder="buscar" required value={input} onChange={(e) => setInput(e.target.value)}/>
+                                <button onClick={() => handleBuscar()}>
+                                    {/* <a href={`/noticias/b/${input}/10/1`}> */}
+                                        <FontAwesomeIcon icon={faSearch} className='redes-icon' />
+                                    {/* </a> */}
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -194,7 +194,6 @@ header::after{
     display: flex;
     width: 100%;
     align-items: center;
-    border: 1px solid #eee;
     padding: 5px;
   }
   .input-modal input{
@@ -202,6 +201,7 @@ header::after{
     border-right: 1px solid #eee;
     width: 80%;
     padding: 0 10px;
+    height: 30px;
   }
   .input-modal input:focus{
     outline: none;
@@ -210,6 +210,7 @@ header::after{
     border: none;
     background: #fff;
     width: 20%;
+    height: 30px;
   }
   .dropdown{
     margin-top: 30px;

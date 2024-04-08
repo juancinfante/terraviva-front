@@ -158,15 +158,20 @@ const Noticias = () => {
                             }
                         </ul>
                     </div>
-                    <div className="col-12 col-md-4 col-lg-3">
-                    <h1 className="border-section mb-4">Busqueda</h1>
-                            <div className="input-modal">
-                                <input type="text" placeholder="buscar" required value={input} onChange={(e) => setInput(e.target.value)}/>
-                                <button>
-                                    <a href={`/noticias/b/${input}/10/1`}>
-                                        <FontAwesomeIcon icon={faSearch} className='redes-icon' />
-                                    </a>
-                                </button>
+                    <div className="col-12 col-md-4 col-lg-3 pt-5">
+                            <div className="row gap-3 pt-5">
+                                <div className="col-12">
+                                    <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                </div>
+                                <div className="col-12">
+                                    <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                </div>
+                                <div className="col-12">
+                                    <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                </div>
+                                <div className="col-12">
+                                    <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                </div>
                             </div>
                             <h1 className="border-section mb-4">Redes</h1>
                             <a href="https://www.facebook.com/terravivafolclore" target='blank'>
@@ -197,116 +202,10 @@ const Noticias = () => {
                                     <span>Seguir</span>
                                 </div>
                             </a>
-                            <div className="row gap-3 mt-4">
-                                <div className="col-12">
-                                    <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                            </div>
-
                     </div>
                 </div>
             </div>
             <Footer />
-            {/* <Ticker/>
-        <div className="container-nav">
-        </div>
-
-        <div className="container2">
-            <div className="article-container">
-                <div className="section1">
-                    <div className="header">
-                        Noticias - PAIS
-                    </div>
-                    <div className="section1-cat">
-                        CATEGORIA: PAIS
-                    </div>
-                    <div className="section1-article">
-                        <img src="https://res.cloudinary.com/dwjhbrsmf/image/upload/v1703806557/test-img/cheqz8fpl2tdmoormt4g.jpg" alt="" />
-                        <div className="info">
-                            <p className="provincia">SANTIAGO</p>
-                            <a href=""><p className="title"><Link to={"/noticia"}>Convocan a artistas a participar del certamen de la Canción Inédita ´Canto a Cafayate´</Link></p></a>
-                            <p className="fecha">20 de Diciembre, 2023</p>
-                            <p className="texto">El músico y compositor santiagueño Cóndor López, despide el año con mucho folklore y con amigos como invitados espe </p>
-                            <a href=""><button>LEER MAS</button></a>
-                        </div>
-                    </div>
-                    <div className="section1-article">
-                        <img src="https://res.cloudinary.com/dwjhbrsmf/image/upload/v1703806547/test-img/ofpca14ypk2ws82mgdkx.jpg" alt="" />
-                        <div className="info">
-                            <p className="provincia">SANTIAGO</p>
-                            <a href=""><p className="title">Convocan a artistas a participar del certamen de la Canción Inédita ´Canto a Cafayate´</p></a>
-                            <p className="fecha">20 de Diciembre, 2023</p>
-                            <p className="texto">El músico y compositor santiagueño Cóndor López, despide el año con mucho folklore y con amigos como invitados especiales para compartir una noche de música y amistad. La cita es para este viernes 29 de diciembre</p>
-                            <a href=""><button>LEER MAS</button></a>
-                        </div>
-                    </div>
-                    <div className="section1-article">
-                        <img src="https://res.cloudinary.com/dwjhbrsmf/image/upload/v1703806567/test-img/kadgvrnpulzbm9q5cr7h.jpg" alt="" />
-                        <div className="info">
-                            <p className="provincia">SANTIAGO</p>
-                            <a href=""><p className="title">Convocan a artistas a participar del certamen de la Canción Inédita ´Canto a Cafayate´</p></a>
-                            <p className="fecha">20 de Diciembre, 2023</p>
-                            <p className="texto">El músico y compositor santiagueño Cóndor López, despide el año con mucho folklore y con amigos como invitados especiales para compartir una noche de música y amistad. La cita es para este viernes 29 de diciembre</p>
-                            <a href=""><button>LEER MAS</button></a>
-                        </div>
-                    </div>
-                    <div className="section1-article">
-                        <img src="https://res.cloudinary.com/dwjhbrsmf/image/upload/v1703806589/test-img/pxrvklie9jevru8eoikd.jpg" alt="" />
-                        <div className="info">
-                            <p className="provincia">SANTIAGO</p>
-                            <a href=""><p className="title">Convocan a artistas a participar del certamen de la Canción Inédita ´Canto a Cafayate´</p></a>
-                            <p className="fecha">20 de Diciembre, 2023</p>
-                            <p className="texto">El músico y compositor santiagueño Cóndor López, despide el año con mucho folklore y con amigos como invitados especiales para compartir una noche de música y amistad. La cita es para este viernes 29 de diciembre</p>
-                            <a href=""><button>LEER MAS</button></a>
-                        </div>
-                    </div>
-                    <div className="articles-pagination">
-                        <a href="" className="actual-page">1</a>
-                        <a href="">2</a>
-                        <a href="">3</a>
-                    </div>
-                </div>
-                <div className="section2">
-                    <div className="tabs-redes w-100">
-                        <p>SIGUENOS EN NUESTRAS REDES</p>
-                            <div className="redes">
-                                    <a href="#" className='icon fb'>
-                                        <FontAwesomeIcon icon={faFacebook} />
-                                    </a>
-                                    <a href="#" className='icon ig'>
-                                        <FontAwesomeIcon icon={faInstagram} />
-                                    </a>
-                                    <a href="#" className='icon tw'>
-                                        <FontAwesomeIcon icon={faXTwitter} />
-                                    </a>
-                            </div>
-                    </div>
-                    <div className="otras-noticias">
-                        <p>MAS NOTICIAS</p>
-                            <ul>
-                                <li><a href=""> - CATAMARCA</a></li>
-                                <li><a href=""> - SALTA</a></li>
-                                <li><a href=""> - TUCUMAN</a></li>
-                                <li><a href=""> - JUJUY</a></li>
-                                <li><a href=""> - CORDOBA</a></li>
-                                <li><a href=""> - ROSARIO</a></li>
-                            </ul>
-                    </div>
-                    <div className="elfsight-app-e67d7d8b-182f-4ac5-8231-e167d55a2743" data-elfsight-app-lazy></div>
-                </div>
-            </div>
-        </div>
-        <Footer /> */}
-
         </>
     )
 }

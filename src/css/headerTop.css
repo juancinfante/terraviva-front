@@ -1,0 +1,12 @@
+.top{
+    background-color: rgba(0, 0, 0, 0.836);
+    color: white;
+}
+
+.top p{
+    font-weight: bold;
+    font-size: 13px;
+}
+.icon-top{
+    color: white !important;
+}
