@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Breadcrumb, Accordion } from 'react-bootstrap';
 import Navbar from '../components/Navbar';
 import { useParams } from 'react-router-dom';
@@ -8,15 +7,12 @@ import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import publi1 from '../assets/publi1.png';
-import publi2 from '../assets/publi2.png';
-import publi3 from '../assets/publi3.png';
-import publi4 from '../assets/publi4.png';
 
 const Agenda = () => {
 
     const params = useParams();
     const [eventos, setEventos] = useState([]);
+    const [publis, setPublis] = useState([]);
 
     const getEventos = async () => {
         try {
@@ -31,9 +27,34 @@ const Agenda = () => {
             console.log(error);
         }
     }
+    const getPubli = async () => {
+        try {
+            const resp = await api.get('api/publis');
+            setPublis(resp.data.publis)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    function fechaPasada(fecha) {
+        // Convertir la fecha pasada como string a un objeto Date
+        const partesFecha = fecha.split('-');
+        const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
+        
+        // Obtener la fecha actual
+        const hoy = new Date();
+    
+        // Comparar las fechas
+        if (fechaComparar > hoy) {
+            return true; // La fecha ya pasó
+        } else {
+            return false; // La fecha aún no ha pasado
+        }
+    }
 
     useEffect(() => {
         getEventos();
+        getPubli();
     }, [])
     return (
         <>
@@ -49,23 +70,23 @@ const Agenda = () => {
                 </Breadcrumb>
                 <div className="row w-100">
                     <div className="col-12 col-lg-9">
-                        
+
                         {
-                            params.prov !== undefined ? 
-                            <h1 className="border-section mb-4">Agenda: {params.prov} </h1>
-                            :
-                            <h1 className="border-section mb-4">Agenda: Proximos eventos </h1>
+                            params.prov !== undefined ?
+                                <h1 className="border-section mb-4">Agenda: {params.prov} </h1>
+                                :
+                                <h1 className="border-section mb-4">Agenda: Proximos eventos </h1>
                         }
-                        <Accordion  className='mb-4'>
+                        <Accordion className='mb-4'>
                             <Accordion.Item eventKey="0" className="acordion">
-                            {
-                            params.prov !== undefined ? 
-                            <Accordion.Header className="acordion">{params.prov}</Accordion.Header>
+                                {
+                                    params.prov !== undefined ?
+                                        <Accordion.Header className="acordion">{params.prov}</Accordion.Header>
 
-                            :
-                            <Accordion.Header className="acordion">Provincia</Accordion.Header>
+                                        :
+                                        <Accordion.Header className="acordion">Provincia</Accordion.Header>
 
-                        }
+                                }
                                 <Accordion.Body>
                                     <ul className='provincias-agenda'>
                                         <li>
@@ -98,10 +119,10 @@ const Agenda = () => {
                         </Accordion>
                         <div className="row">
                             {
-                                eventos.length == 0 ? 
-                                 <h1 className="text-center mt-5 mb-5">NO HAY EVENTOS</h1>
-                                
-                                : ""
+                                eventos.length == 0 ?
+                                    <h1 className="text-center mt-5 mb-5">CARGANDO...</h1>
+
+                                    : ""
                             }
                             {
                                 eventos.map((element, index) => (
@@ -121,51 +142,48 @@ const Agenda = () => {
                     </div>
                     <div className="col-12 col-lg-3 pt-5">
                         <div className="row gap-3 pt-5">
-                            <div className="col-12">
-                                <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
+                        {
+                                publis.map((element, index) => (
+                                    fechaPasada(element.egreso) && element.colocar_en.includes("agenda") && (
+                                        <div className="col-12" key={index}>
+                                            <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                        </div>
+                                    )
+                                ))
+                            }
                         </div>
                         <div>
 
-                        <h1 className="border-section mb-4">Redes</h1>
-                        <a href="https://www.facebook.com/terravivafolclore" target='blank'>
-                            <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
-                                <FontAwesomeIcon icon={faFacebook} className='redes-icon' />
-                                <span>+190mil</span>
-                                <span>Like</span>
-                            </div>
-                        </a>
-                        <a href="https://twitter.com/terravivanoa" target='blank'>
-                            <div className='redes-home' style={{ backgroundColor: "#000" }}>
-                                <FontAwesomeIcon icon={faXTwitter} className='redes-icon' />
-                                <span>+1800</span>
-                                <span>Seguir</span>
-                            </div>
-                        </a>
-                        <a href="https://www.youtube.com/user/terravivafolclore" target='blank'>
-                            <div className='redes-home' style={{ backgroundColor: "#cc181e" }}>
-                                <FontAwesomeIcon icon={faYoutube} className='redes-icon' />
-                                <span>+1000</span>
-                                <span>Suscribir</span>
-                            </div>
-                        </a>
-                        <a href="https://www.instagram.com/terravivafolclore" target='blank'>
-                            <div className='redes-home ig'>
-                                <FontAwesomeIcon icon={faInstagram} className='redes-icon' />
-                                <span>+19mil</span>
-                                <span>Seguir</span>
-                            </div>
-                        </a>
-                            
+                            <h1 className="border-section mb-4">Redes</h1>
+                            <a href="https://www.facebook.com/terravivafolclore" target='blank'>
+                                <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
+                                    <FontAwesomeIcon icon={faFacebook} className='redes-icon' />
+                                    <span>+190mil</span>
+                                    <span>Like</span>
+                                </div>
+                            </a>
+                            <a href="https://twitter.com/terravivanoa" target='blank'>
+                                <div className='redes-home' style={{ backgroundColor: "#000" }}>
+                                    <FontAwesomeIcon icon={faXTwitter} className='redes-icon' />
+                                    <span>+1800</span>
+                                    <span>Seguir</span>
+                                </div>
+                            </a>
+                            <a href="https://www.youtube.com/user/terravivafolclore" target='blank'>
+                                <div className='redes-home' style={{ backgroundColor: "#cc181e" }}>
+                                    <FontAwesomeIcon icon={faYoutube} className='redes-icon' />
+                                    <span>+1000</span>
+                                    <span>Suscribir</span>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/terravivafolclore" target='blank'>
+                                <div className='redes-home ig'>
+                                    <FontAwesomeIcon icon={faInstagram} className='redes-icon' />
+                                    <span>+19mil</span>
+                                    <span>Seguir</span>
+                                </div>
+                            </a>
+
                         </div>
                     </div>
                 </div>

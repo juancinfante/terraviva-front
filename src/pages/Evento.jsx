@@ -1,26 +1,64 @@
 import Navbar from "../components/Navbar"
 import { Breadcrumb } from "react-bootstrap";
-import publi1 from '../assets/publi1.png';
-import publi2 from '../assets/publi2.png';
-import publi3 from '../assets/publi3.png';
-import publi4 from '../assets/publi4.png';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import '../css/evento.css'
 import api from "../api/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faWhatsapp, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../components/Footer";
 
 const Evento = () => {
 
     const [evento, setEvento] = useState([]);
     const [eventos, setEventos] = useState([]);
+    const [publis, setPublis] = useState([]);
 
     const params = useParams();
-    const [input, setInput] = useState("");
 
+
+    const getPubli = async () => {
+        try {
+            const resp = await api.get('api/publis');
+            setPublis(resp.data.publis)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    function fechaPasada(fecha) {
+        // Convertir la fecha pasada como string a un objeto Date
+        const partesFecha = fecha.split('-');
+        const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
+
+        // Obtener la fecha actual
+        const hoy = new Date();
+
+        // Comparar las fechas
+        if (fechaComparar > hoy) {
+            return true; // La fecha ya pasó
+        } else {
+            return false; // La fecha aún no ha pasado
+        }
+    }
+
+    function formatDate(fecha) {
+        const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado','Domingo'];
+        const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+        // Crear un objeto de fecha a partir de la entrada
+        const date = new Date(fecha);
+
+        // Obtener el día de la semana, día del mes y mes de la fecha
+        const dayOfWeek = days[date.getDay()];
+        const dayOfMonth = date.getDate() + 1;
+        const month = months[date.getMonth()];
+        // eslint-disable-next-line no-unused-vars
+        const year = date.getFullYear();
+
+        // Devolver la fecha formateada
+        return `${dayOfWeek} ${dayOfMonth} de ${month}`;
+    }
 
     const getEvento = async () => {
         try {
@@ -45,6 +83,7 @@ const Evento = () => {
     useEffect(() => {
         getEvento();
         getEventos();
+        getPubli();
     }, [])
 
     return (
@@ -63,6 +102,7 @@ const Evento = () => {
                     <div className="col-12 col-lg-9">
                         <div className="title-noticia">
                             <p className="titulo">{evento.titulo}</p>
+                            <h1>{formatDate(evento.fecha)} </h1>
                         </div>
                         <div className="d-flex w-100 justify-content-center mb-4 mt-4">
                             <img src={evento.flayer} alt="" className="flayer" />
@@ -102,20 +142,17 @@ const Evento = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-lg-3 pt-5" style={{marginTop: "10px"}}>
+                    <div className="col-12 col-lg-3 pt-5" style={{ marginTop: "10px" }}>
                         <div className="row gap-3 mt-4 pt-4">
-                            <div className="col-12">
-                                <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
+                            {
+                                publis.map((element, index) => (
+                                    fechaPasada(element.egreso) && element.colocar_en.includes("agenda") && (
+                                        <div className="col-12" key={index}>
+                                            <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                        </div>
+                                    )
+                                ))
+                            }
                         </div>
                         <h1 className="border-section mb-4">Redes</h1>
                         <a href="https://www.facebook.com/terravivafolclore" target='blank'>

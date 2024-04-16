@@ -1,19 +1,13 @@
-/* eslint-disable no-unused-vars */
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import "../css/Noticia.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faInstagram, faTwitter, faWhatsapp, faXTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faInstagram, faWhatsapp, faXTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { Breadcrumb } from "react-bootstrap";
-import publi1 from '../assets/publi1.png';
-import publi2 from '../assets/publi2.png';
-import publi3 from '../assets/publi3.png';
-import publi4 from '../assets/publi4.png';
 import api from "../api/api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 
 const Noticia = () => {
@@ -22,8 +16,23 @@ const Noticia = () => {
 
     const [noticia, setNoticia] = useState([]);
     const [noticias, setNoticias] = useState([]);
-    const [input, setInput] = useState("");
+    const [publis, setPublis] = useState([]);
 
+    function fechaPasada(fecha) {
+        // Convertir la fecha pasada como string a un objeto Date
+        const partesFecha = fecha.split('-');
+        const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
+        
+        // Obtener la fecha actual
+        const hoy = new Date();
+    
+        // Comparar las fechas
+        if (fechaComparar > hoy) {
+            return true; // La fecha ya pasó
+        } else {
+            return false; // La fecha aún no ha pasado
+        }
+    }
 
     const getNoticia = async () => {
         try {
@@ -42,6 +51,15 @@ const Noticia = () => {
         }
     }
 
+    const getPubli = async () => {
+        try {
+            const resp = await api.get('api/publis');
+            setPublis(resp.data.publis)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     function insertarHTML(html) {
         return { __html: html };
     }
@@ -50,6 +68,7 @@ const Noticia = () => {
     function convertirFecha(fecha) {
         // Obtenemos el nombre del día de la semana
         const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        // eslint-disable-next-line no-unused-vars
         const diaSemana = diasSemana[new Date(fecha).getDay()];
 
         // Obtenemos el día del mes
@@ -72,6 +91,7 @@ const Noticia = () => {
     useEffect(() => {
         getNoticia();
         getNoticias();
+        getPubli();
     }, [])
 
     return (
@@ -135,18 +155,15 @@ const Noticia = () => {
                     </div>
                     <div className="col-12 col-lg-3 pt-5">
                             <div className="row gap-3 pt-4">
-                                <div className="col-12">
-                                    <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
+                            {
+                                publis.map((element, index) => (
+                                    fechaPasada(element.egreso) && element.colocar_en.includes("noticias") && (
+                                        <div className="col-12" key={index}>
+                                            <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                        </div>
+                                    )
+                                ))
+                            }
                             </div>
                             <h1 className="border-section mb-4">Redes</h1>
                             <a href="https://www.facebook.com/terravivafolclore" target='blank'>

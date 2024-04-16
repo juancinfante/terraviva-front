@@ -7,12 +7,14 @@ import Album from "../pages/Album";
 import Agenda from "../pages/Agenda";
 import Busquedas from "../pages/Busquedas";
 import Evento from "../pages/Evento";
+import ScrollToTop from "../components/ScrollToTop";
 
 
 const AppRouter = () => {
   return (
     <>
     <BrowserRouter>
+            <ScrollToTop/>
             <Routes>
                 <Route path="/albums/:limit/:page" element={<Galeria />}/>
                 <Route path="/evento/:id" element={<Evento />}/>

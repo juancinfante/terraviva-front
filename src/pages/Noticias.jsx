@@ -1,28 +1,23 @@
-// /* eslint-disable react/no-unknown-property */
 import Navbar from "../components/Navbar"
-// import Ticker from "../components/Ticker"
 import Footer from "../components/Footer"
 import { Breadcrumb } from "react-bootstrap"
-import publi1 from '../assets/publi1.png';
-import publi2 from '../assets/publi2.png';
-import publi3 from '../assets/publi3.png';
-import publi4 from '../assets/publi4.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import "../css/noticias.css"
 import { Link, useParams } from "react-router-dom"
 import api from "../api/api";
 import { useEffect, useState } from "react";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 
 const Noticias = () => {
-    
+
     const [noticias, setNoticias] = useState([]);
     const [data, setData] = useState([]);
-    
-    const [input, setInput] = useState("");
+    const [publis, setPublis] = useState([]);
+
     const params = useParams();
 
 
@@ -37,9 +32,33 @@ const Noticias = () => {
             setData(resp.data.noticias)
         }
     }
+    const getPubli = async () => {
+        try {
+            const resp = await api.get('api/publis');
+            setPublis(resp.data.publis)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    function fechaPasada(fecha) {
+        // Convertir la fecha pasada como string a un objeto Date
+        const partesFecha = fecha.split('-');
+        const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
+
+        // Obtener la fecha actual
+        const hoy = new Date();
+
+        // Comparar las fechas
+        if (fechaComparar > hoy) {
+            return true; // La fecha ya pasó
+        } else {
+            return false; // La fecha aún no ha pasado
+        }
+    }
 
     useEffect(() => {
         getNoticias();
+        getPubli();
     }, [])
 
     return (
@@ -76,7 +95,80 @@ const Noticias = () => {
                         }
                         {
                             noticias.length == 0 ?
-                                <h1 className="text-center mt-5 mb-5">NO HAY NOTICIAS</h1>
+                            <>
+                                <div className="row">
+                                    <div className="col-12 col-sm-6 col-lg-4">
+                                        <Link to={`/noticia/`}>
+                                            {/* <img src="https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg" alt="" className="w-100" style={{ height: "200px", objectFit: "cover" }} /> */}
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null;
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                                className="w-100" style={{ height: "200px", objectFit: "cover" }}
+                                            />
+                                        </Link>
+                                    </div>
+                                    <div className="col-12 col-sm-6 col-lg-8">
+                                        <Link to={`/noticia/`}>
+                                            <div className="d-flex flex-column justify-content-between">
+                                                <h5 className="fs-4 mt-2"><Skeleton/></h5>
+                                                <p className="elipsis"><Skeleton/></p>
+                                                <p className="elipsis"><Skeleton/></p>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-12 col-sm-6 col-lg-4">
+                                        <Link to={`/noticia/`}>
+                                            {/* <img src="https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg" alt="" className="w-100" style={{ height: "200px", objectFit: "cover" }} /> */}
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null;
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                                className="w-100" style={{ height: "200px", objectFit: "cover" }}
+                                            />
+                                        </Link>
+                                    </div>
+                                    <div className="col-12 col-sm-6 col-lg-8">
+                                        <Link to={`/noticia/`}>
+                                            <div className="d-flex flex-column justify-content-between">
+                                                <h5 className="fs-4 mt-2"><Skeleton/></h5>
+                                                <p className="elipsis"><Skeleton/></p>
+                                                <p className="elipsis"><Skeleton/></p>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-12 col-sm-6 col-lg-4">
+                                        <Link to={`/noticia/`}>
+                                            {/* <img src="https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg" alt="" className="w-100" style={{ height: "200px", objectFit: "cover" }} /> */}
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null;
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                                className="w-100" style={{ height: "200px", objectFit: "cover" }}
+                                            />
+                                        </Link>
+                                    </div>
+                                    <div className="col-12 col-sm-6 col-lg-8">
+                                        <Link to={`/noticia/`}>
+                                            <div className="d-flex flex-column justify-content-between">
+                                                <h5 className="fs-4 mt-2"><Skeleton/></h5>
+                                                <p className="elipsis"><Skeleton/></p>
+                                                <p className="elipsis"><Skeleton/></p>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                                </>
                                 :
 
                                 noticias.map((element, index) => (
@@ -159,49 +251,46 @@ const Noticias = () => {
                         </ul>
                     </div>
                     <div className="col-12 col-md-4 col-lg-3 pt-5">
-                            <div className="row gap-3 pt-5">
-                                <div className="col-12">
-                                    <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
+                        <div className="row gap-3 pt-5">
+                            {
+                                publis.map((element, index) => (
+                                    fechaPasada(element.egreso) && element.colocar_en.includes("noticias") && (
+                                        <div className="col-12" key={index}>
+                                            <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                        </div>
+                                    )
+                                ))
+                            }
+                        </div>
+                        <h1 className="border-section mb-4">Redes</h1>
+                        <a href="https://www.facebook.com/terravivafolclore" target='blank'>
+                            <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
+                                <FontAwesomeIcon icon={faFacebook} className='redes-icon' />
+                                <span>+190mil</span>
+                                <span>Like</span>
                             </div>
-                            <h1 className="border-section mb-4">Redes</h1>
-                            <a href="https://www.facebook.com/terravivafolclore" target='blank'>
-                                <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
-                                    <FontAwesomeIcon icon={faFacebook} className='redes-icon' />
-                                    <span>+190mil</span>
-                                    <span>Like</span>
-                                </div>
-                            </a>
-                            <a href="https://twitter.com/terravivanoa" target='blank'>
-                                <div className='redes-home' style={{ backgroundColor: "#000" }}>
-                                    <FontAwesomeIcon icon={faXTwitter} className='redes-icon' />
-                                    <span>+1800</span>
-                                    <span>Seguir</span>
-                                </div>
-                            </a>
-                            <a href="https://www.youtube.com/user/terravivafolclore" target='blank'>
-                                <div className='redes-home' style={{ backgroundColor: "#cc181e" }}>
-                                    <FontAwesomeIcon icon={faYoutube} className='redes-icon' />
-                                    <span>+1000</span>
-                                    <span>Suscribir</span>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/terravivafolclore" target='blank'>
-                                <div className='redes-home ig'>
-                                    <FontAwesomeIcon icon={faInstagram} className='redes-icon' />
-                                    <span>+19mil</span>
-                                    <span>Seguir</span>
-                                </div>
-                            </a>
+                        </a>
+                        <a href="https://twitter.com/terravivanoa" target='blank'>
+                            <div className='redes-home' style={{ backgroundColor: "#000" }}>
+                                <FontAwesomeIcon icon={faXTwitter} className='redes-icon' />
+                                <span>+1800</span>
+                                <span>Seguir</span>
+                            </div>
+                        </a>
+                        <a href="https://www.youtube.com/user/terravivafolclore" target='blank'>
+                            <div className='redes-home' style={{ backgroundColor: "#cc181e" }}>
+                                <FontAwesomeIcon icon={faYoutube} className='redes-icon' />
+                                <span>+1000</span>
+                                <span>Suscribir</span>
+                            </div>
+                        </a>
+                        <a href="https://www.instagram.com/terravivafolclore" target='blank'>
+                            <div className='redes-home ig'>
+                                <FontAwesomeIcon icon={faInstagram} className='redes-icon' />
+                                <span>+19mil</span>
+                                <span>Seguir</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -7,16 +7,14 @@ import { useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import publi1 from '../assets/publi1.png';
-import publi2 from '../assets/publi2.png';
-import publi3 from '../assets/publi3.png';
-import publi4 from '../assets/publi4.png';
+
 
 
 const Galeria = () => {
 
     const [albums, setAlbums] = useState([]);
     const [data, setData] = useState([]);
+    const [publis, setPublis] = useState([]);
 
     const params = useParams();
 
@@ -29,9 +27,34 @@ const Galeria = () => {
             console.log(error)
         }
     }
+    const getPubli = async () => {
+        try {
+            const resp = await api.get('api/publis');
+            setPublis(resp.data.publis)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    function fechaPasada(fecha) {
+        // Convertir la fecha pasada como string a un objeto Date
+        const partesFecha = fecha.split('-');
+        const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
+
+        // Obtener la fecha actual
+        const hoy = new Date();
+
+        // Comparar las fechas
+        if (fechaComparar > hoy) {
+            return true; // La fecha ya pasó
+        } else {
+            return false; // La fecha aún no ha pasado
+        }
+    }
 
     useEffect(() => {
         getAlbums();
+        getPubli();
     }, [])
     return (
         <>
@@ -49,6 +72,9 @@ const Galeria = () => {
                         <div className="row">
 
                             {
+                                albums.length == 0 ? 
+                                <h1 className="text-center mt-5 mb-5">CARGANDO...</h1>
+                                :
                                 albums.map((element, index) => (
                                     <div className="col-12 col-sm-6 col-lg-4 mb-4" key={index}>
                                         <a href={`/album/${element._id}`}>
@@ -105,18 +131,15 @@ const Galeria = () => {
                     </div>
                     <div className="col-12 col-lg-3 pt-5">
                         <div className="row gap-3 pt-5">
-                            <div className="col-12">
-                                <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
+                            {
+                                publis.map((element, index) => (
+                                    fechaPasada(element.egreso) && element.colocar_en.includes("galeria") && (
+                                        <div className="col-12" key={index}>
+                                            <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                        </div>
+                                    )
+                                ))
+                            }
                         </div>
                         <h1 className="border-section mb-4">Redes</h1>
                         <a href="https://www.facebook.com/terravivafolclore" target='blank'>

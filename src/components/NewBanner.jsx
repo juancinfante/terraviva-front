@@ -4,6 +4,8 @@ import '../css/NewBanner.css'
 import { Link } from "react-router-dom"
 import api from '../api/api';
 import { useEffect, useState } from "react";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const NewBanner = () => {
 
@@ -11,13 +13,13 @@ const NewBanner = () => {
 
     const getNoticias = async () => {
         try {
-            const resp = await api.get('/api/noticias/14/1');
+            const resp = await api.get('api/noticias/99999/1');
             setNoticias(resp.data.noticias.docs.reverse());
-            console.log(noticias)
         } catch (error) {
             console.log(error);
         }
     }
+
     useEffect(() => {
         getNoticias();
     }, [])
@@ -27,49 +29,87 @@ const NewBanner = () => {
                 <div className="row">
                     <div className="col-12 col-md-8 mb-3 mb-md-0">
                         <Carousel className="overflow-hidden" slide interval={3000} prevIcon={false} nextIcon={false} indicators={false}>
-                            {noticias.slice(0, 3).map((element, index) => (
-                                <Carousel.Item key={index}>
-                                    <Link to={`/noticia/${element._id}`}>
+                            {
+                                noticias.length != 0 ?
+                                    noticias.slice(0, 3).map((element, index) => (
+                                        <Carousel.Item key={index}>
+                                            <Link to={`/noticia/${element._id}`}>
+                                                <div className="carousel-portada">
+                                                    <img src={element.img_portada} alt="" />
+                                                    <div className="info">
+                                                        <div className="category-post">
+                                                            {element.provincia}
+                                                        </div>
+                                                        <div className="post-title">
+                                                            <h2>
+                                                                {element.titulo}
+                                                            </h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        </Carousel.Item>
+                                    )) :
+                                    <Carousel.Item>
                                         <div className="carousel-portada">
-                                            <img src={element.img_portada} alt="" />
-                                            <div className="info">
-                                                <div className="category-post">
-                                                    {element.provincia}
-                                                </div>
-                                                <div className="post-title">
-                                                    <h2>
-                                                        {element.titulo}
-                                                    </h2>
-                                                </div>
-                                            </div>
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null;
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                            />
                                         </div>
-                                    </Link>
-                                </Carousel.Item>
-                            ))}
+                                    </Carousel.Item>
+                            }
                         </Carousel>
                     </div>
                     <div className="col-12 col-md-4">
                         <div className="row gap-4">
                             {
-                                noticias.slice(3,5).map((element, index) => (
+                                noticias.length != 0 ? noticias.slice(3, 5).map((element, index) => (
                                     <div className="col-12" style={{ height: "49%" }} key={index}>
                                         <a href={`/noticia/${element._id}`}>
                                             <div className="sidebar-portada">
                                                 <img src={element.img_portada} alt="" />
                                                 <div className="info">
                                                     <div className="category-post">
-                                                    {element.provincia}
+                                                        {element.provincia}
                                                     </div>
                                                     <div className="post-title">
                                                         <h2>
-                                                        {element.titulo}
+                                                            {element.titulo}
                                                         </h2>
                                                     </div>
                                                 </div>
                                             </div>
                                         </a>
                                     </div>
-                                ))
+                                )) :
+                                <>
+                                    <div className="col-12" style={{ height: "49%" }}>
+                                            <div className="sidebar-portada">
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null;
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                                />
+                                            </div>
+                                    </div>
+                                    <div className="col-12" style={{ height: "49%" }}>
+                                            <div className="sidebar-portada">
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null;
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                                />
+                                            </div>
+                                    </div>
+                                                </>
                             }
                         </div>
                     </div>

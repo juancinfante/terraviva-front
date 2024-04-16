@@ -6,10 +6,7 @@ import api from "../api/api";
 import ReactImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import Footer from "../components/Footer";
-import publi1 from '../assets/publi1.png';
-import publi2 from '../assets/publi2.png';
-import publi3 from '../assets/publi3.png';
-import publi4 from '../assets/publi4.png';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faYoutube, faInstagram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
@@ -17,6 +14,7 @@ const Album = () => {
 
     const [fotos, setFotos] = useState([]);
     const [album, setAlbum] = useState([]);
+    const [publis, setPublis] = useState([]);
 
 
     const params = useParams();
@@ -28,6 +26,30 @@ const Album = () => {
             setAlbum(resp.data.album[0]);
         } catch (error) {
             console.log(error)
+        }
+    }
+    const getPubli = async () => {
+        try {
+            const resp = await api.get('api/publis');
+            setPublis(resp.data.publis)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    function fechaPasada(fecha) {
+        // Convertir la fecha pasada como string a un objeto Date
+        const partesFecha = fecha.split('-');
+        const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
+        
+        // Obtener la fecha actual
+        const hoy = new Date();
+    
+        // Comparar las fechas
+        if (fechaComparar > hoy) {
+            return true; // La fecha ya pasó
+        } else {
+            return false; // La fecha aún no ha pasado
         }
     }
 
@@ -45,7 +67,7 @@ const Album = () => {
 
     useEffect(() => {
         getAlbum();
-
+        getPubli();
     }, [])
 
     return (
@@ -62,25 +84,23 @@ const Album = () => {
                 <div className="d-flex flex-column mb-4">
                     <h1>{album.nombre}</h1>
                     <p>{album.fecha}</p>
+                    <p>PH: {album.ph}</p>
                 </div>
                 <div className="row">
-                    <div className="col-12 col-lg-9" style={{marginBottom: "200px"}}>
-                    <ReactImageGallery items={generarArregloConFotos(fotos)} />
+                    <div className="col-12 col-lg-9" style={{ marginBottom: "200px" }}>
+                        <ReactImageGallery items={generarArregloConFotos(fotos)} />
                     </div>
                     <div className="col-12 col-lg-3">
-                    <div className="row gap-3">
-                            <div className="col-12">
-                                <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
-                            <div className="col-12">
-                                <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                            </div>
+                        <div className="row gap-3">
+                            {
+                                publis.map((element, index) => (
+                                    fechaPasada(element.egreso) && element.colocar_en.includes("galeria") && (
+                                        <div className="col-12" key={index}>
+                                            <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                        </div>
+                                    )
+                                ))
+                            }
                         </div>
                         <h1 className="border-section mb-4">Redes</h1>
                         <a href="https://www.facebook.com/terravivafolclore" target='blank'>
