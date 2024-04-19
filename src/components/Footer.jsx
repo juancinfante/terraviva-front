@@ -1,14 +1,14 @@
 import '../css/footer.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faXTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
-
+import terrabco from '../assets/terraviva-bco.png';
 const Footer = () => {
   return (
     <>
         <div className="footer mt-5 p-5">
             <div className="container container-footer d-flex flex-column gap-3 align-items-center flex-md-row justify-content-between">
                 <a href="/">
-                    <img src="https://res.cloudinary.com/dwjhbrsmf/image/upload/v1703806755/test-img/lddntygnvx1r7vbuc3jl.png" alt="" />
+                    <img src={terrabco} alt="" style={{width: "200px"}} />
                 </a>
                 <p>Santiago del Estero, Argentina.</p>
                 <ul>
@@ -47,36 +47,7 @@ const Footer = () => {
                     </ul>
                 </div>
             </div>
-         {/* <div className="footer2">
-                    <p>© Copyright 2023, All Rights Reserved</p>
-                    <ul>
-                        <li>
-                            <a href="">
-                                Noticias   
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Pais   
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Agenda   
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Entrevistas   
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Galeria
-                            </a>
-                        </li>
-                    </ul>
-            </div> */}
+        
     </>
   )
 }
