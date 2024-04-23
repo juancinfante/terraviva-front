@@ -9,6 +9,23 @@ import Busquedas from "../pages/Busquedas";
 import Evento from "../pages/Evento";
 import ScrollToTop from "../components/ScrollToTop";
 
+import Login from "../admin/pages/Login";
+import HomeAdmin from "../admin/pages/Home";
+import Cuenta from "../admin/pages/Cuenta";
+import Gallery from "../admin/pages/Gallery";
+import AgendaAdmin from "../admin/pages/Agenda";
+import NuevaNoticia from "../admin/pages/NuevaNoticia";
+import EditarNoticia from "../admin/pages/EditarNoticia";
+import Usuarios from "../admin/pages/Usuarios";
+import NuevoUsuario from "../admin/pages/NuevoUsuario";
+import EditarUsuario from "../admin/pages/EditarUsuario";
+import NuevoAlbum from "../admin/pages/NuevoAlbum";
+import EditarAlbum from "../admin/pages/EditarAlbum";
+import NuevoEvento from "../admin/pages/NuevoEvento";
+import EditarEvento from "../admin/pages/EditarEvento";
+import NuevaPublicidad from "../admin/pages/NuevaPublicidad";
+import Publicidad from "../admin/pages/Publicidad";
+import EditarPublicidad from "../admin/pages/EditarPublicidad";
 
 const AppRouter = () => {
   return (
@@ -26,6 +43,29 @@ const AppRouter = () => {
                 <Route path="/" element={<Home />}/>
                 <Route path="/agenda/:limit/:page" element={<Agenda />}/>
                 <Route path="/agenda/:prov/:limit/:page" element={<Agenda />}/>
+                
+                {/* ZONA ADMIN */}
+                <Route path="/login" element={<Login />}/>
+                <Route path="/admin" element={<HomeAdmin />}/>
+                <Route path="/cuenta/:id" element={<Cuenta />}/> 
+                <Route path="/galeria" element={<Gallery />}/>
+                <Route path="/agenda" element={<AgendaAdmin />}/>
+                
+                <Route path="/publicidad" element={<Publicidad />}/>
+                <Route path="/usuarios" element={<Usuarios />}/>
+                
+                 <Route path="/nuevanoticia" element={<NuevaNoticia />}/>
+                 <Route path="/editarnoticia/:id" element={<EditarNoticia />}/>
+                <Route path="/editarnoticia/:id" element={<EditarNoticia />}/>
+                <Route path="/nuevousuario" element={<NuevoUsuario />}/>
+                <Route path="/editarusuario/:id" element={<EditarUsuario />}/>
+                <Route path="/nuevoalbum" element={<NuevoAlbum />}/>
+                <Route path="/editaralbum/:id" element={<EditarAlbum />}/>
+                <Route path="/nuevoevento" element={<NuevoEvento />}/>
+                <Route path="/editarevento/:id" element={<EditarEvento />}/>
+                <Route path="/nuevapublicidad" element={<NuevaPublicidad />}/>
+                <Route path="/editarpublicidad/:id" element={<EditarPublicidad />}/> 
+
             </Routes>
     </BrowserRouter>
     </>

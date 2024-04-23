@@ -84,7 +84,7 @@ const Agenda = () => {
                                         <Accordion.Header className="acordion">{params.prov}</Accordion.Header>
 
                                         :
-                                        <Accordion.Header className="acordion">Provincia</Accordion.Header>
+                                        <Accordion.Header className="acordion" style={{fontWeight: "bold"}}>Provincia</Accordion.Header>
 
                                 }
                                 <Accordion.Body>
