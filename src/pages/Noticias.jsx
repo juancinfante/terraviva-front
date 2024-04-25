@@ -24,11 +24,11 @@ const Noticias = () => {
     const getNoticias = async () => {
         if (params.prov !== undefined) {
             const resp = await api.get(`api/noticias/${params.prov}/${params.limit}/${params.page}`);
-            setNoticias(resp.data.docs.reverse())
+            setNoticias(resp.data.docs)
             setData(resp.data);
         } else {
             const resp = await api.get(`api/noticias/${params.limit}/${params.page}`);
-            setNoticias(resp.data.noticias.docs.reverse())
+            setNoticias(resp.data.noticias.docs)
             setData(resp.data.noticias)
         }
     }
@@ -168,7 +168,7 @@ const Noticias = () => {
                                         </Link>
                                     </div>
                                 </div>
-                                </>
+                            </>
                                 :
 
                                 noticias.map((element, index) => (
@@ -256,7 +256,9 @@ const Noticias = () => {
                                 publis.map((element, index) => (
                                     fechaPasada(element.egreso) && element.colocar_en.includes("noticias") && (
                                         <div className="col-12" key={index}>
-                                            <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                            <a href={element.link} target='blank'>
+                                                <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                            </a>
                                         </div>
                                     )
                                 ))

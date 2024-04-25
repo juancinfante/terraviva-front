@@ -35,6 +35,8 @@ const NuevoEvento = () => {
     const [flayer, setFlayer] = useState("");
     const [texto, setTexto] = useState("");
     const [fecha, setFecha] = useState("");
+    const [direccion, setDireccion] = useState("");
+    const [horario, setHorario] = useState("");
 
     const [imageInput, setImageInput] = useState("")
     const [cargando, setCargando] = useState(false);
@@ -115,11 +117,15 @@ const NuevoEvento = () => {
                 texto,
                 provincia,
                 fecha,
+                direccion,
+                horario
             });
             setFecha("");
             setFlayer("");
             setTexto("");
             setTitulo("");
+            setDireccion("");
+            setHorario("");
             swal("Articulo creado!", "", "success");
             setCargando(false);
         } catch (error) {
@@ -130,7 +136,7 @@ const NuevoEvento = () => {
     return (
         <>
             <Sidebar />
-            <div className="contenedor"  style={{backgroundColor: "#242424" , height: "100vh"}}>
+            <div className="contenedor"  style={{backgroundColor: "#242424" , height: "250vh"}}>
                 <h1 style={{ color: "white" }}>Nuevo Evento</h1>
                 <Form onSubmit={enviarForm}>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -140,6 +146,14 @@ const NuevoEvento = () => {
                     <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
                         <Form.Label style={{ color: 'white' }}>Fecha</Form.Label>
                         <Form.Control type="date" required value={fecha} onChange={(e) => setFecha(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
+                        <Form.Label style={{ color: 'white' }}>Direccion</Form.Label>
+                        <Form.Control type="text" required value={direccion} onChange={(e) => setDireccion(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
+                        <Form.Label style={{ color: 'white' }}>Horario</Form.Label>
+                        <Form.Control type="time" required value={horario} onChange={(e) => setHorario(e.target.value)} />
                     </Form.Group>
                     <Form.Label style={{ color: 'white' }}>Provincia</Form.Label>
                     <Form.Select aria-label="Default select example" onChange={e => setProvincia(e.target.value)} required>
@@ -153,7 +167,7 @@ const NuevoEvento = () => {
                         <option value="Mendoza">Mendoza</option>
                     </Form.Select>
                     <Form.Group controlId="formFile" className="col-sm-6">
-                            <Form.Label>Portada</Form.Label>
+                            <Form.Label style={{ color: 'white' }} className="mt-4">Portada</Form.Label>
                             <Form.Control type="file" onChange={setImageC} className="mb-4" />
                             <Figure>
                                 <Figure.Image

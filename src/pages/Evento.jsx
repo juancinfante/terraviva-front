@@ -43,7 +43,7 @@ const Evento = () => {
     }
 
     function formatDate(fecha) {
-        const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado','Domingo'];
+        const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
         const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
         // Crear un objeto de fecha a partir de la entrada
@@ -96,17 +96,30 @@ const Evento = () => {
                         Agenda
                     </Breadcrumb.Item>
                 </Breadcrumb>
-                <h1 className="border-section mb-4">Agenda</h1>
                 <div className="row mb-5">
-
                     <div className="col-12 col-lg-9">
-                        <div className="title-noticia">
+                <h1 className="border-section mb-4">Agenda</h1>
+                        {/* <div className="title-noticia">
                             <p className="titulo">{evento.titulo}</p>
                             <h1>{formatDate(evento.fecha)} </h1>
                         </div>
                         <div className="d-flex w-100 justify-content-center mb-4 mt-4">
                             <img src={evento.flayer} alt="" className="flayer" />
-
+                        </div> */}
+                        <h1 className="titulo-evento">{evento.titulo}</h1>
+                        <div className="row">
+                            <div className="col-12 col-md-6">
+                                <div className="">
+                                    <img src={evento.flayer} alt="" className="flayer"/>
+                                </div>
+                            </div>
+                            <div className="col-12 col-md-6 mt-3 mb-3 d-flex flex-column justify-items-beetween">
+                                <p className="texto-evento mb-3" dangerouslySetInnerHTML={insertarHTML(evento.texto)}>
+                                </p>
+                                <h4>{"Fecha: " + formatDate(evento.fecha)}</h4>
+                                <h4>{"Lugar: " + evento.direccion}</h4>
+                                <h4>{"Horario: " + evento.horario}</h4>
+                            </div>
                         </div>
                         <div className="d-flex gap-2 justify-content-end mb-3">
                             <a href="">
@@ -125,8 +138,7 @@ const Evento = () => {
                                 <span>Whatsapp</span>
                             </div>
                         </div>
-                        <p className="texto-noticia" dangerouslySetInnerHTML={insertarHTML(evento.texto)}>
-                        </p>
+
                         <div className="leer-mas">
                             <h1 className="border-section mb-4">Te puede interesar</h1>
                             <div className="row">
@@ -146,9 +158,11 @@ const Evento = () => {
                         <div className="row gap-3 mt-4 pt-4">
                             {
                                 publis.map((element, index) => (
-                                    fechaPasada(element.egreso) && element.colocar_en.includes("agenda") && (
+                                    fechaPasada(element.egreso) && element.colocar_en.includes("noticias") && (
                                         <div className="col-12" key={index}>
-                                            <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                            <a href={element.link} target='blank'>
+                                                <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                            </a>
                                         </div>
                                     )
                                 ))

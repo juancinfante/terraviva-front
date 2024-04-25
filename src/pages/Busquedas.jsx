@@ -20,7 +20,31 @@ const Busquedas = () => {
     const [busquedas, setBusquedas] = useState([]);
     const [data, setData] = useState([]);
     const [input, setInput] = useState("");
-    
+    const [publis, setPublis] = useState([]);
+
+    const getPubli = async () => {
+        try {
+            const resp = await api.get('api/publis');
+            setPublis(resp.data.publis)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    function fechaPasada(fecha) {
+        // Convertir la fecha pasada como string a un objeto Date
+        const partesFecha = fecha.split('-');
+        const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
+
+        // Obtener la fecha actual
+        const hoy = new Date();
+
+        // Comparar las fechas
+        if (fechaComparar > hoy) {
+            return true; // La fecha ya pasó
+        } else {
+            return false; // La fecha aún no ha pasado
+        }
+    }
     const getBusquedas = async () => {
         try {
             const resp = await api.get(`/api/noticia/b/${params.busq}/${params.limit}/${params.page}`);
@@ -33,6 +57,7 @@ const Busquedas = () => {
 
     useEffect(() => {
         getBusquedas();
+        getPubli();
     }, [])
 
     return (
@@ -140,18 +165,17 @@ const Busquedas = () => {
                         </div>
                         <div className="col-12 col-md-4 col-lg-3 mt-5">
                             <div className="row gap-3 mt-4">
-                                <div className="col-12">
-                                    <img src={publi1} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi2} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi3} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
-                                <div className="col-12">
-                                    <img src={publi4} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                </div>
+                            {
+                                publis.map((element, index) => (
+                                    fechaPasada(element.egreso) && element.colocar_en.includes("agenda") && (
+                                        <div className="col-12" key={index}>
+                                            <a href={element.link} target='blank'>
+                                                <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                            </a>
+                                        </div>
+                                    )
+                                ))
+                            }
                             </div>
                             <h1 className="border-section mb-4">Redes</h1>
                             <a href="https://www.facebook.com/terravivafolclore" target='blank'>

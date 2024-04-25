@@ -186,12 +186,12 @@ const NuevaNoticia = () => {
     return (
         <>
             <Sidebar />
-            <div className="contenedor" style={{backgroundColor: "#242424"}}>
+            <div className="contenedor" style={{ backgroundColor: "#242424" }}>
                 <h1 style={{ color: "white" }}>NUEVA NOTICIA</h1>
                 <Form style={{ color: 'white' }} onSubmit={enviarForm}>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Titulo</Form.Label>
-                        <Form.Control type="text" required value={titulo} onChange={(e) => setTitulo(e.target.value)} />
+                        <Form.Control type="text-area" required value={titulo} onChange={(e) => setTitulo(e.target.value)} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Descripcion</Form.Label>

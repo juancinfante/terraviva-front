@@ -16,7 +16,7 @@ const MasNoticias = () => {
     const getNoticias = async () => {
         try {
             const resp = await api.get('api/noticias/21/1');
-            setNoticias(resp.data.noticias.docs.reverse());
+            setNoticias(resp.data.noticias.docs);
         } catch (error) {
             console.log(error)
         }
@@ -80,175 +80,175 @@ const MasNoticias = () => {
                                 )) :
                                 <>
                                     <div className="col-12 col-md-6 col-lg-4 mb-4">
-                                            <div className="masnoticia">
-                                                <img
-                                                    src={noticias}
-                                                    onError={({ currentTarget }) => {
-                                                        currentTarget.onerror = null; // prevents looping
-                                                        currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className="post-title mt-2">
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                            </div>
+                                        <div className="masnoticia">
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null; // prevents looping
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="post-title mt-2">
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                        </div>
                                     </div>
                                     <div className="col-12 col-md-6 col-lg-4 mb-4">
-                                            <div className="masnoticia">
-                                                <img
-                                                    src={noticias}
-                                                    onError={({ currentTarget }) => {
-                                                        currentTarget.onerror = null; // prevents looping
-                                                        currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className="post-title mt-2">
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                            </div>
+                                        <div className="masnoticia">
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null; // prevents looping
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="post-title mt-2">
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                        </div>
                                     </div>
                                     <div className="col-12 col-md-6 col-lg-4 mb-4">
-                                            <div className="masnoticia">
-                                                <img
-                                                    src={noticias}
-                                                    onError={({ currentTarget }) => {
-                                                        currentTarget.onerror = null; // prevents looping
-                                                        currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className="post-title mt-2">
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                            </div>
+                                        <div className="masnoticia">
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null; // prevents looping
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="post-title mt-2">
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                        </div>
                                     </div>
                                     <div className="col-12 col-md-6 col-lg-4 mb-4">
-                                            <div className="masnoticia">
-                                                <img
-                                                    src={noticias}
-                                                    onError={({ currentTarget }) => {
-                                                        currentTarget.onerror = null; // prevents looping
-                                                        currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className="post-title mt-2">
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                            </div>
+                                        <div className="masnoticia">
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null; // prevents looping
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="post-title mt-2">
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                        </div>
                                     </div>
                                     <div className="col-12 col-md-6 col-lg-4 mb-4">
-                                            <div className="masnoticia">
-                                                <img
-                                                    src={noticias}
-                                                    onError={({ currentTarget }) => {
-                                                        currentTarget.onerror = null; // prevents looping
-                                                        currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className="post-title mt-2">
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                            </div>
+                                        <div className="masnoticia">
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null; // prevents looping
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="post-title mt-2">
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                        </div>
                                     </div>
                                     <div className="col-12 col-md-6 col-lg-4 mb-4">
-                                            <div className="masnoticia">
-                                                <img
-                                                    src={noticias}
-                                                    onError={({ currentTarget }) => {
-                                                        currentTarget.onerror = null; // prevents looping
-                                                        currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className="post-title mt-2">
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                            </div>
+                                        <div className="masnoticia">
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null; // prevents looping
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="post-title mt-2">
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                        </div>
                                     </div>
                                     <div className="col-12 col-md-6 col-lg-4 mb-4">
-                                            <div className="masnoticia">
-                                                <img
-                                                    src={noticias}
-                                                    onError={({ currentTarget }) => {
-                                                        currentTarget.onerror = null; // prevents looping
-                                                        currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className="post-title mt-2">
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                            </div>
+                                        <div className="masnoticia">
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null; // prevents looping
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="post-title mt-2">
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                        </div>
                                     </div>
                                     <div className="col-12 col-md-6 col-lg-4 mb-4">
-                                            <div className="masnoticia">
-                                                <img
-                                                    src={noticias}
-                                                    onError={({ currentTarget }) => {
-                                                        currentTarget.onerror = null; // prevents looping
-                                                        currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className="post-title mt-2">
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                            </div>
+                                        <div className="masnoticia">
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null; // prevents looping
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="post-title mt-2">
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                        </div>
                                     </div>
                                     <div className="col-12 col-md-6 col-lg-4 mb-4">
-                                            <div className="masnoticia">
-                                                <img
-                                                    src={noticias}
-                                                    onError={({ currentTarget }) => {
-                                                        currentTarget.onerror = null; // prevents looping
-                                                        currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className="post-title mt-2">
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                                <p>
-                                                    {<Skeleton />}
-                                                </p>
-                                            </div>
+                                        <div className="masnoticia">
+                                            <img
+                                                src={noticias}
+                                                onError={({ currentTarget }) => {
+                                                    currentTarget.onerror = null; // prevents looping
+                                                    currentTarget.src = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1713281326/terraviva/dummy_j0enwk.jpg";
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="post-title mt-2">
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                            <p>
+                                                {<Skeleton />}
+                                            </p>
+                                        </div>
                                     </div>
                                 </>
                             }
@@ -269,7 +269,9 @@ const MasNoticias = () => {
                                 publis.map((element, index) => (
                                     fechaPasada(element.egreso) && element.colocar_en.includes("inicio") && (
                                         <div className="col-12" key={index}>
-                                            <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                            <a href={element.link} target='blank'>
+                                                <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                            </a>
                                         </div>
                                     )
                                 ))

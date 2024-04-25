@@ -96,7 +96,9 @@ const Album = () => {
                                 publis.map((element, index) => (
                                     fechaPasada(element.egreso) && element.colocar_en.includes("galeria") && (
                                         <div className="col-12" key={index}>
-                                            <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                            <a href={element.link} target='blank'>
+                                                <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                            </a>
                                         </div>
                                     )
                                 ))

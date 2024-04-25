@@ -18,10 +18,10 @@ const Agenda = () => {
         try {
             if (params.prov == undefined) {
                 const resp = await api.get(`api/eventos/${params.limit}/${params.page}`);
-                setEventos(resp.data.eventos.docs);
+                setEventos(ordenarPorFecha(resp.data.eventos.docs));
             } else {
                 const resp = await api.get(`api/eventos/${params.prov}/${params.limit}/${params.page}`);
-                setEventos(resp.data.docs);
+                setEventos(ordenarPorFecha(resp.data.docs));
             }
         } catch (error) {
             console.log(error);
@@ -36,6 +36,22 @@ const Agenda = () => {
         }
     }
 
+    function ordenarPorFecha(data) {
+        // Función de comparación personalizada para ordenar por fecha
+        function compararFechas(a, b) {
+          // Convertir las fechas de string a objetos Date
+          const fechaA = new Date(a.fecha);
+          const fechaB = new Date(b.fecha);
+          
+          // Comparar las fechas y devolver el resultado de la comparación
+          return fechaA - fechaB;
+        }
+        
+        // Ordenar el arreglo de objetos por fecha utilizando la función de comparación
+        data.sort(compararFechas);
+        
+        return data;
+      }
     function fechaPasada(fecha) {
         // Convertir la fecha pasada como string a un objeto Date
         const partesFecha = fecha.split('-');
@@ -51,6 +67,37 @@ const Agenda = () => {
             return false; // La fecha aún no ha pasado
         }
     }
+    function obtenerFechaFormateadaDia(fechaStr) {
+        // Dividir la fecha en partes
+        const partes = fechaStr.split('-');
+        
+        // Obtener el día, mes y año
+        const dia = partes[2];
+
+        const fechaFormateada = `${dia}`;
+        
+        return fechaFormateada;
+    }
+    function obtenerFechaFormateadaMes(fechaStr) {
+        // Dividir la fecha en partes
+        const partes = fechaStr.split('-');
+        
+        // Obtener el día, mes y año
+        const mes = partes[1];
+        
+        // Meses en texto
+        const mesesTexto = [
+          'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+        
+        // Obtener el mes en texto
+        const mesTexto = mesesTexto[parseInt(mes, 10) - 1];
+        
+        // Construir la fecha formateada
+        const fechaFormateada = `${mesTexto}`;
+        
+        return fechaFormateada;
+      }
 
     useEffect(() => {
         getEventos();
@@ -68,7 +115,7 @@ const Agenda = () => {
                     <Breadcrumb.Item active>
                     </Breadcrumb.Item>
                 </Breadcrumb>
-                <div className="row w-100">
+                <div className="row ">
                     <div className="col-12 col-lg-9">
 
                         {
@@ -126,15 +173,33 @@ const Agenda = () => {
                             }
                             {
                                 eventos.map((element, index) => (
+                                    // <div className="col-12 col-sm-6 col-xl-4 mb-4" key={index}>
+                                    //     <a href={`/evento/${element._id}`}>
+                                    //         <div className="agenda-flayer">
+                                    //             <img src={element.flayer} alt="" />
+                                    //             <div className="mas-info">
+                                    //                 <h1>MÁS INFORMACIÓN</h1>
+                                    //             </div>
+                                    //         </div>
+                                    //     </a>
+                                    // </div>
                                     <div className="col-12 col-sm-6 col-xl-4 mb-4" key={index}>
-                                        <a href={`/evento/${element._id}`}>
-                                            <div className="agenda-flayer">
+                                            <div className="agenda-flayer2">
                                                 <img src={element.flayer} alt="" />
-                                                <div className="mas-info">
-                                                    <h1>MÁS INFORMACIÓN</h1>
+                                                <div className="info d-flex justify-content-around">
+                                                    <div className="col-3">
+                                                        <p>{obtenerFechaFormateadaDia(element.fecha)}</p>
+                                                        <p>{obtenerFechaFormateadaMes(element.fecha)}</p>
+                                                    </div>
+                                                    <div className="lugar-evento col-6">
+                                                        <p>{element.provincia}</p>
+                                                        {/* <p>{element.horario +"Hs"}</p> */}
+                                                    </div>
+                                                    <div className="col-3">
+                                                        <a href={`/evento/${element._id}`}>+ INFO</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </a>
                                     </div>
                                 ))
                             }
@@ -146,7 +211,9 @@ const Agenda = () => {
                                 publis.map((element, index) => (
                                     fechaPasada(element.egreso) && element.colocar_en.includes("agenda") && (
                                         <div className="col-12" key={index}>
-                                            <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                            <a href={element.link} target='blank'>
+                                                <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                            </a>
                                         </div>
                                     )
                                 ))

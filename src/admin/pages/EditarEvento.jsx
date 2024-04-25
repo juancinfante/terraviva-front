@@ -17,6 +17,8 @@ const EditarEvento = () => {
     const [flayer2, setFlayer2] = useState('');
     const [texto, setTexto] = useState('');
     const [fecha, setFecha] = useState('');
+    const [direccion, setDireccion] = useState('');
+    const [horario, setHorario] = useState('');
 
     const [cargando, setCargando] = useState(false);
     const [imageInput, setImageInput] = useState();
@@ -45,12 +47,15 @@ const EditarEvento = () => {
     const obtenerEvento = async () => {
         try {
             const resp = await api.get(`api/evento/${params.id}`);
+            console.log(resp.data.evento)
             setEvento(resp.data.evento[0]);
             setFecha(resp.data.evento[0].fecha);
             setTitulo(resp.data.evento[0].titulo);
             setFlayer2(resp.data.evento[0].flayer);
             setTexto(resp.data.evento[0].texto);
             setProvincia(resp.data.evento[0].provincia);
+            setDireccion(resp.data.evento[0].direccion);
+            setHorario(resp.data.evento[0].horario);
         } catch (error) {
             console.log(error)
         }
@@ -127,7 +132,9 @@ const EditarEvento = () => {
                 titulo,
                 fecha,
                 texto,
-                flayer
+                flayer,
+                direccion,
+                horario
             })
             swal("Actualizado con exito!", "", "success")
 
@@ -154,6 +161,14 @@ const EditarEvento = () => {
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label style={{ color: 'white' }}>Fecha</Form.Label>
                         <Form.Control type="date" required value={fecha} onChange={(e) => setFecha(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Label style={{ color: 'white' }}>Direccion</Form.Label>
+                        <Form.Control type="text" required value={direccion} onChange={(e) => setDireccion(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Label style={{ color: 'white' }}>Horario</Form.Label>
+                        <Form.Control type="time" required value={horario} onChange={(e) => setHorario(e.target.value)} />
                     </Form.Group>
                     <Form.Label style={{ color: 'white' }}>Provincia</Form.Label>
                     <Form.Select aria-label="Default select example" value={provincia}  onChange={e => setProvincia(e.target.value)} required>
