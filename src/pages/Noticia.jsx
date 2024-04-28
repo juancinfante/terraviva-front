@@ -3,11 +3,11 @@ import Footer from "../components/Footer"
 import "../css/Noticia.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faWhatsapp, faXTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { FacebookShareButton, FacebookIcon } from 'react-share';
 import { Breadcrumb } from "react-bootstrap";
 import api from "../api/api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FacebookShareButton } from 'react-share';
 import { Helmet } from 'react-helmet';
 
 const Noticia = () => {
@@ -17,6 +17,11 @@ const Noticia = () => {
     const [noticia, setNoticia] = useState([]);
     const [noticias, setNoticias] = useState([]);
     const [publis, setPublis] = useState([]);
+
+    // Filtrar las publicidades que tengan 'inicio'
+    const publicidadesNoticias = publis.filter(publicidad => publicidad.colocar_en[0].noticias >= 1 && publicidad.colocar_en[0].noticias <= 8);
+    // Ordenar las publicidades filtradas por su número de noticias
+    publicidadesNoticias.sort((a, b) => a.colocar_en[0].noticias - b.colocar_en[0].noticias);
 
     function fechaPasada(fecha) {
         // Convertir la fecha pasada como string a un objeto Date
@@ -99,11 +104,12 @@ const Noticia = () => {
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>{noticia.titulo}</title>
-                <meta property="og:image" content={noticia.img_portada} />
                 <meta property="og:title" content={noticia.titulo} />
                 <meta name="description" content="Description of my page" />
+                <meta property="og:image" content="https://res.cloudinary.com/dwjhbrsmf/image/upload/v1714065573/terraviva/eciypamriacobor4ybru.jpg" />
                 <meta property="og:description" content="Description of my page" />
             </Helmet>
+            
             <Navbar />
             <div className="container">
                 <Breadcrumb>
@@ -127,7 +133,14 @@ const Noticia = () => {
                         </div>
                         <img src={noticia.img_portada} alt="" className="noticia-img" />
                         <div className="d-flex gap-2 justify-content-end mb-3">
-                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://terrraviva.netlify.app/noticia/66148f08873ef517f15d5a4f")}`}>FACEBOOK</a>
+                            <div>
+                                <FacebookShareButton
+                                    url={'google.com/adasdas asddas'}
+                                >
+                                    <FacebookIcon size={32} round />
+                                </FacebookShareButton>
+                            </div>
+                            {/* <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://terrraviva.netlify.app/noticia/66148f08873ef517f15d5a4f")}`}>FACEBOOK</a>
                             <div className="d-flex align-items-center" style={{ backgroundColor: "#3b5999", color: "white", fontSize: "13px", padding: "2px 3px" }}>
                                 <FontAwesomeIcon icon={faFacebook} className='redes-icon' style={{ fontSize: "15px" }} />
                                 <span>Facebook</span>
@@ -139,7 +152,7 @@ const Noticia = () => {
                             <div className="d-flex align-items-center" style={{ backgroundColor: "#25d366", color: "white", fontSize: "13px", padding: "2px 3px" }}>
                                 <FontAwesomeIcon icon={faWhatsapp} className='redes-icon' style={{ fontSize: "15px" }} />
                                 <span>Whatsapp</span>
-                            </div>
+                            </div> */}
                         </div>
                         <p className="texto-noticia" dangerouslySetInnerHTML={insertarHTML(noticia.texto)}>
                         </p>
@@ -161,14 +174,13 @@ const Noticia = () => {
                     <div className="col-12 col-lg-3 pt-5">
                         <div className="row gap-3 pt-4">
                             {
-                                publis.map((element, index) => (
-                                    fechaPasada(element.egreso) && element.colocar_en.includes("noticias") && (
+                                publicidadesNoticias.map((element, index) => (
+                                    fechaPasada(element.egreso) && (
                                         <div className="col-12" key={index}>
                                             <a href={element.link} target='blank'>
                                                 <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
                                             </a>
-                                        </div>
-                                    )
+                                        </div>)
                                 ))
                             }
                         </div>

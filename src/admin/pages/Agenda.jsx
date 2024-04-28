@@ -11,8 +11,8 @@ import { useEffect, useState } from "react"
 const Agenda = () => {
 
   const [eventos, setEventos] = useState([]);
-
-  const data = ordenarPorFecha(eventos);
+  
+  const data = eventos;
 
   const obtenerEventos = async () => {
     try {
@@ -67,6 +67,20 @@ const Agenda = () => {
     
     return nuevaFecha;
   }
+  function convertirAFormatoCorto(fechaISO) {
+    // Parsear la cadena de fecha a un objeto Date
+    const fecha = new Date(fechaISO);
+
+    // Extraer los componentes de la fecha
+    const dia = ('0' + fecha.getDate()).slice(-2); // Asegura 2 dígitos para el día
+    const mes = ('0' + (fecha.getMonth() + 1)).slice(-2); // Asegura 2 dígitos para el mes
+    const año = fecha.getFullYear().toString(); // Obtiene los últimos 2 dígitos del año
+
+    // Construir la fecha en el formato deseado (dd/mm/aa)
+    const fechaFormateada = `${dia}-${mes}-${año}`;
+
+    return fechaFormateada;
+  }
 
   const columns = [
     {
@@ -87,7 +101,14 @@ const Agenda = () => {
     {
       name: "Fecha",
       selector: row => convertirFecha(row.fecha),
-      width: '250px'
+      width: '250px',
+      sortable: true,
+    },
+    {
+      name: "Creado",
+      selector: row => convertirAFormatoCorto(row.created_at),
+      width: '250px',
+      sortable: true,
     },
     {
       cell: (row) =>
@@ -145,28 +166,28 @@ const Agenda = () => {
                 <Accordion.Header className="acordion" style={{ fontWeight: "bold" }}>Provincia</Accordion.Header>
                 <Accordion.Body>
                   <ul className='provincias-agenda'>
-                    <li onClick={e => handleFilter("Todas")} >
+                    <li onClick={e => handleFilter("Todas")} className="hover">
                       Todas
                     </li>
-                    <li onClick={e => handleFilter("Santiago del Estero")}>
+                    <li onClick={e => handleFilter("Santiago del Estero")} className="hover">
                       Santiago del Estero
                     </li>
-                    <li onClick={e => handleFilter("Tucuman")}>
+                    <li onClick={e => handleFilter("Tucuman")} className="hover">
                       Tucuman
                     </li>
-                    <li onClick={e => handleFilter("Catamarca")}>
+                    <li onClick={e => handleFilter("Catamarca")} className="hover">
                       Catamarca
                     </li>
-                    <li onClick={e => handleFilter("Salta")}>
+                    <li onClick={e => handleFilter("Salta")} className="hover">
                       Salta
                     </li>
-                    <li onClick={e => handleFilter("Cordoba")}>
+                    <li onClick={e => handleFilter("Cordoba")} className="hover">
                       Cordoba
                     </li>
-                    <li onClick={e => handleFilter("Jujuy")}>
+                    <li onClick={e => handleFilter("Jujuy")} className="hover">
                       Jujuy
                     </li>
-                    <li onClick={e => handleFilter("Rosario")}>
+                    <li onClick={e => handleFilter("Rosario")} className="hover">
                       Rosario
                     </li>
                   </ul>

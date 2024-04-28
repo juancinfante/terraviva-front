@@ -13,10 +13,23 @@ const NuevaPublicidad = () => {
     const [ingreso, setIngreso] = useState("");
     const [egreso, setEgreso] = useState("");
     const [link, setLink] = useState("");
-    const [colocar_en, setColocarEn] = useState([]);
+    // const [colocar_en, setColocarEn] = useState([]);
     const [foto,setFoto] = useState("");
     const [cargando, setCargando] = useState(false);
+    const [colocar_en, setColocarEn] = useState({
+        inicio: 1,
+        noticias: 1,
+        agenda: 1,
+        galeria: 1
+      });
 
+    const handleChangePosition = (e, section) => {
+        const newPosition = parseInt(e.target.value);
+        setColocarEn(prevState => ({
+          ...prevState,
+          [section]: newPosition
+        }));
+      };
     const [imageInput, setImageInput] = useState("");
 
     const instance = axios.create();
@@ -129,7 +142,52 @@ const NuevaPublicidad = () => {
                                 />
                             </Figure>
                         </Form.Group>
-                    <Form.Group className="mt-3 d-flex flex-column" controlId="exampleForm.ControlInput">
+                        <p>COLOCAR EN:</p>
+                        <Form.Label>Inicio</Form.Label>
+                            <Form.Select aria-label="Default select example" value={colocar_en.inicio} onChange={(e) => handleChangePosition(e, 'inicio')}>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </Form.Select>
+                        <Form.Label>Noticias</Form.Label>
+                            <Form.Select aria-label="Default select example" value={colocar_en.noticias} onChange={(e) => handleChangePosition(e, 'noticias')}>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </Form.Select>
+                        <Form.Label>Agenda</Form.Label>
+                            <Form.Select aria-label="Default select example" value={colocar_en.agenda} onChange={(e) => handleChangePosition(e, 'agenda')}>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </Form.Select>
+                        <Form.Label>Galeria</Form.Label>
+                            <Form.Select aria-label="Default select example" value={colocar_en.galeria} onChange={(e) => handleChangePosition(e, 'galeria')}>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </Form.Select>
+                    {/* <Form.Group className="mt-3 d-flex flex-column" controlId="exampleForm.ControlInput">
                         <Form.Label>Colocar en</Form.Label>
                         <Form.Check
                             type="checkbox"
@@ -159,7 +217,7 @@ const NuevaPublicidad = () => {
                             onChange={handleCheckboxChange}
                             // checked={privilegios.includes("agenda") ? true : false}
                         />
-                    </Form.Group>
+                    </Form.Group> */}
                         <Button variant="primary" type="submit" className="mt-3 ">
                             {cargando ?
                                 <>

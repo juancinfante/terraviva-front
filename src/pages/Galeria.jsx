@@ -16,6 +16,11 @@ const Galeria = () => {
     const [data, setData] = useState([]);
     const [publis, setPublis] = useState([]);
 
+    // Filtrar las publicidades que tengan 'inicio'
+    const publicidadesGaleria = publis.filter(publicidad => publicidad.colocar_en[0].galeria >= 1 && publicidad.colocar_en[0].galeria <= 8);
+    // Ordenar las publicidades filtradas por su número de galeria
+    publicidadesGaleria.sort((a, b) => a.colocar_en[0].galeria - b.colocar_en[0].galeria);
+
     const params = useParams();
 
     const getAlbums = async () => {
@@ -72,22 +77,22 @@ const Galeria = () => {
                         <div className="row">
 
                             {
-                                albums.length == 0 ? 
-                                <h1 className="text-center mt-5 mb-5">CARGANDO...</h1>
-                                :
-                                albums.map((element, index) => (
-                                    <div className="col-12 col-sm-6 col-lg-4 mb-4" key={index}>
-                                        <a href={`/album/${element._id}`}>
-                                            <div className="album-container">
-                                                <img src={element.fotos[0]} alt="" />
-                                                <div className="info-album">
-                                                    <h2>{element.nombre}</h2>
-                                                    <p>{element.fecha}</p>
+                                albums.length == 0 ?
+                                    <h1 className="text-center mt-5 mb-5">CARGANDO...</h1>
+                                    :
+                                    albums.map((element, index) => (
+                                        <div className="col-12 col-sm-6 col-lg-4 mb-4" key={index}>
+                                            <a href={`/album/${element._id}`}>
+                                                <div className="album-container">
+                                                    <img src={element.fotos[0]} alt="" />
+                                                    <div className="info-album">
+                                                        <h2>{element.nombre}</h2>
+                                                        <p>{element.fecha}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                ))
+                                            </a>
+                                        </div>
+                                    ))
                             }
                         </div>
                         <div>
@@ -132,14 +137,13 @@ const Galeria = () => {
                     <div className="col-12 col-lg-3 pt-5">
                         <div className="row gap-3 pt-5">
                             {
-                                publis.map((element, index) => (
-                                    fechaPasada(element.egreso) && element.colocar_en.includes("galeria") && (
+                                publicidadesGaleria.map((element, index) => (
+                                    fechaPasada(element.egreso) && (
                                         <div className="col-12" key={index}>
                                             <a href={element.link} target='blank'>
                                                 <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
                                             </a>
-                                        </div>
-                                    )
+                                        </div>)
                                 ))
                             }
                         </div>

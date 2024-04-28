@@ -16,6 +16,10 @@ const Album = () => {
     const [album, setAlbum] = useState([]);
     const [publis, setPublis] = useState([]);
 
+    // Filtrar las publicidades que tengan 'inicio'
+    const publicidadesGaleria = publis.filter(publicidad => publicidad.colocar_en[0].galeria >= 1 && publicidad.colocar_en[0].galeria <= 8);
+    // Ordenar las publicidades filtradas por su número de galeria
+    publicidadesGaleria.sort((a, b) => a.colocar_en[0].galeria - b.colocar_en[0].galeria);
 
     const params = useParams();
 
@@ -41,10 +45,10 @@ const Album = () => {
         // Convertir la fecha pasada como string a un objeto Date
         const partesFecha = fecha.split('-');
         const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
-        
+
         // Obtener la fecha actual
         const hoy = new Date();
-    
+
         // Comparar las fechas
         if (fechaComparar > hoy) {
             return true; // La fecha ya pasó
@@ -93,14 +97,13 @@ const Album = () => {
                     <div className="col-12 col-lg-3">
                         <div className="row gap-3">
                             {
-                                publis.map((element, index) => (
-                                    fechaPasada(element.egreso) && element.colocar_en.includes("galeria") && (
+                                publicidadesGaleria.map((element, index) => (
+                                    fechaPasada(element.egreso) && (
                                         <div className="col-12" key={index}>
                                             <a href={element.link} target='blank'>
                                                 <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
                                             </a>
-                                        </div>
-                                    )
+                                        </div>)
                                 ))
                             }
                         </div>

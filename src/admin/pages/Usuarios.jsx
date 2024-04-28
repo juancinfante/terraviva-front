@@ -11,21 +11,7 @@ import swal from "sweetalert"
 const Usuarios = () => {
 
   const navigate = useNavigate();
-  const userID = localStorage.getItem("id");
-
-  const checkUser = async () => {
-      if (userID !== undefined) {
-          try {
-              const resp = await api.get(`api/usuario/${userID}`);
-              if(!resp.data.usuario[0].privilegios.includes("usuarios")){
-                navigate("/");
-              }
-          } catch (error) {
-              navigate('/login');
-              console.log(error);
-          }
-      }
-  }
+  
 
     const [usuarios, setUsuarios] = useState([]);
 
@@ -124,7 +110,6 @@ const Usuarios = () => {
       };
 
     useEffect(() => {
-      checkUser();
         obtenerUsuarios();
     },[])
 

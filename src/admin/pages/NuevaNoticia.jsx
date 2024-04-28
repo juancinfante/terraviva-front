@@ -53,7 +53,7 @@ const NuevaNoticia = () => {
         const fotoEditor = localStorage.getItem("fotoPerfil");
         const nombreEditor = localStorage.getItem("Nombre");
         const apellidoEditor = localStorage.getItem("Apellido");
-        const editor = nombreEditor + " " + apellidoEditor;
+        const editor = localStorage.getItem("id");
 
         // Obtenemos el archivo de imagen del input
         const files = imageInput;
@@ -119,7 +119,7 @@ const NuevaNoticia = () => {
             });
             swal("Articulo creado!", "", "success");
             setCargando(false);
-            navigate("/");
+            navigate("/admin");
         } catch (error) {
             console.error(error);
         }

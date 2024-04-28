@@ -20,6 +20,10 @@ const Noticias = () => {
 
     const params = useParams();
 
+    // Filtrar las publicidades que tengan 'inicio'
+    const publicidadesNoticias = publis.filter(publicidad => publicidad.colocar_en[0].noticias >= 1 && publicidad.colocar_en[0].noticias <= 8);
+    // Ordenar las publicidades filtradas por su número de inicio
+    publicidadesNoticias.sort((a, b) => a.colocar_en[0].noticias - b.colocar_en[0].noticias);
 
     const getNoticias = async () => {
         if (params.prov !== undefined) {
@@ -252,15 +256,14 @@ const Noticias = () => {
                     </div>
                     <div className="col-12 col-md-4 col-lg-3 pt-5">
                         <div className="row gap-3 pt-5">
-                            {
-                                publis.map((element, index) => (
-                                    fechaPasada(element.egreso) && element.colocar_en.includes("noticias") && (
+                        {
+                                publicidadesNoticias.map((element, index) => (
+                                    fechaPasada(element.egreso) && (
                                         <div className="col-12" key={index}>
                                             <a href={element.link} target='blank'>
                                                 <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
                                             </a>
-                                        </div>
-                                    )
+                                        </div>)
                                 ))
                             }
                         </div>

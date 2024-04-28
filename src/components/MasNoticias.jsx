@@ -13,6 +13,12 @@ const MasNoticias = () => {
     const [noticias, setNoticias] = useState([]);
     const [publis, setPublis] = useState([]);
 
+
+    // Filtrar las publicidades que tengan 'inicio'
+    const publicidadesInicio = publis.filter(publicidad => publicidad.colocar_en[0].inicio >= 1 && publicidad.colocar_en[0].inicio <= 8);
+    // Ordenar las publicidades filtradas por su número de inicio
+    publicidadesInicio.sort((a, b) => a.colocar_en[0].inicio - b.colocar_en[0].inicio);
+
     const getNoticias = async () => {
         try {
             const resp = await api.get('api/noticias/21/1');
@@ -266,14 +272,13 @@ const MasNoticias = () => {
                     <div className="col-12 col-lg-3 mt-5">
                         <div className="row gap-3 mt-5">
                             {
-                                publis.map((element, index) => (
-                                    fechaPasada(element.egreso) && element.colocar_en.includes("inicio") && (
-                                        <div className="col-12" key={index}>
-                                            <a href={element.link} target='blank'>
-                                                <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                            </a>
-                                        </div>
-                                    )
+                                publicidadesInicio.map((element, index) => (
+                                    fechaPasada(element.egreso) && (
+                                    <div className="col-12" key={index}>
+                                        <a href={element.link} target='blank'>
+                                            <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                        </a>
+                                    </div>)
                                 ))
                             }
                         </div>

@@ -14,6 +14,10 @@ const Agenda = () => {
     const [eventos, setEventos] = useState([]);
     const [publis, setPublis] = useState([]);
 
+    // Filtrar las publicidades que tengan 'inicio'
+    const publicidadesAgenda = publis.filter(publicidad => publicidad.colocar_en[0].agenda >= 1 && publicidad.colocar_en[0].agenda <= 8);
+    // Ordenar las publicidades filtradas por su número de inicio
+    publicidadesAgenda.sort((a, b) => a.colocar_en[0].agenda - b.colocar_en[0].agenda);
     const getEventos = async () => {
         try {
             if (params.prov == undefined) {
@@ -39,27 +43,27 @@ const Agenda = () => {
     function ordenarPorFecha(data) {
         // Función de comparación personalizada para ordenar por fecha
         function compararFechas(a, b) {
-          // Convertir las fechas de string a objetos Date
-          const fechaA = new Date(a.fecha);
-          const fechaB = new Date(b.fecha);
-          
-          // Comparar las fechas y devolver el resultado de la comparación
-          return fechaA - fechaB;
+            // Convertir las fechas de string a objetos Date
+            const fechaA = new Date(a.fecha);
+            const fechaB = new Date(b.fecha);
+
+            // Comparar las fechas y devolver el resultado de la comparación
+            return fechaA - fechaB;
         }
-        
+
         // Ordenar el arreglo de objetos por fecha utilizando la función de comparación
         data.sort(compararFechas);
-        
+
         return data;
-      }
+    }
     function fechaPasada(fecha) {
         // Convertir la fecha pasada como string a un objeto Date
         const partesFecha = fecha.split('-');
         const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
-        
+
         // Obtener la fecha actual
         const hoy = new Date();
-    
+
         // Comparar las fechas
         if (fechaComparar > hoy) {
             return true; // La fecha ya pasó
@@ -70,34 +74,34 @@ const Agenda = () => {
     function obtenerFechaFormateadaDia(fechaStr) {
         // Dividir la fecha en partes
         const partes = fechaStr.split('-');
-        
+
         // Obtener el día, mes y año
         const dia = partes[2];
 
         const fechaFormateada = `${dia}`;
-        
+
         return fechaFormateada;
     }
     function obtenerFechaFormateadaMes(fechaStr) {
         // Dividir la fecha en partes
         const partes = fechaStr.split('-');
-        
+
         // Obtener el día, mes y año
         const mes = partes[1];
-        
+
         // Meses en texto
         const mesesTexto = [
-          'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
         ];
-        
+
         // Obtener el mes en texto
         const mesTexto = mesesTexto[parseInt(mes, 10) - 1];
-        
+
         // Construir la fecha formateada
         const fechaFormateada = `${mesTexto}`;
-        
+
         return fechaFormateada;
-      }
+    }
 
     useEffect(() => {
         getEventos();
@@ -131,7 +135,7 @@ const Agenda = () => {
                                         <Accordion.Header className="acordion">{params.prov}</Accordion.Header>
 
                                         :
-                                        <Accordion.Header className="acordion" style={{fontWeight: "bold"}}>Provincia</Accordion.Header>
+                                        <Accordion.Header className="acordion" style={{ fontWeight: "bold" }}>Provincia</Accordion.Header>
 
                                 }
                                 <Accordion.Body>
@@ -173,49 +177,39 @@ const Agenda = () => {
                             }
                             {
                                 eventos.map((element, index) => (
-                                    // <div className="col-12 col-sm-6 col-xl-4 mb-4" key={index}>
-                                    //     <a href={`/evento/${element._id}`}>
-                                    //         <div className="agenda-flayer">
-                                    //             <img src={element.flayer} alt="" />
-                                    //             <div className="mas-info">
-                                    //                 <h1>MÁS INFORMACIÓN</h1>
-                                    //             </div>
-                                    //         </div>
-                                    //     </a>
-                                    // </div>
+                                    fechaPasada(element.fecha) && (
                                     <div className="col-12 col-sm-6 col-xl-4 mb-4" key={index}>
-                                            <div className="agenda-flayer2">
-                                                <img src={element.flayer} alt="" />
-                                                <div className="info d-flex justify-content-around">
-                                                    <div className="col-3">
-                                                        <p>{obtenerFechaFormateadaDia(element.fecha)}</p>
-                                                        <p>{obtenerFechaFormateadaMes(element.fecha)}</p>
-                                                    </div>
-                                                    <div className="lugar-evento col-6">
-                                                        <p>{element.provincia}</p>
-                                                        {/* <p>{element.horario +"Hs"}</p> */}
-                                                    </div>
-                                                    <div className="col-3">
-                                                        <a href={`/evento/${element._id}`}>+ INFO</a>
-                                                    </div>
+                                        <div className="agenda-flayer2">
+                                            <img src={element.flayer} alt="" />
+                                            <div className="info d-flex justify-content-around">
+                                                <div className="col-3">
+                                                    <p>{obtenerFechaFormateadaDia(element.fecha)}</p>
+                                                    <p>{obtenerFechaFormateadaMes(element.fecha)}</p>
+                                                </div>
+                                                <div className="lugar-evento col-6">
+                                                    <p>{element.provincia}</p>
+                                                    {/* <p>{element.horario +"Hs"}</p> */}
+                                                </div>
+                                                <div className="col-3">
+                                                    <a href={`/evento/${element._id}`}>+ INFO</a>
                                                 </div>
                                             </div>
-                                    </div>
+                                        </div>
+                                    </div>)
                                 ))
                             }
                         </div>
                     </div>
                     <div className="col-12 col-lg-3 pt-5">
                         <div className="row gap-3 pt-5">
-                        {
-                                publis.map((element, index) => (
-                                    fechaPasada(element.egreso) && element.colocar_en.includes("agenda") && (
-                                        <div className="col-12" key={index}>
-                                            <a href={element.link} target='blank'>
-                                                <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                            </a>
-                                        </div>
-                                    )
+                            {
+                                publicidadesAgenda.map((element, index) => (
+                                    fechaPasada(element.egreso) && (
+                                    <div className="col-12" key={index}>
+                                        <a href={element.link} target='blank'>
+                                            <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                        </a>
+                                    </div>)
                                 ))
                             }
                         </div>

@@ -46,11 +46,6 @@ const Publicidad = () => {
         width: '200px'
       },
       {
-        name: "Aparece en",
-        selector: row => row.colocar_en + " ",
-        width: '200px'
-      },
-      {
         name: "Link",
         selector: row => <a href={row.link}>{row.link}</a>,
         width: '200px'

@@ -338,3 +338,6 @@ ol, ul{
     }
     
 }
+.hover:hover{
+    cursor: pointer;
+}

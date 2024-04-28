@@ -118,23 +118,8 @@ const Gallery = () => {
   }
 
   const navigate = useNavigate();
-  const userID = localStorage.getItem("id");
-
-  const checkUser = async () => {
-      if (userID !== undefined) {
-          try {
-              const resp = await api.get(`api/usuario/${userID}`);
-              if(!resp.data.usuario[0].privilegios.includes("galeria")){
-                navigate("/");
-              }
-          } catch (error) {
-              navigate('/login');
-              console.log(error);
-          }
-      }
-  }
+  
   useEffect(() => {
-    checkUser();
     obtenerAlbums();
   }, [])
   return (

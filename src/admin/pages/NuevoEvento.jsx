@@ -166,6 +166,7 @@ const NuevoEvento = () => {
                         <option value="Rosario">Rosario</option>
                         <option value="Mendoza">Mendoza</option>
                     </Form.Select>
+                   
                     <Form.Group controlId="formFile" className="col-sm-6">
                             <Form.Label style={{ color: 'white' }} className="mt-4">Portada</Form.Label>
                             <Form.Control type="file" onChange={setImageC} className="mb-4" />

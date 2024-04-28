@@ -132,6 +132,7 @@ const EditarEvento = () => {
                 titulo,
                 fecha,
                 texto,
+                provincia,
                 flayer,
                 direccion,
                 horario
@@ -180,10 +181,10 @@ const EditarEvento = () => {
                         <option value="Cordoba">Cordoba</option>
                         <option value="Rosario">Santa Fe</option>
                         <option value="Mendoza">Mendoza</option>
-                        <option value="Mendoza">Cosquin</option>
-                        <option value="Mendoza">La Rioja</option>
-                        <option value="Mendoza">Capital Federal</option>
-                        <option value="Mendoza">Buenos Aires</option>
+                        <option value="Cosquin">Cosquin</option>
+                        <option value="La Rioja">La Rioja</option>
+                        <option value="Capital Federal">Capital Federal</option>
+                        <option value="Buenos Aires">Buenos Aires</option>
                     </Form.Select>
                     <Form.Group controlId="formFile" className="col-sm-6 mt-4">
                         <Form.Label style={{ color: 'white' }}>Portada</Form.Label>

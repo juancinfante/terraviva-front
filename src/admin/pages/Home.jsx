@@ -13,24 +13,23 @@ const Home = () => {
 
 
   const [noticias, setNoticias] = useState([]);
+  const [usuario, setUsuario] = useState([]);
 
   const navigate = useNavigate();
 
   const userID = localStorage.getItem("id");
 
-  const checkUser = async () => {
-    if (userID !== undefined) {
-      try {
-        const resp = await api.get(`api/usuario/${userID}`);
-        if (!resp.data.usuario[0].privilegios.includes("noticias")) {
-          navigate(`/cuenta/${userID}`);
+    const checkUser = async () => {
+        if (userID !== undefined) {
+            try {
+                const resp = await api.get(`api/usuario/${userID}`);
+                setUsuario(resp.data.usuario[0]);
+            } catch (error) {
+                navigate('/login');
+                console.log(error);
+            }
         }
-      } catch (error) {
-        navigate('/login');
-        console.log(error);
-      }
     }
-  }
 
 
   const obtenerNoticias = async () => {
@@ -42,68 +41,6 @@ const Home = () => {
     }
   }
 
-  function convertirAFormatoCorto(fechaISO) {
-    // Parsear la cadena de fecha a un objeto Date
-    const fecha = new Date(fechaISO);
-
-    // Extraer los componentes de la fecha
-    const dia = ('0' + fecha.getDate()).slice(-2); // Asegura 2 dígitos para el día
-    const mes = ('0' + (fecha.getMonth() + 1)).slice(-2); // Asegura 2 dígitos para el mes
-    const año = fecha.getFullYear().toString().slice(-2); // Obtiene los últimos 2 dígitos del año
-
-    // Construir la fecha en el formato deseado (dd/mm/aa)
-    const fechaFormateada = `${año}-${mes}-${dia}`;
-
-    return fechaFormateada;
-  }
-
-  function convertirAFormatoConHorarioArgentina(fechaISO) {
-    // Crear un objeto Date a partir de la cadena ISO
-    const fecha = new Date(fechaISO);
-
-    // Formateador para la fecha y hora en la zona horaria de Argentina
-    const opciones = {
-      year: '2-digit',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      timeZone: 'America/Argentina/Buenos_Aires'
-    };
-
-    const formateador = new Intl.DateTimeFormat('es-AR', opciones);
-    const [
-      { value: dia }, ,
-      { value: mes }, ,
-      { value: año }, ,
-      { value: hora }, ,
-      { value: minuto }
-    ] = formateador.formatToParts(fecha);
-
-    // Construir la fecha y hora en el formato deseado (dd/mm/aa HH:MM)
-    const fechaConHorario = `${año}/${mes}/${dia} ${hora}:${minuto}`;
-
-    return fechaConHorario;
-  }
-
-  function convertirAFormatoConHorario(fechaISO) {
-    // Parsear la cadena de fecha a un objeto Date
-    const fecha = new Date(fechaISO);
-
-    // Extraer los componentes de la fecha
-    const dia = ('0' + fecha.getDate()).slice(-2); // Asegura 2 dígitos para el día
-    const mes = ('0' + (fecha.getMonth() + 1)).slice(-2); // Asegura 2 dígitos para el mes
-    const año = fecha.getFullYear().toString().slice(-2); // Obtiene los últimos 2 dígitos del año
-
-    // Extraer y formatear las horas y minutos
-    const horas = ('0' + fecha.getHours()).slice(-2); // Asegura 2 dígitos para las horas
-    const minutos = ('0' + fecha.getMinutes()).slice(-2); // Asegura 2 dígitos para los minutos
-
-    // Construir la fecha y hora en el formato deseado (dd/mm/aa HH:MM)
-    const fechaConHorario = `${año}/${mes}/${dia} ${horas}:${minutos}`;
-
-    return fechaConHorario;
-  }
   const data = noticias;
 
   const columns = [
@@ -147,8 +84,7 @@ const Home = () => {
         </Link>,
     },
     {
-      cell: (row) => <Button variant="danger" onClick={() => handleBorrar(row._id)}>BORRAR</Button>,
-
+      cell: (row) => {usuario.username !== "leosuarez" ? <Button variant="danger" onClick={() => handleBorrar(row._id)}>BORRAR</Button> : ""}
     },
   ]
 
@@ -204,8 +140,8 @@ const Home = () => {
   }
 
   useEffect(() => {
-    checkUser();
     obtenerNoticias();
+    checkUser();
   }, [])
 
   return (
