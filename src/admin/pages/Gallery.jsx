@@ -11,6 +11,7 @@ import swal from "sweetalert"
 const Gallery = () => {
 
   const [albums, setAlbums] = useState([]);
+  const userID = localStorage.getItem("id");
 
   const obtenerAlbums = async () => {
     try {
@@ -61,8 +62,7 @@ const Gallery = () => {
         </Link>,
     },
     {
-      cell: (row) => <Button variant="danger" onClick={() => handleBorrar(row._id)}>BORRAR</Button>,
-
+      cell: (row) => userID === "6622f7958172b1c073834907" ? <Button variant="danger" onClick={() => handleBorrar(row._id)}>BORRAR</Button> : ""
     },
   ]
 
