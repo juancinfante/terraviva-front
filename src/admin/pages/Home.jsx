@@ -18,7 +18,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const userID = localStorage.getItem("id");
-
+  
     const checkUser = async () => {
         if (userID !== undefined) {
             try {
@@ -84,7 +84,7 @@ const Home = () => {
         </Link>,
     },
     {
-      cell: (row) => {usuario.username !== "leosuarez" ? <Button variant="danger" onClick={() => handleBorrar(row._id)}>BORRAR</Button> : ""}
+      cell: (row) => userID === "6622f7958172b1c073834907" ? <Button variant="danger" onClick={() => handleBorrar(row._id)}>BORRAR</Button> : ""
     },
   ]
 
