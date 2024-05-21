@@ -136,7 +136,7 @@ const NuevoEvento = () => {
     return (
         <>
             <Sidebar />
-            <div className="contenedor"  style={{backgroundColor: "#242424" , height: "250vh"}}>
+            <div className="contenedor" style={{ backgroundColor: "#242424", height: "250vh" }}>
                 <h1 style={{ color: "white" }}>Nuevo Evento</h1>
                 <Form onSubmit={enviarForm}>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -157,37 +157,53 @@ const NuevoEvento = () => {
                     </Form.Group>
                     <Form.Label style={{ color: 'white' }}>Provincia</Form.Label>
                     <Form.Select aria-label="Default select example" onChange={e => setProvincia(e.target.value)} required>
-                        <option value="Santiago del Estero">Santiago del estero</option>
-                        <option value="Tucuman">Tucuman</option>
-                        <option value="Salta">Salta</option>
-                        <option value="Jujuy">Jujuy</option>
+                        <option value="Buenos aires">Buenos aires</option>
+                        <option value="Capital Federal">Capital Federal</option>
                         <option value="Catamarca">Catamarca</option>
+                        <option value="Jujuy">Jujuy</option>
                         <option value="Cordoba">Cordoba</option>
-                        <option value="Rosario">Rosario</option>
+                        <option value="La Rioja">La Rioja</option>
+                        <option value="Salta">Salta</option>
+                        <option value="Santa Fe">Santa Fe</option>
+                        <option value="Santiago del Estero">Santiago del Estero</option>
+                        <option value="Tucuman">Tucuman</option>
+                        <option value="Chaco">Chaco</option>
+                        <option value="Chubut">Chubut</option>
+                        <option value="Corrientes">Corrientes</option>
+                        <option value="Entre Rios">Entre Rios</option>
+                        <option value="Formosa">Formosa</option>
+                        <option value="La Pampa">La Pampa</option>
                         <option value="Mendoza">Mendoza</option>
+                        <option value="Misiones">Misiones</option>
+                        <option value="Neuquen">Neuquen</option>
+                        <option value="Rio Negro">Rio Negro</option>
+                        <option value="San Juan">San Juan</option>
+                        <option value="San Luis">San Luis</option>
+                        <option value="Santa Cruz">Santa Cruz</option>
+                        <option value="Tierra Del Fuego">Tierra Del Fuego</option>
                     </Form.Select>
-                   
+
                     <Form.Group controlId="formFile" className="col-sm-6">
-                            <Form.Label style={{ color: 'white' }} className="mt-4">Portada</Form.Label>
-                            <Form.Control type="file" onChange={setImageC} className="mb-4" />
-                            <Figure>
-                                <Figure.Image
-                                    width={300}
-                                    height={300}
-                                    alt="171x180"
-                                    src={flayer == "" ? "https://th.bing.com/th/id/R.06bbe2f17591baf26eb12afcde3b7cac?rik=r17mLynETVStTw&riu=http%3a%2f%2fwww.toiletinspector.com%2fimg%2fno-image.png&ehk=dkdik0i3mZ9%2f5SivAaUG6NOMwiDKK6sCUFXoUQyNJgI%3d&risl=&pid=ImgRaw&r=0" : flayer}
-                                />
-                                <Figure.Caption>
-                                    Nulla vitae elit libero, a pharetra augue mollis interdum.
-                                </Figure.Caption>
-                            </Figure>
-                        </Form.Group>
-                        <ReactQuill style={{ color: 'white' }}
+                        <Form.Label style={{ color: 'white' }} className="mt-4">Portada</Form.Label>
+                        <Form.Control type="file" onChange={setImageC} className="mb-4" />
+                        <Figure>
+                            <Figure.Image
+                                width={300}
+                                height={300}
+                                alt="171x180"
+                                src={flayer == "" ? "https://th.bing.com/th/id/R.06bbe2f17591baf26eb12afcde3b7cac?rik=r17mLynETVStTw&riu=http%3a%2f%2fwww.toiletinspector.com%2fimg%2fno-image.png&ehk=dkdik0i3mZ9%2f5SivAaUG6NOMwiDKK6sCUFXoUQyNJgI%3d&risl=&pid=ImgRaw&r=0" : flayer}
+                            />
+                            <Figure.Caption>
+                                Nulla vitae elit libero, a pharetra augue mollis interdum.
+                            </Figure.Caption>
+                        </Figure>
+                    </Form.Group>
+                    <ReactQuill style={{ color: 'white' }}
                         theme="snow"
                         value={texto}
                         onChange={setTexto}
                         modules={modules} />
-                        <Button type="submit" className="btn btn-primary mt-3">
+                    <Button type="submit" className="btn btn-primary mt-3">
                         {cargando ?
                             <>
                                 <Spinner
@@ -201,7 +217,7 @@ const NuevoEvento = () => {
                             <>
                                 SUBIR
                             </>}
-                        </Button>
+                    </Button>
                 </Form>
             </div>
         </>

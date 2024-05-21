@@ -17,7 +17,7 @@ const Agenda = () => {
   const obtenerEventos = async () => {
     try {
       const resp = await api.get('api/eventos/1000/1');
-      setEventos(resp.data.eventos.docs.reverse());
+      setEventos(resp.data.eventos.docs);
     } catch (error) {
       console.log(error)
     }
@@ -163,11 +163,35 @@ const Agenda = () => {
           <div className="col-6">
             <Accordion className='mb-4' style={{zIndex: "2"}}>
               <Accordion.Item eventKey="0" className="acordion">
-                <Accordion.Header className="acordion" style={{ fontWeight: "bold" }}>Provincia</Accordion.Header>
+                <Accordion.Header className="acordion" style={{ fontWeight: "bold" }}>Todas</Accordion.Header>
                 <Accordion.Body>
                   <ul className='provincias-agenda'>
                     <li onClick={e => handleFilter("Todas")} className="hover">
                       Todas
+                    </li>
+                    <li onClick={e => handleFilter("Buenos Aires")} className="hover">
+                      Buenos Aires
+                    </li>
+                    <li onClick={e => handleFilter("Capital Federal")} className="hover">
+                      Capital Federal
+                    </li>
+                    <li onClick={e => handleFilter("Catamarca")} className="hover">
+                      Catamarca
+                    </li>
+                    <li onClick={e => handleFilter("Jujuy")} className="hover">
+                      Jujuy
+                    </li>
+                    <li onClick={e => handleFilter("Cordoba")} className="hover">
+                      Cordoba
+                    </li>
+                    <li onClick={e => handleFilter("La Rioja")} className="hover">
+                      La Rioja
+                    </li>
+                    <li onClick={e => handleFilter("Salta")} className="hover">
+                      Salta
+                    </li>
+                    <li onClick={e => handleFilter("Santa Fe")} className="hover">
+                      Santa Fe
                     </li>
                     <li onClick={e => handleFilter("Santiago del Estero")} className="hover">
                       Santiago del Estero
@@ -175,20 +199,47 @@ const Agenda = () => {
                     <li onClick={e => handleFilter("Tucuman")} className="hover">
                       Tucuman
                     </li>
-                    <li onClick={e => handleFilter("Catamarca")} className="hover">
-                      Catamarca
+                    <li onClick={e => handleFilter("Chaco")} className="hover">
+                      Chaco
                     </li>
-                    <li onClick={e => handleFilter("Salta")} className="hover">
-                      Salta
+                    <li onClick={e => handleFilter("Chubut")} className="hover">
+                      Chubut
                     </li>
-                    <li onClick={e => handleFilter("Cordoba")} className="hover">
-                      Cordoba
+                    <li onClick={e => handleFilter("Corrientes")} className="hover">
+                      Corrientes
                     </li>
-                    <li onClick={e => handleFilter("Jujuy")} className="hover">
-                      Jujuy
+                    <li onClick={e => handleFilter("Entre Rios")} className="hover">
+                      Entre Rios
                     </li>
-                    <li onClick={e => handleFilter("Rosario")} className="hover">
-                      Rosario
+                    <li onClick={e => handleFilter("Formosa")} className="hover">
+                      Formosa
+                    </li>
+                    <li onClick={e => handleFilter("La Pampa")} className="hover">
+                      La Pampa
+                    </li>
+                    <li onClick={e => handleFilter("Mendoza")} className="hover">
+                      Mendoza
+                    </li>
+                    <li onClick={e => handleFilter("Misiones")} className="hover">
+                      Misiones
+                    </li>
+                    <li onClick={e => handleFilter("Neuquen")} className="hover">
+                      Neuquen
+                    </li>
+                    <li onClick={e => handleFilter("Rio Negro")} className="hover">
+                      Rio Negro
+                    </li>
+                    <li onClick={e => handleFilter("San Juan")} className="hover">
+                      San Juan
+                    </li>
+                    <li onClick={e => handleFilter("San Luis")} className="hover">
+                      San Luis
+                    </li>
+                    <li onClick={e => handleFilter("Santa Cruz")} className="hover">
+                      Santa Cruz
+                    </li>
+                    <li onClick={e => handleFilter("Tierra Del Fuego")} className="hover">
+                      Tierra del Fuego
                     </li>
                   </ul>
                 </Accordion.Body>

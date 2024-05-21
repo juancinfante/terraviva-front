@@ -56,19 +56,38 @@ const Agenda = () => {
 
         return data;
     }
+    // function fechaPasada(fecha) {
+    //     console.log(fecha)
+    //     // Convertir la fecha pasada como string a un objeto Date
+    //     const partesFecha = fecha.split('-');
+    //     const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
+    //     console.log(fechaComparar)
+    //     // Obtener la fecha actual
+    //     const hoy = new Date();
+    //     // Comparar las fechas
+    //     if (fechaComparar >= hoy) {
+    //         return true; // La fecha ya pasó
+    //     } else {
+    //         return false; // La fecha aún no ha pasado
+    //     }
+    // }
     function fechaPasada(fecha) {
         // Convertir la fecha pasada como string a un objeto Date
         const partesFecha = fecha.split('-');
         const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
-
+    
         // Obtener la fecha actual
         const hoy = new Date();
-
+        hoy.setHours(0, 0, 0, 0); // Asegurarnos de que la hora, minutos, segundos y milisegundos estén en 0
+        fechaComparar.setHours(0, 0, 0, 0); // Asegurarnos de que la hora, minutos, segundos y milisegundos estén en 0
+    
         // Comparar las fechas
-        if (fechaComparar > hoy) {
-            return true; // La fecha ya pasó
+        if (fechaComparar < hoy) {
+            return false;
+        } else if (fechaComparar.getTime() === hoy.getTime()) {
+            return true;
         } else {
-            return false; // La fecha aún no ha pasado
+            return true;
         }
     }
     function obtenerFechaFormateadaDia(fechaStr) {
@@ -135,7 +154,7 @@ const Agenda = () => {
                                         <Accordion.Header className="acordion">{params.prov}</Accordion.Header>
 
                                         :
-                                        <Accordion.Header className="acordion" style={{ fontWeight: "bold" }}>Provincia</Accordion.Header>
+                                        <Accordion.Header className="acordion" style={{ fontWeight: "bold" }}>Todas</Accordion.Header>
 
                                 }
                                 <Accordion.Body>
@@ -144,25 +163,73 @@ const Agenda = () => {
                                             <a href="/agenda/12/1">Todas</a>
                                         </li>
                                         <li>
+                                            <a href="/agenda/Santiago del Estero/12/1">Buenos Aires</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/Capital Federal/12/1">Capital Federal</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/Catamarca/12/1">Catamarca</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/Cordoba/12/1">Cordoba</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/La Rioja/12/1">La Rioja</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/Salta/12/1">Salta</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/Santa Fe/12/1">Santa Fe</a>
+                                        </li>
+                                        <li>
                                             <a href="/agenda/Santiago del Estero/12/1">Santiago del Estero</a>
                                         </li>
                                         <li>
                                             <a href="/agenda/Tucuman/12/1">Tucuman</a>
                                         </li>
                                         <li>
-                                            <a href="/agenda/Catamarca/12/1">Catamarca</a>
+                                            <a href="/agenda/Chaco/12/1">Chaco</a>
                                         </li>
                                         <li>
-                                            <a href="/agenda/Salta/12/1">Salta</a>
+                                            <a href="/agenda/Chubut/12/1">Chubut</a>
                                         </li>
                                         <li>
-                                            <a href="/agenda/Cordoba/12/1">Cordoba</a>
+                                            <a href="/agenda/Corrientes/12/1">Corrientes</a>
                                         </li>
                                         <li>
-                                            <a href="/agenda/Jujuy/12/1">Jujuy</a>
+                                            <a href="/agenda/Entre Rios/12/1">Entre Rios</a>
                                         </li>
                                         <li>
-                                            <a href="/agenda/Santa Fe/12/1">Santa Fe</a>
+                                            <a href="/agenda/Formosa/12/1">Formosa</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/La Pampa/12/1">La Pampa</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/Mendoza/12/1">Mendoza</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/Misiones/12/1">Misiones</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/Neuquen/12/1">Neuquen</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/Rio Negro/12/1">Rio Negro</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/San Juan/12/1">San Juan</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/San Luis/12/1">San Luis</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/Santa Cruz/12/1">Santa Cruz</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/Tierra del Fuego/12/1">Tierra del Fuego</a>
                                         </li>
                                     </ul>
                                 </Accordion.Body>
@@ -171,16 +238,16 @@ const Agenda = () => {
                         <div className="row">
                             {
                                 eventos.length == 0 ?
-                                    <h1 className="text-center mt-5 mb-5">CARGANDO...</h1>
-
-                                    : ""
+                                    <h1 className="text-center mt-5 mb-5">NO HAY EVENTOS PROXIMOS</h1>
+                                    : 
+                                    ""
                             }
                             {
                                 eventos.map((element, index) => (
-                                    fechaPasada(element.fecha) && (
+                                    fechaPasada(element.fecha) &&(
                                     <div className="col-12 col-sm-6 col-xl-4 mb-4" key={index}>
                                         <div className="agenda-flayer2">
-                                            <img src={element.flayer} alt="" />
+                                            <img src={element.flayer} alt="" style={{objectFit: "cover"}} />
                                             <div className="info d-flex justify-content-around">
                                                 <div className="col-3">
                                                     <p>{obtenerFechaFormateadaDia(element.fecha)}</p>
