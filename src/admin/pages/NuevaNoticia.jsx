@@ -53,7 +53,7 @@ const NuevaNoticia = () => {
         const fotoEditor = localStorage.getItem("fotoPerfil");
         const nombreEditor = localStorage.getItem("Nombre");
         const apellidoEditor = localStorage.getItem("Apellido");
-        const editor = localStorage.getItem("id");
+        const editor = localStorage.getItem("Nombre") +" "+ localStorage.getItem("Apellido");
 
         // Obtenemos el archivo de imagen del input
         const files = imageInput;

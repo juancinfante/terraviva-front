@@ -18,7 +18,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const userID = localStorage.getItem("id");
-  
+
     const checkUser = async () => {
         if (userID !== undefined) {
             try {
@@ -55,8 +55,8 @@ const Home = () => {
       width: '150px'
     },
     {
-      name: "descripcion",
-      selector: row => row.descripcion,
+      name: "autor",
+      selector: row => row.editor,
       width: '150px'
     },
     {
