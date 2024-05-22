@@ -206,13 +206,30 @@ const EditarNoticia = () => {
                     </Form.Group>
                     <Form.Label>Provincia</Form.Label>
                     <Form.Select aria-label="Default select example" value={provincia} onChange={e => setProvincia(e.target.value)} required>
-                        <option value="Santiago del estero">Santiago del Estero</option>
-                        <option value="Tucuman">Tucuman</option>
-                        <option value="Salta">Salta</option>
+                    <option value="Buenos aires">Buenos aires</option>
+                        <option value="Capital Federal">Capital Federal</option>
+                        <option value="Catamarca">Catamarca</option>
                         <option value="Jujuy">Jujuy</option>
                         <option value="Cordoba">Cordoba</option>
-                        <option value="Rosario">Rosario</option>
+                        <option value="La Rioja">La Rioja</option>
+                        <option value="Salta">Salta</option>
+                        <option value="Santa Fe">Santa Fe</option>
+                        <option value="Santiago del Estero">Santiago del Estero</option>
+                        <option value="Tucuman">Tucuman</option>
+                        <option value="Chaco">Chaco</option>
+                        <option value="Chubut">Chubut</option>
+                        <option value="Corrientes">Corrientes</option>
+                        <option value="Entre Rios">Entre Rios</option>
+                        <option value="Formosa">Formosa</option>
+                        <option value="La Pampa">La Pampa</option>
                         <option value="Mendoza">Mendoza</option>
+                        <option value="Misiones">Misiones</option>
+                        <option value="Neuquen">Neuquen</option>
+                        <option value="Rio Negro">Rio Negro</option>
+                        <option value="San Juan">San Juan</option>
+                        <option value="San Luis">San Luis</option>
+                        <option value="Santa Cruz">Santa Cruz</option>
+                        <option value="Tierra Del Fuego">Tierra Del Fuego</option>
                     </Form.Select>
                     <div className="row">
 
