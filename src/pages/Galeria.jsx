@@ -26,7 +26,7 @@ const Galeria = () => {
     const getAlbums = async () => {
         try {
             const resp = await api.get(`api/albums/${params.limit}/${params.page}`);
-            setAlbums(resp.data.albums.docs);
+            setAlbums(resp.data.albums.docs.reverse());
             setData(resp.data.albums);
         } catch (error) {
             console.log(error)

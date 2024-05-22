@@ -16,7 +16,7 @@ const Gallery = () => {
   const obtenerAlbums = async () => {
     try {
       const resp = await api.get('api/albums/9999999/1');
-      setAlbums(resp.data.albums.docs);
+      setAlbums(resp.data.albums.docs.reverse());
     } catch (error) {
       console.log(error)
     }

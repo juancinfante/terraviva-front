@@ -15,9 +15,8 @@ const NuevoAlbum = () => {
 
     const [nombre, setNombre] = useState("");
     const [fechaA, setFechaA] = useState("");
-    const [ph, setPH] = useState("");
+    const [ph, setPH] = useState(localStorage.getItem("Nombre") + " " + localStorage.getItem("Apellido"));
     // const [fotos, setFotos] = useState([]);
-
     const [cargando, setCargando] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -180,8 +179,6 @@ const NuevoAlbum = () => {
                 <div className="mb-3">
                     <label className="form-label mt-4" style={{ color: "white" }}>Nombre</label>
                     <input type="text" className="form-control" required value={nombre} onChange={(e) => setNombre(e.target.value)} />
-                    <label className="form-label mt-4" style={{ color: "white" }}>PH</label>
-                    <input type="text" className="form-control" required value={ph} onChange={(e) => setPH(e.target.value)} />
                     <label className="form-label mt-4" style={{ color: "white" }} required>Fecha</label>
                     <input type="date" className="form-control mb-4" value={fechaA} onChange={(e) => setFechaA(e.target.value)} />
                 </div>
