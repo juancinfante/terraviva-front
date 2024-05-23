@@ -99,6 +99,8 @@ const Noticia = () => {
         getPubli();
     }, [])
 
+    let image = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1714065573/terraviva/eciypamriacobor4ybru.jpg";
+
     return (
         <>
             <Helmet>
@@ -106,7 +108,7 @@ const Noticia = () => {
                 <title>{noticia.titulo}</title>
                 <meta property="og:title" content={noticia.titulo} />
                 <meta name="description" content="Description of my page" />
-                <meta property="og:image" content="https://res.cloudinary.com/dwjhbrsmf/image/upload/v1714065573/terraviva/eciypamriacobor4ybru.jpg" />
+                <meta property="og:image" content={image} />
                 <meta property="og:description" content="Description of my page" />
             </Helmet>
             
@@ -135,7 +137,8 @@ const Noticia = () => {
                         <div className="d-flex gap-2 justify-content-end mb-3">
                             <div>
                                 <FacebookShareButton
-                                    url={'google.com/adasdas asddas'}
+                                    url={'https://terrraviva.netlify.app/noticia/664d5e164b1a2bb6f8609ff4'}
+                                    quote={"CampersTribe - World is yours to explore"}
                                 >
                                     <FacebookIcon size={32} round />
                                 </FacebookShareButton>

@@ -13,19 +13,24 @@ const Agenda = () => {
     const params = useParams();
     const [eventos, setEventos] = useState([]);
     const [publis, setPublis] = useState([]);
+    const [data, setData] = useState([]);
 
     // Filtrar las publicidades que tengan 'inicio'
     const publicidadesAgenda = publis.filter(publicidad => publicidad.colocar_en[0].agenda >= 1 && publicidad.colocar_en[0].agenda <= 8);
+
     // Ordenar las publicidades filtradas por su número de inicio
     publicidadesAgenda.sort((a, b) => a.colocar_en[0].agenda - b.colocar_en[0].agenda);
+
     const getEventos = async () => {
         try {
             if (params.prov == undefined) {
                 const resp = await api.get(`api/eventos/${params.limit}/${params.page}`);
                 setEventos(ordenarPorFecha(resp.data.eventos.docs));
+                setData(resp.data.eventos);
             } else {
                 const resp = await api.get(`api/eventos/${params.prov}/${params.limit}/${params.page}`);
                 setEventos(ordenarPorFecha(resp.data.docs));
+                setData(resp.data);
             }
         } catch (error) {
             console.log(error);
@@ -75,12 +80,12 @@ const Agenda = () => {
         // Convertir la fecha pasada como string a un objeto Date
         const partesFecha = fecha.split('-');
         const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
-    
+
         // Obtener la fecha actual
         const hoy = new Date();
         hoy.setHours(0, 0, 0, 0); // Asegurarnos de que la hora, minutos, segundos y milisegundos estén en 0
         fechaComparar.setHours(0, 0, 0, 0); // Asegurarnos de que la hora, minutos, segundos y milisegundos estén en 0
-    
+
         // Comparar las fechas
         if (fechaComparar < hoy) {
             return false;
@@ -239,32 +244,89 @@ const Agenda = () => {
                             {
                                 eventos.length == 0 ?
                                     <h1 className="text-center mt-5 mb-5">NO HAY EVENTOS PROXIMOS</h1>
-                                    : 
+                                    :
                                     ""
                             }
                             {
                                 eventos.map((element, index) => (
-                                    fechaPasada(element.fecha) &&(
-                                    <div className="col-12 col-sm-6 col-xl-4 mb-4" key={index}>
-                                        <div className="agenda-flayer2">
-                                            <img src={element.flayer} alt="" style={{objectFit: "cover"}} />
-                                            <div className="info d-flex justify-content-around">
-                                                <div className="col-3">
-                                                    <p>{obtenerFechaFormateadaDia(element.fecha)}</p>
-                                                    <p>{obtenerFechaFormateadaMes(element.fecha)}</p>
-                                                </div>
-                                                <div className="lugar-evento col-6">
-                                                    <p>{element.provincia}</p>
-                                                    {/* <p>{element.horario +"Hs"}</p> */}
-                                                </div>
-                                                <div className="col-3">
-                                                    <a href={`/evento/${element._id}`}>+ INFO</a>
+                                    fechaPasada(element.fecha) && (
+                                        <div className="col-12 col-sm-6 col-xl-4 mb-4" key={index}>
+                                            <div className="agenda-flayer2">
+                                                <img src={element.flayer} alt="" style={{ objectFit: "cover" }} />
+                                                <div className="info d-flex justify-content-around">
+                                                    <div className="col-3">
+                                                        <p>{obtenerFechaFormateadaDia(element.fecha)}</p>
+                                                        <p>{obtenerFechaFormateadaMes(element.fecha)}</p>
+                                                    </div>
+                                                    <div className="lugar-evento col-6">
+                                                        <p>{element.provincia}</p>
+                                                        {/* <p>{element.horario +"Hs"}</p> */}
+                                                    </div>
+                                                    <div className="col-3">
+                                                        <a href={`/evento/${element._id}`}>+ INFO</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>)
+                                        </div>)
                                 ))
                             }
+                            <ul className="paginationn">
+
+                                {
+                                    params.prov == undefined ? (data.hasPrevPage ?
+                                        <a href={`/agenda/${params.limit}/${parseInt(params.page) - 1}`}>
+                                            <li>
+                                                «
+                                            </li>
+                                        </a> :
+                                        <a className="disabled-pagination">
+                                            <li>
+                                                «
+                                            </li>
+                                        </a>) :
+                                        data.hasPrevPage ?
+                                            <a href={`/agenda/${params.prov}/${params.limit}/${parseInt(params.page) - 1}`}>
+                                                <li>
+                                                    «
+                                                </li>
+                                            </a> :
+                                            <a className="disabled-pagination">
+                                                <li>
+                                                    «
+                                                </li>
+                                            </a>
+                                }
+                                <a className="activa">
+                                    <li>
+                                        {data.page}
+                                    </li>
+                                </a>
+                                {
+                                    params.prov == undefined ? (data.hasNextPage ?
+                                        <a href={`/agenda/${params.limit}/${parseInt(params.page) + 1}`}>
+                                            <li>
+                                                »
+                                            </li>
+                                        </a> :
+                                        <a className="disabled-pagination">
+                                            <li>
+                                                »
+                                            </li>
+                                        </a>) :
+                                        data.hasNextPage ?
+                                            <a href={`/agenda/${params.prov}/${params.limit}/${parseInt(params.page) + 1}`}>
+                                                <li>
+                                                    »
+                                                </li>
+                                            </a> :
+                                            <a className="disabled-pagination">
+                                                <li>
+                                                    »
+                                                </li>
+                                            </a>
+                                }
+                            </ul>
+
                         </div>
                     </div>
                     <div className="col-12 col-lg-3 pt-5">
@@ -272,11 +334,11 @@ const Agenda = () => {
                             {
                                 publicidadesAgenda.map((element, index) => (
                                     fechaPasada(element.egreso) && (
-                                    <div className="col-12" key={index}>
-                                        <a href={element.link} target='blank'>
-                                            <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
-                                        </a>
-                                    </div>)
+                                        <div className="col-12" key={index}>
+                                            <a href={element.link} target='blank'>
+                                                <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
+                                            </a>
+                                        </div>)
                                 ))
                             }
                         </div>
