@@ -99,16 +99,16 @@ const Noticia = () => {
         getPubli();
     }, [])
 
-    let image = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1714065573/terraviva/eciypamriacobor4ybru.jpg";
+    // let image = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1714065573/terraviva/eciypamriacobor4ybru.jpg";
 
     return (
         <>
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>{noticia.titulo}</title>
-                <meta property="og:title" content={noticia.titulo} />
+                <meta property="og:title" content="Terraviva | Nuestro folclore, nuestra gente." />
                 <meta name="description" content="Description of my page" />
-                <meta property="og:image" content={image} />
+                <meta property="og:image" content={"https://res.cloudinary.com/dwjhbrsmf/image/upload/v1714065573/terraviva/eciypamriacobor4ybru.jpg"} />
                 <meta property="og:description" content="Description of my page" />
             </Helmet>
             
@@ -136,12 +136,15 @@ const Noticia = () => {
                         <img src={noticia.img_portada} alt="" className="noticia-img" />
                         <div className="d-flex gap-2 justify-content-end mb-3">
                             <div>
-                                <FacebookShareButton
-                                    url={'https://terrraviva.netlify.app/noticia/664d5e164b1a2bb6f8609ff4'}
-                                    quote={"CampersTribe - World is yours to explore"}
+                                {/* <FacebookShareButton
+                                    url={'https://terraviva.com'}
+                                    img={'https://res.cloudinary.com/dwjhbrsmf/image/upload/v1714065573/terraviva/eciypamriacobor4ybru.jpg'}
                                 >
                                     <FacebookIcon size={32} round />
-                                </FacebookShareButton>
+                                </FacebookShareButton> */}
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://terrraviva.vercel.app/noticia/664fc48df9437fbffcf2c025" target="_blank" rel="noopener noreferrer">
+  Compartir en Facebook
+</a>
                             </div>
                             {/* <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://terrraviva.netlify.app/noticia/66148f08873ef517f15d5a4f")}`}>FACEBOOK</a>
                             <div className="d-flex align-items-center" style={{ backgroundColor: "#3b5999", color: "white", fontSize: "13px", padding: "2px 3px" }}>

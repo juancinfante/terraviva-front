@@ -6,17 +6,22 @@ import MasNoticias from '../components/MasNoticias'
 import NewBanner from '../components/NewBanner'
 import BannerSantiago from '../components/BannerSantiago'
 import HeaderTop from '../components/HeaderTop'
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
   return (
     <>
-        <HeaderTop/>
-        <Navbar />
-        <NewBanner />
-        <BannerSantiago/>
-        <MasNoticias />
-        <CarouselGalleria />
-        <Footer />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Terraviva</title>
+      </Helmet>
+      <HeaderTop />
+      <Navbar />
+      <NewBanner />
+      <BannerSantiago />
+      <MasNoticias />
+      <CarouselGalleria />
+      <Footer />
     </>
   )
 }
