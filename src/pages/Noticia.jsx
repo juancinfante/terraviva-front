@@ -3,7 +3,7 @@ import Footer from "../components/Footer"
 import "../css/Noticia.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faXTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { FacebookShareButton, FacebookIcon } from 'react-share';
+import { FacebookShareButton, FacebookIcon, FacebookShareCount } from 'react-share';
 import { Breadcrumb } from "react-bootstrap";
 import api from "../api/api";
 import { useEffect, useState } from "react";
@@ -99,19 +99,23 @@ const Noticia = () => {
         getPubli();
     }, [])
 
-    // let image = "https://res.cloudinary.com/dwjhbrsmf/image/upload/v1714065573/terraviva/eciypamriacobor4ybru.jpg";
+    const shareUrl = 'https://terraviva.com';
+    const title = 'Noticia titulooo';
 
     return (
         <>
             <Helmet>
-                <meta charSet="utf-8" />
+                <meta charset="utf-8" />
+                <meta name="csrf_token" content="" />
+                <meta property="type" content="website" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <title>{noticia.titulo}</title>
                 <meta property="og:title" content="Terraviva | Nuestro folclore, nuestra gente." />
-                <meta name="description" content="Description of my page" />
+                <meta name="description" content="Noticia Peña" />
                 <meta property="og:image" content={"https://res.cloudinary.com/dwjhbrsmf/image/upload/v1714065573/terraviva/eciypamriacobor4ybru.jpg"} />
                 <meta property="og:description" content="Description of my page" />
             </Helmet>
-            
+
             <Navbar />
             <div className="container">
                 <Breadcrumb>
@@ -136,15 +140,11 @@ const Noticia = () => {
                         <img src={noticia.img_portada} alt="" className="noticia-img" />
                         <div className="d-flex gap-2 justify-content-end mb-3">
                             <div>
-                                {/* <FacebookShareButton
-                                    url={'https://terraviva.com'}
-                                    img={'https://res.cloudinary.com/dwjhbrsmf/image/upload/v1714065573/terraviva/eciypamriacobor4ybru.jpg'}
-                                >
+                                <FacebookShareButton
+                                    url={shareUrl}
+                                    quote={title}>
                                     <FacebookIcon size={32} round />
-                                </FacebookShareButton> */}
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://terrraviva.vercel.app/noticia/664fc48df9437fbffcf2c025" target="_blank" rel="noopener noreferrer">
-  Compartir en Facebook
-</a>
+                                </FacebookShareButton>
                             </div>
                             {/* <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://terrraviva.netlify.app/noticia/66148f08873ef517f15d5a4f")}`}>FACEBOOK</a>
                             <div className="d-flex align-items-center" style={{ backgroundColor: "#3b5999", color: "white", fontSize: "13px", padding: "2px 3px" }}>
