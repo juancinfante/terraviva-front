@@ -92,28 +92,32 @@ const Noticia = () => {
         return fechaFormateada;
     }
 
+    const [currentUrl, setCurrentUrl] = useState('');
+
+    useEffect(() => {
+    }, []);
+
 
     useEffect(() => {
         getNoticia();
         getNoticias();
         getPubli();
+        setCurrentUrl(window.location.href);
+
     }, [])
 
-    const shareUrl = 'https://terraviva.com';
-    const title = 'Noticia titulooo';
+    let image = "https://storage.googleapis.com/cmperstribe_storage_usha/Banner/IMG_3640.JPG";
 
     return (
         <>
             <Helmet>
                 <meta charset="utf-8" />
                 <meta name="csrf_token" content="" />
+                <title>{noticia.titulo}</title>
                 <meta property="type" content="website" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                <title>{noticia.titulo}</title>
-                <meta property="og:title" content="Terraviva | Nuestro folclore, nuestra gente." />
-                <meta name="description" content="Noticia Peña" />
-                <meta property="og:image" content={"https://res.cloudinary.com/dwjhbrsmf/image/upload/v1714065573/terraviva/eciypamriacobor4ybru.jpg"} />
-                <meta property="og:description" content="Description of my page" />
+                <meta property="og:image" content={image} />
+                <meta content="image/*" property="og:image:type" />
             </Helmet>
 
             <Navbar />
@@ -141,9 +145,10 @@ const Noticia = () => {
                         <div className="d-flex gap-2 justify-content-end mb-3">
                             <div>
                                 <FacebookShareButton
-                                    url={shareUrl}
-                                    quote={title}>
-                                    <FacebookIcon size={32} round />
+                                    url={currentUrl}
+                                    hashtag="#camperstribe"
+                                >
+                                    <FacebookIcon size={36} />
                                 </FacebookShareButton>
                             </div>
                             {/* <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://terrraviva.netlify.app/noticia/66148f08873ef517f15d5a4f")}`}>FACEBOOK</a>
