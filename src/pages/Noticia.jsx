@@ -116,8 +116,9 @@ const Noticia = () => {
                 <title>{noticia.titulo}</title>
                 <meta property="type" content="website" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                <meta name="title" content={noticia.titulo}/>
                 <meta property="og:image" content={image} />
-                <meta property="og:title" content={noticia.titulo} />
+                <meta property="og:title" content={noticia.titulo} data-react-helmet="true" />
                 <meta content="image/*" property="og:image:type" />
             </Helmet>
 
