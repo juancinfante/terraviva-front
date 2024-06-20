@@ -103,7 +103,7 @@ const Noticia = () => {
         getNoticias();
         getPubli();
         setCurrentUrl(window.location.href);
-
+        console.log(currentUrl)
     }, [])
 
     let image = "https://storage.googleapis.com/cmperstribe_storage_usha/Banner/IMG_3640.JPG";
@@ -144,12 +144,18 @@ const Noticia = () => {
                         <img src={noticia.img_portada} alt="" className="noticia-img" />
                         <div className="d-flex gap-2 justify-content-end mb-3">
                             <div>
-                                <FacebookShareButton
+                                {/* <FacebookShareButton
                                     url={currentUrl}
                                     hashtag="#camperstribe"
                                 >
                                     <FacebookIcon size={36} />
-                                </FacebookShareButton>
+                                </FacebookShareButton> */}
+                                <a
+                                    href={
+                                        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`
+                                    }
+                                > compartir
+                                </a>
                             </div>
                             {/* <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://terrraviva.netlify.app/noticia/66148f08873ef517f15d5a4f")}`}>FACEBOOK</a>
                             <div className="d-flex align-items-center" style={{ backgroundColor: "#3b5999", color: "white", fontSize: "13px", padding: "2px 3px" }}>
