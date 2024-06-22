@@ -3,7 +3,7 @@ import Footer from "../components/Footer"
 import "../css/Noticia.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faXTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { FacebookShareButton, FacebookIcon, FacebookShareCount } from 'react-share';
+import { FacebookShareButton, FacebookIcon, FacebookShareCount, WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon } from 'react-share';
 import { Breadcrumb } from "react-bootstrap";
 import api from "../api/api";
 import { useEffect, useState } from "react";
@@ -145,19 +145,31 @@ const Noticia = () => {
                         </div>
                         <img src={noticia.img_portada} alt="" className="noticia-img" />
                         <div className="d-flex gap-2 justify-content-end mb-3">
-                            <div>
-                                {/* <FacebookShareButton
+                            <div className="d-flex gap-1">
+                                <FacebookShareButton
                                     url={currentUrl}
-                                    hashtag="#camperstribe"
+                                    title={noticia.titulo}
                                 >
                                     <FacebookIcon size={36} />
-                                </FacebookShareButton> */}
-                                <a
+                                </FacebookShareButton>
+                                <TwitterShareButton
+                                    url={currentUrl}
+                                    title={noticia.titulo}
+                                >
+                                    <TwitterIcon size={36} />
+                                </TwitterShareButton>
+                                <WhatsappShareButton
+                                    url={currentUrl}
+                                    title={noticia.titulo}
+                                >
+                                    <WhatsappIcon size={36} />
+                                </WhatsappShareButton>
+                                {/* <a
                                     href={
                                         `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`
                                     }
                                 > compartir
-                                </a>
+                                </a> */}
                             </div>
                             {/* <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://terrraviva.netlify.app/noticia/66148f08873ef517f15d5a4f")}`}>FACEBOOK</a>
                             <div className="d-flex align-items-center" style={{ backgroundColor: "#3b5999", color: "white", fontSize: "13px", padding: "2px 3px" }}>
