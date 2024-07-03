@@ -22,7 +22,6 @@ const Navbar = () => {
 
     return (
         <>
-
             <header className="mb-4">
                 <div className="container d-flex align-items-center justify-content-between">
                     <Link to="/">
@@ -69,9 +68,7 @@ const Navbar = () => {
                             <div className="input-modal">
                                 <input type="text" placeholder="buscar" required value={input} onChange={(e) => setInput(e.target.value)}/>
                                 <button onClick={() => handleBuscar()}>
-                                    {/* <a href={`/noticias/b/${input}/10/1`}> */}
                                         <FontAwesomeIcon icon={faSearch} className='redes-icon' />
-                                    {/* </a> */}
                                 </button>
                             </div>
                         </div>
