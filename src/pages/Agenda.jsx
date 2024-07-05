@@ -168,7 +168,7 @@ const Agenda = () => {
                                             <a href="/agenda/12/1">Todas</a>
                                         </li>
                                         <li>
-                                            <a href="/agenda/Santiago del Estero/12/1">Buenos Aires</a>
+                                            <a href="/agenda/Buenos Aires/12/1">Buenos Aires</a>
                                         </li>
                                         <li>
                                             <a href="/agenda/Capital Federal/12/1">Capital Federal</a>
@@ -193,6 +193,9 @@ const Agenda = () => {
                                         </li>
                                         <li>
                                             <a href="/agenda/Tucuman/12/1">Tucuman</a>
+                                        </li>
+                                        <li>
+                                            <a href="/agenda/Jujuy/12/1">Jujuy</a>
                                         </li>
                                         <li>
                                             <a href="/agenda/Chaco/12/1">Chaco</a>
