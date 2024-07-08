@@ -14,8 +14,8 @@ const EditarPublicidad = () => {
     const [ingreso, setIngreso] = useState("");
     const [egreso, setEgreso] = useState("");
     const [link, setLink] = useState("");
-    const [colocar_en, setColocarEn] = useState([]);
-    const [fotoo,setFotoo] = useState("");
+    const [colocar_en, setColocarEn] = useState();
+    const [fotoo, setFotoo] = useState("");
     const [cargando, setCargando] = useState(false);
 
     const [imageInput, setImageInput] = useState();
@@ -23,7 +23,7 @@ const EditarPublicidad = () => {
     const instance = axios.create();
     const navigate = useNavigate();
     const params = useParams();
-    
+
     const obtenerPubli = async () => {
         try {
             const resp = await api.get(`api/publi/${params.id}`);
@@ -33,28 +33,16 @@ const EditarPublicidad = () => {
             setIngreso(resp.data.publi[0].ingreso);
             setLink(resp.data.publi[0].link);
             setFotoo(resp.data.publi[0].foto);
-
         } catch (error) {
             console.log(error)
         }
     }
-
-    const handleCheckboxChange = (event) => {
-        const { checked, value } = event.target;
-        // Copia el estado actual del array
-        const newArray = [...colocar_en];
-        // Si el checkbox está marcado y no está en el array, añádelo
-        if (checked && !newArray.includes(value)) {
-            newArray.push(value);
-        } else {
-            // Si el checkbox no está marcado, quítalo del array
-            const index = newArray.indexOf(value);
-            if (index > -1) {
-                newArray.splice(index, 1);
-            }
-        }
-        // Actualiza el estado del array
-        setColocarEn(newArray);
+    const handleChangePosition = (e, section) => {
+        const newArray = colocar_en.map(obj => ({
+            ...obj,
+            [section]: parseInt(e.target.value, 10),
+          }));
+          setColocarEn(newArray)
     };
 
     const setImageC = (e) => {
@@ -108,14 +96,14 @@ const EditarPublicidad = () => {
 
     useEffect(() => {
         obtenerPubli();
-    },[])
+    }, [])
 
-  return (
-    <>
-        <Sidebar />
-        <div className="contenedor" style={{backgroundColor: "#242424"}}>
-            <h1 className="text-white">EDITAR PUBLICIDAD</h1>
-            <Form style={{ color: 'white' }} onSubmit={enviarForm}>
+    return (
+        <>
+            <Sidebar />
+            <div className="contenedor" style={{ backgroundColor: "#242424" }}>
+                <h1 className="text-white">EDITAR PUBLICIDAD</h1>
+                <Form style={{ color: 'white' }} onSubmit={enviarForm}>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Nombre Cliente</Form.Label>
                         <Form.Control type="text" value={nombre_cliente} onChange={(e) => setNombreCliente(e.target.value)} />
@@ -133,66 +121,128 @@ const EditarPublicidad = () => {
                         <Form.Control type="text" value={link} onChange={(e) => setLink(e.target.value)} />
                     </Form.Group>
                     <Form.Group controlId="formFile" className="col-sm-6">
-                            <Form.Label>Foto</Form.Label>
-                            <Form.Control type="file" onChange={setImageC} className="mb-4" />
-                            <Figure>
-                                <Figure.Image
-                                    width={300}
-                                    height={300}
-                                    alt="171x180"
-                                    src={fotoo == "" ? "https://th.bing.com/th/id/R.06bbe2f17591baf26eb12afcde3b7cac?rik=r17mLynETVStTw&riu=http%3a%2f%2fwww.toiletinspector.com%2fimg%2fno-image.png&ehk=dkdik0i3mZ9%2f5SivAaUG6NOMwiDKK6sCUFXoUQyNJgI%3d&risl=&pid=ImgRaw&r=0" : fotoo}
-                                />
-                            </Figure>
-                        </Form.Group>
-                    <Form.Group className="mt-3 d-flex flex-column" controlId="exampleForm.ControlInput">
-                        <Form.Label>Colocar en</Form.Label>
-                        <Form.Check
-                            type="checkbox"
-                            value="inicio"
-                            label="Inicio"
-                            checked={colocar_en.includes("inicio") ? true : false}
-                            onChange={handleCheckboxChange}
-                        />
-                        <Form.Check
-                            type="checkbox"
-                            value="noticias"
-                            label="Noticias"
-                            checked={colocar_en.includes("noticias") ? true : false}
-                            onChange={handleCheckboxChange}
-                        />
-                        <Form.Check
-                            type="checkbox"
-                            value="galeria"
-                            label="Galeria"
-                            checked={colocar_en.includes("galeria") ? true : false}
-                            onChange={handleCheckboxChange}
-                        />
-                        <Form.Check
-                            type="checkbox"
-                            value="agenda"
-                            label="Agenda"
-                            checked={colocar_en.includes("agenda") ? true : false}
-                            onChange={handleCheckboxChange}
-                        />
+                        <Form.Label>Foto</Form.Label>
+                        <Form.Control type="file" onChange={setImageC} className="mb-4" />
+                        <Figure>
+                            <Figure.Image
+                                width={300}
+                                height={300}
+                                alt="171x180"
+                                src={fotoo == "" ? "https://th.bing.com/th/id/R.06bbe2f17591baf26eb12afcde3b7cac?rik=r17mLynETVStTw&riu=http%3a%2f%2fwww.toiletinspector.com%2fimg%2fno-image.png&ehk=dkdik0i3mZ9%2f5SivAaUG6NOMwiDKK6sCUFXoUQyNJgI%3d&risl=&pid=ImgRaw&r=0" : fotoo}
+                            />
+                        </Figure>
                     </Form.Group>
-                        <Button variant="primary" type="submit" className="mt-3 ">
-                            {cargando ?
-                                <>
-                                    <Spinner
-                                        as="span"
-                                        animation="border"
-                                        size="sm"
-                                        role="status"
-                                        aria-hidden="true"
-                                    />
-                                </> :
-                                <>
-                                    AGREGAR
-                                </>}
-                        </Button>
+                    <Form.Group className="mt-3 d-flex flex-column" controlId="exampleForm.ControlInput">
+                        <Form.Label>Inicio</Form.Label>
+                        <Form.Select aria-label="Default select example" value={colocar_en ? colocar_en[0]["inicio"] : 0}
+                            onChange={(e) => handleChangePosition(e, 'inicio')}>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </Form.Select>
+                        <Form.Label>Noticias</Form.Label>
+                        <Form.Select aria-label="Default select example" value={colocar_en ? colocar_en[0]["noticias"] : 0}
+                            onChange={(e) => handleChangePosition(e, 'noticias')}>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </Form.Select>
+                        <Form.Label>Agenda</Form.Label>
+                        <Form.Select aria-label="Default select example" value={colocar_en ? colocar_en[0]["agenda"] : 0}
+                            onChange={(e) => handleChangePosition(e, 'agenda')}>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </Form.Select>
+                        <Form.Label>Galeria</Form.Label>
+                        <Form.Select aria-label="Default select example" value={colocar_en ? colocar_en[0]["galeria"] : 0}
+                            onChange={(e) => handleChangePosition(e, 'galeria')}>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </Form.Select>
+                        {/* <Form.Label>Galeria</Form.Label>
+                        <Form.Select aria-label="Default select example" value={colocar_en[0] ? colocar_en[0].galeria : 0}
+                            onChange={(e) => handleChangePosition(e, 'galeria')}>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </Form.Select>
+                        <Form.Label>Inicio</Form.Label>
+                        <Form.Select aria-label="Default select example" value={colocar_en[0] ? colocar_en[0].inicio : 0}
+                            onChange={(e) => handleChangePosition(e, 'inicio')}>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </Form.Select>
+                        <Form.Label>Noticias</Form.Label>
+                        <Form.Select aria-label="Default select example" value={colocar_en[0] ? colocar_en[0].noticias : 0}
+                            onChange={(e) => handleChangePosition(e, 'noticias')}>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </Form.Select> */}
+                    </Form.Group>
+                    <Button variant="primary" type="submit" className="mt-3 ">
+                        {cargando ?
+                            <>
+                                <Spinner
+                                    as="span"
+                                    animation="border"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                />
+                            </> :
+                            <>
+                                EDITAR
+                            </>}
+                    </Button>
                 </Form>
-        </div>
-    </>
+            </div>
+        </>
     )
 }
 

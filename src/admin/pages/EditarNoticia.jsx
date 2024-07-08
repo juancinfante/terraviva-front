@@ -232,7 +232,6 @@ const EditarNoticia = () => {
                         <option value="Tierra Del Fuego">Tierra Del Fuego</option>
                     </Form.Select>
                     <div className="row">
-
                     <Form.Group controlId="formFile" className="col-sm-6 mb-3 mt-3">
                         <Form.Label>Portada</Form.Label>
                         <Form.Control type="file" className="mb-3" onChange={setImageC} />
