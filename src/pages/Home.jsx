@@ -11,10 +11,6 @@ import { Helmet } from 'react-helmet';
 const Home = () => {
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Terraviva</title>
-      </Helmet>
       <HeaderTop />
       <Navbar />
       <NewBanner />

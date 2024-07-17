@@ -3,7 +3,7 @@ import Footer from "../components/Footer"
 import "../css/Noticia.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faXTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { FacebookShareButton, FacebookIcon, FacebookShareCount, WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon } from 'react-share';
+import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon } from 'react-share';
 import { Breadcrumb } from "react-bootstrap";
 import api from "../api/api";
 import { useEffect, useState } from "react";
@@ -121,7 +121,6 @@ const Noticia = () => {
                 <meta property="og:title" content={noticia.titulo} data-react-helmet="true" />
                 <meta content="image/*" property="og:image:type" />
             </Helmet>
-
             <Navbar />
             <div className="container">
                 <Breadcrumb>
