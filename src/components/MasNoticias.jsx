@@ -62,7 +62,7 @@ const MasNoticias = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12 col-lg-9">
-                        <h1 className="border-section mb-4">Mas noticias</h1>
+                        <h1 className="border-section mb-4">Más noticias</h1>
                         <div className="row">
                             {noticias.length != 0 ?
                                 noticias.slice(5, 20).map((element, index) => (
@@ -262,7 +262,7 @@ const MasNoticias = () => {
                                 <button>
                                     <Link to="/noticias/10/1">
                                         <span className='p-2' style={{ color: "white", fontWeight: "bold" }}>
-                                            VER MAS
+                                            VER MÁS
                                         </span>
                                     </Link>
                                 </button>
@@ -286,7 +286,7 @@ const MasNoticias = () => {
                         <a href="https://www.facebook.com/terravivafolclore" target='blank'>
                             <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
                                 <FontAwesomeIcon icon={faFacebook} className='redes-icon' />
-                                <span>+190mil</span>
+                                <span>+230mil</span>
                                 <span>Like</span>
                             </div>
                         </a>
@@ -307,7 +307,7 @@ const MasNoticias = () => {
                         <a href="https://www.instagram.com/terravivafolclore" target='blank'>
                             <div className='redes-home ig'>
                                 <FontAwesomeIcon icon={faInstagram} className='redes-icon' />
-                                <span>+19mil</span>
+                                <span>+32mil</span>
                                 <span>Seguir</span>
                             </div>
                         </a>

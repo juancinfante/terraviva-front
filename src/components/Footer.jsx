@@ -41,7 +41,7 @@ const Footer = () => {
                     <ul className='d-flex flex-column gap-3 flex-md-row'>
                         <li><a href="/noticias/10/1">Noticias</a></li>
                         <li><a href="/agenda/10/1">Agenda</a></li>
-                        <li><a href="/galeria/9/1">Galeria</a></li>
+                        <li><a href="/galeria/9/1">Galería</a></li>
                         <li><a href="">Nosotros</a></li>
                         <li><a href="">Contacto</a></li>
                     </ul>

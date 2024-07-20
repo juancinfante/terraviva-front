@@ -63,7 +63,7 @@ const Navbar = () => {
                             </Dropdown>
                             <div className="menu2-navbar d-flex gap-4">
                                 <Link to={"/agenda/9/1"}>Agenda</Link>
-                                <Link to={"/albums/9/1"}>Galeria</Link>
+                                <Link to={"/albums/9/1"}>Galería</Link>
                             </div>
                             <div className="input-modal">
                                 <input type="text" placeholder="buscar" required value={input} onChange={(e) => setInput(e.target.value)}/>
@@ -107,7 +107,7 @@ const Navbar = () => {
                             </Dropdown>
                             <div className="menu-modal">
                                 <a href="/agenda/12/1">Agenda</a>
-                                <a href="/albums/9/1">Galeria</a>
+                                <a href="/albums/9/1">Galería</a>
                             </div>
 
                         </Offcanvas.Body>

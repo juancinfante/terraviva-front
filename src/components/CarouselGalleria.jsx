@@ -50,7 +50,7 @@ const CarouselGalleria = () => {
     return (
         <>
             <div className="container">
-                <h1 className="border-section">Galerias</h1>
+                <h1 className="border-section">Galerías</h1>
                     {/* CAROUSEL LG */}
                     <Carousel slide interval={2000} className="mt-4 mb-5 overflow-hidden d-none d-lg-block" style={{ width: "100%", height: "250px" }} prevIcon={false} nextIcon={false} indicators={false}>
                         {dividirAlbumesEnGrupos4(albums).map((grupoAlbumes, indiceGrupo) => (
@@ -106,7 +106,7 @@ const CarouselGalleria = () => {
                                 <button>
                                     <Link className="p-3" to="/albums/9/1">
                                         <span style={{color: "white", fontWeight: "bold"}}>
-                                        VER MAS
+                                        VER MÁS
                                         
                                         </span>
                                     </Link>
