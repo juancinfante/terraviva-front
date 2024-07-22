@@ -57,3 +57,9 @@ a:hover{
   color: #bdbdbd;
   margin-bottom: 20px;
 }
+
+@media (max-width: 768px){
+  .banner-sgo{
+    height: 60px;
+  }
+}

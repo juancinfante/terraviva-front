@@ -81,10 +81,10 @@ const Album = () => {
                 <Breadcrumb>
                     <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
                     <Breadcrumb.Item active>
-                        Album
+                        Álbum
                     </Breadcrumb.Item>
                 </Breadcrumb>
-                <h1 className="border-section mb-4">Album</h1>
+                <h1 className="border-section mb-4">Álbum</h1>
                 <div className="d-flex flex-column mb-4">
                     <h1>{album.nombre}</h1>
                     <p>{album.fecha}</p>
@@ -111,7 +111,7 @@ const Album = () => {
                         <a href="https://www.facebook.com/terravivafolclore" target='blank'>
                             <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
                                 <FontAwesomeIcon icon={faFacebook} className='redes-icon' />
-                                <span>+190mil</span>
+                                <span>+230mil</span>
                                 <span>Like</span>
                             </div>
                         </a>
@@ -132,7 +132,7 @@ const Album = () => {
                         <a href="https://www.instagram.com/terravivafolclore" target='blank'>
                             <div className='redes-home ig'>
                                 <FontAwesomeIcon icon={faInstagram} className='redes-icon' />
-                                <span>+19mil</span>
+                                <span>+32mil</span>
                                 <span>Seguir</span>
                             </div>
                         </a>
