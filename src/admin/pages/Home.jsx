@@ -72,7 +72,7 @@ const Home = () => {
 
     {
       cell: (row) =>
-        <Link className='' to={`https://terrraviva.com.ar/noticia/${row._id}`} target="blank">
+        <Link className='' to={`https://terraviva.com.ar/noticia/${row._id}`} target="blank">
           <Button variant="primary">VER</Button>
         </Link>,
 

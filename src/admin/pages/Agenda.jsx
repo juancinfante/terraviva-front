@@ -112,7 +112,7 @@ const Agenda = () => {
     },
     {
       cell: (row) =>
-        <Link className='' to={`https://terrraviva.com.ar/evento/${row._id}`} target="blank">
+        <Link className='' to={`https://terraviva.com.ar/evento/${row._id}`} target="blank">
           <Button variant="primary">VER</Button>
         </Link>,
 
