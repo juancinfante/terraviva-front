@@ -143,6 +143,9 @@ const Noticia = () => {
                             </p>
                         </div>
                         <img src={noticia.img_portada} alt="" className="noticia-img" />
+                        <div className="">
+                            <p>{noticia.descripcion}</p>
+                        </div>
                         <div className="d-flex gap-2 justify-content-end mb-3">
                             <div className="d-flex gap-1">
                                 <FacebookShareButton
