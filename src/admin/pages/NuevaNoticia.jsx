@@ -199,7 +199,7 @@ const NuevaNoticia = () => {
                     </Form.Group>
                     <Form.Label>Provincia</Form.Label>
                     <Form.Select aria-label="Default select example" onChange={e => setProvincia(e.target.value)} required>
-                        <option value="Buenos aires">Buenos aires</option>
+                        <option value="Buenos Aires">Buenos Aires</option>
                         <option value="Capital Federal">Capital Federal</option>
                         <option value="Catamarca">Catamarca</option>
                         <option value="Jujuy">Jujuy</option>
