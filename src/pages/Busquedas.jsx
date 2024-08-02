@@ -4,10 +4,6 @@ import { Breadcrumb } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom"
 import api from "../api/api";
 import { useEffect, useState } from "react";
-import publi1 from '../assets/publi1.png';
-import publi2 from '../assets/publi2.png';
-import publi3 from '../assets/publi3.png';
-import publi4 from '../assets/publi4.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
