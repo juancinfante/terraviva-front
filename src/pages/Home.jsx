@@ -13,7 +13,7 @@ const Home = () => {
     <>
       <HeaderTop />
       <Navbar />
-      <NewBanner />
+      {/* <NewBanner /> */}
       <BannerSantiago />
       <MasNoticias />
       <CarouselGalleria />
