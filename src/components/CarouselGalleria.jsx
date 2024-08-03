@@ -52,7 +52,7 @@ const CarouselGalleria = () => {
             <div className="container">
                 <h1 className="border-section">Galerías</h1>
                     {/* CAROUSEL LG */}
-                    <Carousel slide interval={2000} className="mt-4 mb-5 overflow-hidden d-none d-lg-block" style={{ width: "100%", height: "250px" }} prevIcon={false} nextIcon={false} indicators={false}>
+                    <Carousel slide interval={1500} className="mt-4 mb-5 overflow-hidden d-none d-lg-block" style={{ width: "100%", height: "250px" }} indicators={false}>
                         {dividirAlbumesEnGrupos4(albums).map((grupoAlbumes, indiceGrupo) => (
                             <Carousel.Item key={indiceGrupo}>
                                 <div className="row d-flex">
@@ -70,7 +70,7 @@ const CarouselGalleria = () => {
                         ))}
                     </Carousel>
                     
-                    <Carousel interval={2000} className="mt-4 mb-5 overflow-hidden d-md-none d-lg-none" style={{ width: "100%", height: "300px" }} prevIcon={false} nextIcon={false} indicators={false}>
+                    <Carousel interval={1500} className="mt-4 mb-5 overflow-hidden d-md-none d-lg-none" style={{ width: "100%", height: "300px" }} indicators={false}>
                         {dividirAlbumesEnGrupos1(albums).map((grupoAlbumes, indiceGrupo) => (
                             <Carousel.Item key={indiceGrupo}>
                                 <div className="row d-flex">
@@ -86,7 +86,7 @@ const CarouselGalleria = () => {
                             </Carousel.Item>
                         ))}
                     </Carousel>
-                    <Carousel interval={2000} className="mt-4 mb-5 overflow-hidden d-none d-md-block d-lg-none" style={{ width: "100%", height: "300px" }} prevIcon={false} nextIcon={false} indicators={false}>
+                    <Carousel interval={1500} className="mt-4 mb-5 overflow-hidden d-none d-md-block d-lg-none" style={{ width: "100%", height: "300px" }} indicators={false}>
                         {dividirAlbumesEnGrupos3(albums).map((grupoAlbumes, indiceGrupo) => (
                             <Carousel.Item key={indiceGrupo}>
                                 <div className="row d-flex">
