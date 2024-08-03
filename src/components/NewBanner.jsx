@@ -28,7 +28,7 @@ const NewBanner = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12 col-md-8 mb-3 mb-md-0">
-                        <Carousel className="overflow-hidden" slide interval={3000} prevIcon={false} nextIcon={false} indicators={false}>
+                        <Carousel className="overflow-hidden" slide interval={1500} indicators={false}>
                             {
                                 noticias.length != 0 ?
                                     noticias.slice(0, 3).map((element, index) => (
