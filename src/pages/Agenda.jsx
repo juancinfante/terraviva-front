@@ -64,25 +64,25 @@ const Agenda = () => {
 
     //     return data;
     // }
-    function fechaPasada(fecha) {
-        // Convertir la fecha pasada como string a un objeto Date
-        const partesFecha = fecha.split('-');
-        const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
+    // function fechaPasada(fecha) {
+    //     // Convertir la fecha pasada como string a un objeto Date
+    //     const partesFecha = fecha.split('-');
+    //     const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
 
-        // Obtener la fecha actual
-        const hoy = new Date();
-        hoy.setHours(0, 0, 0, 0); // Asegurarnos de que la hora, minutos, segundos y milisegundos estén en 0
-        fechaComparar.setHours(0, 0, 0, 0); // Asegurarnos de que la hora, minutos, segundos y milisegundos estén en 0
+    //     // Obtener la fecha actual
+    //     const hoy = new Date();
+    //     hoy.setHours(0, 0, 0, 0); // Asegurarnos de que la hora, minutos, segundos y milisegundos estén en 0
+    //     fechaComparar.setHours(0, 0, 0, 0); // Asegurarnos de que la hora, minutos, segundos y milisegundos estén en 0
 
-        // Comparar las fechas
-        if (fechaComparar < hoy) {
-            return false;
-        } else if (fechaComparar.getTime() === hoy.getTime()) {
-            return true;
-        } else {
-            return true;
-        }
-    }
+    //     // Comparar las fechas
+    //     if (fechaComparar < hoy) {
+    //         return false;
+    //     } else if (fechaComparar.getTime() === hoy.getTime()) {
+    //         return true;
+    //     } else {
+    //         return true;
+    //     }
+    // }
     function obtenerFechaFormateadaDia(fechaStr) {
         // Dividir la fecha en partes
         const partes = fechaStr.split('-');
@@ -324,7 +324,7 @@ const Agenda = () => {
                         <div className="row gap-3 pt-5">
                             {
                                 publicidadesAgenda.map((element, index) => (
-                                    fechaPasada(element.egreso) && (
+                                  (
                                         <div className="col-12" key={index}>
                                             <a href={element.link} target='blank'>
                                                 <img src={element.foto} alt="" style={{ width: "100%", objectFit: "cover" }} />
