@@ -25,12 +25,15 @@ const Agenda = () => {
         try {
             if (params.prov == undefined) {
                 const resp = await api.get(`api/eventos/${params.limit}/${params.page}`);
-                setEventos(ordenarPorFecha(resp.data.eventos.docs));
+                setEventos(resp.data.eventos.docs);
                 setData(resp.data.eventos);
+                console.log(resp.data.eventos.docs)
             } else {
                 const resp = await api.get(`api/eventos/${params.prov}/${params.limit}/${params.page}`);
-                setEventos(ordenarPorFecha(resp.data.docs));
+                setEventos(resp.data.docs);
                 setData(resp.data);
+                console.log(eventos)
+
             }
         } catch (error) {
             console.log(error);
@@ -45,36 +48,21 @@ const Agenda = () => {
         }
     }
 
-    function ordenarPorFecha(data) {
-        // Función de comparación personalizada para ordenar por fecha
-        function compararFechas(a, b) {
-            // Convertir las fechas de string a objetos Date
-            const fechaA = new Date(a.fecha);
-            const fechaB = new Date(b.fecha);
+    // function ordenarPorFecha(data) {
+    //     // Función de comparación personalizada para ordenar por fecha
+    //     function compararFechas(a, b) {
+    //         // Convertir las fechas de string a objetos Date
+    //         const fechaA = new Date(a.fecha);
+    //         const fechaB = new Date(b.fecha);
 
-            // Comparar las fechas y devolver el resultado de la comparación
-            return fechaA - fechaB;
-        }
-
-        // Ordenar el arreglo de objetos por fecha utilizando la función de comparación
-        data.sort(compararFechas);
-
-        return data;
-    }
-    // function fechaPasada(fecha) {
-    //     console.log(fecha)
-    //     // Convertir la fecha pasada como string a un objeto Date
-    //     const partesFecha = fecha.split('-');
-    //     const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
-    //     console.log(fechaComparar)
-    //     // Obtener la fecha actual
-    //     const hoy = new Date();
-    //     // Comparar las fechas
-    //     if (fechaComparar >= hoy) {
-    //         return true; // La fecha ya pasó
-    //     } else {
-    //         return false; // La fecha aún no ha pasado
+    //         // Comparar las fechas y devolver el resultado de la comparación
+    //         return fechaA - fechaB;
     //     }
+
+    //     // Ordenar el arreglo de objetos por fecha utilizando la función de comparación
+    //     data.sort(compararFechas);
+
+    //     return data;
     // }
     function fechaPasada(fecha) {
         // Convertir la fecha pasada como string a un objeto Date
@@ -137,7 +125,7 @@ const Agenda = () => {
             <div className="container">
                 <Breadcrumb>
                     <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/agenda">
+                    <Breadcrumb.Item href="/agenda/9/1">
                         Agenda
                     </Breadcrumb.Item>
                     <Breadcrumb.Item active>
@@ -252,7 +240,7 @@ const Agenda = () => {
                             }
                             {
                                 eventos.map((element, index) => (
-                                    fechaPasada(element.fecha) && (
+                                     (
                                         <div className="col-12 col-sm-6 col-xl-4 mb-4" key={index}>
                                             <div className="agenda-flayer2">
                                                 <img src={element.flayer} alt="" style={{ objectFit: "cover" }} />
