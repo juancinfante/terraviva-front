@@ -25,15 +25,12 @@ const Agenda = () => {
         try {
             if (params.prov == undefined) {
                 const resp = await api.get(`api/eventos/${params.limit}/${params.page}`);
-                setEventos(resp.data.eventos.docs);
+                setEventos(ordenarPorFecha(resp.data.eventos.docs));
                 setData(resp.data.eventos);
-                console.log(resp.data.eventos.docs)
             } else {
                 const resp = await api.get(`api/eventos/${params.prov}/${params.limit}/${params.page}`);
-                setEventos(resp.data.docs);
+                setEventos(ordenarPorFecha(resp.data.docs));
                 setData(resp.data);
-                console.log(eventos)
-
             }
         } catch (error) {
             console.log(error);
@@ -48,22 +45,22 @@ const Agenda = () => {
         }
     }
 
-    // function ordenarPorFecha(data) {
-    //     // Función de comparación personalizada para ordenar por fecha
-    //     function compararFechas(a, b) {
-    //         // Convertir las fechas de string a objetos Date
-    //         const fechaA = new Date(a.fecha);
-    //         const fechaB = new Date(b.fecha);
+    function ordenarPorFecha(data) {
+        // Función de comparación personalizada para ordenar por fecha
+        function compararFechas(a, b) {
+            // Convertir las fechas de string a objetos Date
+            const fechaA = new Date(a.fecha);
+            const fechaB = new Date(b.fecha);
 
-    //         // Comparar las fechas y devolver el resultado de la comparación
-    //         return fechaA - fechaB;
-    //     }
+            // Comparar las fechas y devolver el resultado de la comparación
+            return fechaA - fechaB;
+        }
 
-    //     // Ordenar el arreglo de objetos por fecha utilizando la función de comparación
-    //     data.sort(compararFechas);
+        // Ordenar el arreglo de objetos por fecha utilizando la función de comparación
+        data.sort(compararFechas);
 
-    //     return data;
-    // }
+        return data;
+    }
     // function fechaPasada(fecha) {
     //     // Convertir la fecha pasada como string a un objeto Date
     //     const partesFecha = fecha.split('-');
