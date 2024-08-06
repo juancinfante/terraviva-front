@@ -16,7 +16,7 @@ const Agenda = () => {
 
   const obtenerEventos = async () => {
     try {
-      const resp = await api.get('api/eventos/35/1');
+      const resp = await api.get('api/eventos/100/1');
       setEventos(resp.data.eventos.docs);
     } catch (error) {
       console.log(error)
