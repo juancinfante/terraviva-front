@@ -18,12 +18,12 @@ const BannerSantiago = () => {
         </div>
         <div className='container d-block d-lg-none' >
             <div style={{ width: "100%" }}>
-                <img src={bannerViolinero} className='w-100 mt-4 banner-sgo' style={{height: 70}}/>
+                <img src={bannerViolinero} className='w-100 mt-4 banner-sgo' style={{height: 80}}/>
             </div>
         </div>
         <div className='container d-block d-lg-none'>
             <div style={{ width: "100%" }}>
-                <img src={bannerDemi} className='w-100 mt-4 banner-sgo' style={{height: 70}}/>
+                <img src={bannerDemi} className='w-100 mt-4 banner-sgo' style={{height: 80}}/>
             </div>
         </div>
         </>
