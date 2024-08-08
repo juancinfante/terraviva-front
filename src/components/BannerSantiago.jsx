@@ -16,14 +16,14 @@ const BannerSantiago = () => {
                 <img src={bannerDemiViolinero} className='w-100 mt-5 banner-sgo'/>
             </div>
         </div>
-        <div className='container d-block d-lg-none'>
+        <div className='container d-block d-lg-none' >
             <div style={{ width: "100%" }}>
-                <img src={bannerViolinero} className='w-100 mt-4 banner-sgo'/>
+                <img src={bannerViolinero} className='w-100 mt-4 banner-sgo' style={{height: 70}}/>
             </div>
         </div>
         <div className='container d-block d-lg-none'>
             <div style={{ width: "100%" }}>
-                <img src={bannerDemi} className='w-100 mt-4 banner-sgo'/>
+                <img src={bannerDemi} className='w-100 mt-4 banner-sgo' style={{height: 70}}/>
             </div>
         </div>
         </>
