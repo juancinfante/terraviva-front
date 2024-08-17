@@ -68,6 +68,19 @@ const Album = () => {
         });
         return images;
     }
+    function formatDate(fecha) {
+        const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+        const date = new Date(fecha);
+
+        const dayOfWeek = days[date.getDay()];
+        const dayOfMonth = date.getDate();
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+
+        return `${dayOfWeek} ${dayOfMonth} de ${month} del ${year}`;
+    }
 
     useEffect(() => {
         getAlbum();
@@ -87,7 +100,7 @@ const Album = () => {
                 <h1 className="border-section mb-4">Álbum</h1>
                 <div className="d-flex flex-column mb-4">
                     <h1>{album.nombre}</h1>
-                    <p>{album.fecha}</p>
+                    <p>{formatDate(album.fecha)}</p>
                     <p>PH: {album.ph}</p>
                 </div>
                 <div className="row">

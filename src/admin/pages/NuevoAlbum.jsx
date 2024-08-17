@@ -293,19 +293,19 @@ const NuevoAlbum = () => {
         setImages((currentImages) => currentImages.filter((_, i) => i !== index));
     };
 
-    function formatDate(fecha) {
-        const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-        const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    // function formatDate(fecha) {
+    //     const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    //     const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
-        const date = new Date(fecha);
+    //     const date = new Date(fecha);
 
-        const dayOfWeek = days[date.getDay()];
-        const dayOfMonth = date.getDate();
-        const month = months[date.getMonth()];
-        const year = date.getFullYear();
+    //     const dayOfWeek = days[date.getDay()];
+    //     const dayOfMonth = date.getDate();
+    //     const month = months[date.getMonth()];
+    //     const year = date.getFullYear();
 
-        return `${dayOfWeek} ${dayOfMonth} de ${month} del ${year}`;
-    }
+    //     return `${dayOfWeek} ${dayOfMonth} de ${month} del ${year}`;
+    // }
 
     const renderImages = () => {
         return images.map((image, index) => (
@@ -350,7 +350,7 @@ const NuevoAlbum = () => {
     };
 
     const subirAlbumBD = async (fotos) => {
-        const fecha = formatDate(fechaA);
+        const fecha = fechaA;
         try {
             const resp = await api.post('api/crearalbum', {
                 nombre,
