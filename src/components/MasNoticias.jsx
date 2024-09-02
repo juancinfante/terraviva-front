@@ -21,8 +21,8 @@ const MasNoticias = () => {
 
     const getNoticias = async () => {
         try {
-            const resp = await api.get('api/noticias/21/1');
-            setNoticias(resp.data.noticias.docs);
+            const resp = await api.get('api/masnoticias');
+            setNoticias(resp.data.noticias);
         } catch (error) {
             console.log(error)
         }
@@ -65,7 +65,7 @@ const MasNoticias = () => {
                         <h1 className="border-section mb-4">Más noticias</h1>
                         <div className="row">
                             {noticias.length != 0 ?
-                                noticias.slice(5, 20).map((element, index) => (
+                                noticias.map((element, index) => (
                                     <div className="col-12 col-md-6 col-lg-4 mb-4" key={index}>
                                         <a href={`/noticia/${element._id}`}>
                                             <div className="masnoticia" key={index}>
