@@ -11,9 +11,14 @@ const BannerSantiago = () => {
         //     </div>
         // </div>
         <>
-            <div className='container d-block d-lg-none' >
+            <div className='container d-none d-md-block' >
                     <div style={{ width: "100%" }}>
-                        <img src={banner} className='w-100 mt-4 banner-sgo' style={{ height: 80 }} />
+                        <img src={banner} className='w-100 mt-4 banner-sgo' style={{ height: 110 }} />
+                    </div>
+            </div>
+            <div className='container d-block d-md-none' >
+                    <div style={{ width: "100%" }}>
+                        <img src={banner} className='w-100 mt-4 banner-sgo' style={{ height: 70 }} />
                     </div>
             </div>
         </>
