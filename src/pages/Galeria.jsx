@@ -151,7 +151,7 @@ const Galeria = () => {
                         <a href="https://www.facebook.com/terravivafolclore" target='blank'>
                             <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
                                 <FontAwesomeIcon icon={faFacebook} className='redes-icon' />
-                                <span>+230mil</span>
+                                <span>+242mil</span>
                                 <span>Like</span>
                             </div>
                         </a>
@@ -172,7 +172,7 @@ const Galeria = () => {
                         <a href="https://www.instagram.com/terravivafolclore" target='blank'>
                             <div className='redes-home ig'>
                                 <FontAwesomeIcon icon={faInstagram} className='redes-icon' />
-                                <span>+32mil</span>
+                                <span>+36mil</span>
                                 <span>Seguir</span>
                             </div>
                         </a>
