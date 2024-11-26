@@ -8,6 +8,7 @@ import banner_raly from '../assets/ralyquimsa.png'
 import banner_raly_mobile from '../assets/ralyquimsa_mobile.png'
 import ol_ban_cen from '../assets/OL-ban-cen.jpg'
 import ol_ban_mob from '../assets/OL-ban-mob.jpg'
+import ol_nuevo from '../assets/BANNER-CENTRAL-ol_ol.jpg'
 
 const BannerSantiago = () => {
     return (
@@ -15,7 +16,7 @@ const BannerSantiago = () => {
             <div className='container d-none d-md-block' >
                 <div style={{ width: "100%" }}>
                     <a href="https://www.entradaweb.com.ar/evento/7ebd62f2/step/1" target='_blank' rel='noreferrer'>
-                        <img src={ol_ban_cen} className='w-100 mt-4 banner-sgo' style={{ height: 120 }} />
+                        <img src={ol_nuevo} className='w-100 mt-4 banner-sgo' style={{ height: 120 }} />
                     </a>
                 </div>
             </div>

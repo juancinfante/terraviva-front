@@ -5,8 +5,7 @@ import '../css/agenda.css'
 import api from '../api/api';
 import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faInstagram, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import Redes from '../components/Redes';
 
 const Agenda = () => {
 
@@ -44,42 +43,6 @@ const Agenda = () => {
             console.log(error)
         }
     }
-
-    // function ordenarPorFecha(data) {
-    //     // Función de comparación personalizada para ordenar por fecha
-    //     function compararFechas(a, b) {
-    //         // Convertir las fechas de string a objetos Date
-    //         const fechaA = new Date(a.fecha);
-    //         const fechaB = new Date(b.fecha);
-
-    //         // Comparar las fechas y devolver el resultado de la comparación
-    //         return fechaA + fechaB;
-    //     }
-
-    //     // Ordenar el arreglo de objetos por fecha utilizando la función de comparación
-    //     data.sort(compararFechas);
-
-    //     return data;
-    // }
-    // function fechaPasada(fecha) {
-    //     // Convertir la fecha pasada como string a un objeto Date
-    //     const partesFecha = fecha.split('-');
-    //     const fechaComparar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]); // Formato: Año, Mes (0-11), Día
-
-    //     // Obtener la fecha actual
-    //     const hoy = new Date();
-    //     hoy.setHours(0, 0, 0, 0); // Asegurarnos de que la hora, minutos, segundos y milisegundos estén en 0
-    //     fechaComparar.setHours(0, 0, 0, 0); // Asegurarnos de que la hora, minutos, segundos y milisegundos estén en 0
-
-    //     // Comparar las fechas
-    //     if (fechaComparar < hoy) {
-    //         return false;
-    //     } else if (fechaComparar.getTime() === hoy.getTime()) {
-    //         return true;
-    //     } else {
-    //         return true;
-    //     }
-    // }
     function obtenerFechaFormateadaDia(fechaStr) {
         // Dividir la fecha en partes
         const partes = fechaStr.split('-');
@@ -330,39 +293,7 @@ const Agenda = () => {
                                 ))
                             }
                         </div>
-                        <div>
-
-                            <h1 className="border-section mb-4">Redes</h1>
-                            <a href="https://www.facebook.com/terravivafolclore" target='blank'>
-                                <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
-                                    <FontAwesomeIcon icon={faFacebook} className='redes-icon' />
-                                    <span>+242mil</span>
-                                    <span>Like</span>
-                                </div>
-                            </a>
-                            <a href="https://twitter.com/terravivanoa" target='blank'>
-                                <div className='redes-home' style={{ backgroundColor: "#000" }}>
-                                    <FontAwesomeIcon icon={faXTwitter} className='redes-icon' />
-                                    <span>+1800</span>
-                                    <span>Seguir</span>
-                                </div>
-                            </a>
-                            <a href="https://www.youtube.com/user/terravivafolclore" target='blank'>
-                                <div className='redes-home' style={{ backgroundColor: "#cc181e" }}>
-                                    <FontAwesomeIcon icon={faYoutube} className='redes-icon' />
-                                    <span>+1000</span>
-                                    <span>Suscribir</span>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/terravivafolclore" target='blank'>
-                                <div className='redes-home ig'>
-                                    <FontAwesomeIcon icon={faInstagram} className='redes-icon' />
-                                    <span>+36mil</span>
-                                    <span>Seguir</span>
-                                </div>
-                            </a>
-
-                        </div>
+                        <Redes />
                     </div>
                 </div>
             </div>

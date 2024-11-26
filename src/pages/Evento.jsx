@@ -5,8 +5,9 @@ import { useParams } from "react-router-dom";
 import '../css/evento.css'
 import api from "../api/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faInstagram, faWhatsapp, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faWhatsapp, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import Footer from "../components/Footer";
+import Redes from "../components/Redes";
 
 const Evento = () => {
 
@@ -99,13 +100,6 @@ const Evento = () => {
                 <div className="row mb-5">
                     <div className="col-12 col-lg-9">
                 <h1 className="border-section mb-4">Agenda</h1>
-                        {/* <div className="title-noticia">
-                            <p className="titulo">{evento.titulo}</p>
-                            <h1>{formatDate(evento.fecha)} </h1>
-                        </div>
-                        <div className="d-flex w-100 justify-content-center mb-4 mt-4">
-                            <img src={evento.flayer} alt="" className="flayer" />
-                        </div> */}
                         <h1 className="titulo-evento">{evento.titulo}</h1>
                         <div className="row">
                             <div className="col-12 col-md-6">
@@ -168,35 +162,7 @@ const Evento = () => {
                                 ))
                             }
                         </div>
-                        <h1 className="border-section mb-4">Redes</h1>
-                        <a href="https://www.facebook.com/terravivafolclore" target='blank'>
-                            <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
-                                <FontAwesomeIcon icon={faFacebook} className='redes-icon' />
-                                <span>+242mil</span>
-                                <span>Like</span>
-                            </div>
-                        </a>
-                        <a href="https://twitter.com/terravivanoa" target='blank'>
-                            <div className='redes-home' style={{ backgroundColor: "#000" }}>
-                                <FontAwesomeIcon icon={faXTwitter} className='redes-icon' />
-                                <span>+1800</span>
-                                <span>Seguir</span>
-                            </div>
-                        </a>
-                        <a href="https://www.youtube.com/user/terravivafolclore" target='blank'>
-                            <div className='redes-home' style={{ backgroundColor: "#cc181e" }}>
-                                <FontAwesomeIcon icon={faYoutube} className='redes-icon' />
-                                <span>+1000</span>
-                                <span>Suscribir</span>
-                            </div>
-                        </a>
-                        <a href="https://www.instagram.com/terravivafolclore" target='blank'>
-                            <div className='redes-home ig'>
-                                <FontAwesomeIcon icon={faInstagram} className='redes-icon' />
-                                <span>+36mil</span>
-                                <span>Seguir</span>
-                            </div>
-                        </a>
+                        <Redes />
                     </div>
                 </div>
             </div>

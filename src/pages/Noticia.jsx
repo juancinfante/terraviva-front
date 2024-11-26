@@ -1,14 +1,13 @@
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import "../css/Noticia.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faInstagram, faXTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon } from 'react-share';
 import { Breadcrumb } from "react-bootstrap";
 import api from "../api/api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from 'react-helmet';
+import Redes from "../components/Redes";
 
 const Noticia = () => {
 
@@ -217,35 +216,7 @@ const Noticia = () => {
                                 ))
                             }
                         </div>
-                        <h1 className="border-section mb-4">Redes</h1>
-                        <a href="https://www.facebook.com/terravivafolclore" target='blank'>
-                            <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
-                                <FontAwesomeIcon icon={faFacebook} className='redes-icon' />
-                                <span>+242mil</span>
-                                <span>Like</span>
-                            </div>
-                        </a>
-                        <a href="https://twitter.com/terravivanoa" target='blank'>
-                            <div className='redes-home' style={{ backgroundColor: "#000" }}>
-                                <FontAwesomeIcon icon={faXTwitter} className='redes-icon' />
-                                <span>+1800</span>
-                                <span>Seguir</span>
-                            </div>
-                        </a>
-                        <a href="https://www.youtube.com/user/terravivafolclore" target='blank'>
-                            <div className='redes-home' style={{ backgroundColor: "#cc181e" }}>
-                                <FontAwesomeIcon icon={faYoutube} className='redes-icon' />
-                                <span>+1000</span>
-                                <span>Suscribir</span>
-                            </div>
-                        </a>
-                        <a href="https://www.instagram.com/terravivafolclore" target='blank'>
-                            <div className='redes-home ig'>
-                                <FontAwesomeIcon icon={faInstagram} className='redes-icon' />
-                                <span>+36mil</span>
-                                <span>Seguir</span>
-                            </div>
-                        </a>
+                        <Redes />
                     </div>
                 </div>
 

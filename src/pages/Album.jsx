@@ -6,9 +6,7 @@ import api from "../api/api";
 import ReactImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import Footer from "../components/Footer";
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faYoutube, faInstagram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import Redes from "../components/Redes";
 
 const Album = () => {
 
@@ -120,35 +118,7 @@ const Album = () => {
                                 ))
                             }
                         </div>
-                        <h1 className="border-section mb-4">Redes</h1>
-                        <a href="https://www.facebook.com/terravivafolclore" target='blank'>
-                            <div className='redes-home' style={{ backgroundColor: "#3b5999" }}>
-                                <FontAwesomeIcon icon={faFacebook} className='redes-icon' />
-                                <span>+242mil</span>
-                                <span>Like</span>
-                            </div>
-                        </a>
-                        <a href="https://twitter.com/terravivanoa" target='blank'>
-                            <div className='redes-home' style={{ backgroundColor: "#000" }}>
-                                <FontAwesomeIcon icon={faXTwitter} className='redes-icon' />
-                                <span>+1800</span>
-                                <span>Seguir</span>
-                            </div>
-                        </a>
-                        <a href="https://www.youtube.com/user/terravivafolclore" target='blank'>
-                            <div className='redes-home' style={{ backgroundColor: "#cc181e" }}>
-                                <FontAwesomeIcon icon={faYoutube} className='redes-icon' />
-                                <span>+1000</span>
-                                <span>Suscribir</span>
-                            </div>
-                        </a>
-                        <a href="https://www.instagram.com/terravivafolclore" target='blank'>
-                            <div className='redes-home ig'>
-                                <FontAwesomeIcon icon={faInstagram} className='redes-icon' />
-                                <span>+36mil</span>
-                                <span>Seguir</span>
-                            </div>
-                        </a>
+                        <Redes />
                     </div>
                 </div>
             </div>
