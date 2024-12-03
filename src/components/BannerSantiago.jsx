@@ -16,15 +16,15 @@ const BannerSantiago = () => {
         <>
             <div className='container d-none d-md-block' >
                 <div style={{ width: "100%" }}>
-                    <a href="https://www.entradaweb.com.ar/evento/7ebd62f2/step/1" target='_blank' rel='noreferrer'>
-                        <img src={ol_nuevo} className='w-100 mt-4 banner-sgo' style={{ height: 120 }} />
+                    <a target='_blank' rel='noreferrer'>
+                        <img src={banner} className='w-100 mt-4 banner-sgo' style={{ height: 120 }} />
                     </a>
                 </div>
             </div>
             <div className='container d-block d-md-none' >
                 <div style={{ width: "100%" }}>
-                    <a href="https://www.entradaweb.com.ar/evento/7ebd62f2/step/1" target='_blank' rel='noreferrer'>
-                        <img src={ol_nuevo_mobile} className='w-100 mt-4 banner-sgo' style={{ height: 130 }} />
+                    <a target='_blank' rel='noreferrer'>
+                        <img src={banner_terra_mobile} className='w-100 mt-4 banner-sgo' style={{ height: 130 }} />
                     </a>
                 </div>
             </div>
