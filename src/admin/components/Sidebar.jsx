@@ -158,6 +158,16 @@ export const Sidebar = () => {
                                     </li>
                                 </> : ""
                         }
+                                    <li>
+                                        <Link to={'/nuevobanner'}>
+                                            <div className='sidebar-list'>
+                                                <ion-icon name="images-outline"></ion-icon>
+                                                <span style={{color: "black"}}>
+                                                    BANNER CENTRAL
+                                                </span>
+                                            </div>
+                                        </Link>
+                                    </li>
                         <li>
                             <Link to={`/cuenta/${userID}`}>
                                 <div className='sidebar-list'>

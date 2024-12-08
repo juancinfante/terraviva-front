@@ -1,0 +1,154 @@
+/* NuevoBanner.css */
+.contenedor {
+  background-color: #242424;
+  min-height: 100vh;
+  padding: 20px;
+  color: #fff;
+}
+
+.header-title {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.add-banner-form {
+  margin-bottom: 20px;
+}
+
+.file-input-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.upload-btn {
+  background-color: #3498db;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.upload-btn:hover {
+  background-color: #2980b9;
+}
+
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 1200px !important;
+}
+
+.image-card {
+  position: relative; /* Necesario para posicionar los botones */
+}
+
+.image-card img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  background-color: gray;
+  border-radius: 8px;
+}
+
+
+.image-actions {
+  display: none; /* Oculta las acciones por defecto */
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  width: 230px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro para las acciones */
+  border-radius: 8px;
+}
+
+.image-card:hover .image-actions {
+  display: block; /* Muestra las acciones al hacer hover sobre la imagen */
+}
+
+.assign-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.assign-btn, .delete-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.assign-btn:hover, .delete-btn:hover {
+  background-color: #2980b9;
+}
+
+.event-link-form {
+  margin-top: 30px;
+}
+
+.event-link-input {
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-right: 10px;
+}
+
+.save-link-btn {
+  background-color: #27ae60;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-link-btn:hover {
+  background-color: #2ecc71;
+}
+.banner-container {
+ width: 100%;
+ margin-top: 50px;
+}
+
+.banner-images {
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.banner-images img {
+  width: 100%;
+}
+
+.banner-actions {
+  margin-top: 10px;
+}
+
+.assign-btn {
+  background-color: #3498db;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.assign-btn:hover {
+  background-color: #2980b9;
+}
+
+.banner-actuales{
+  display: flex;
+  gap: 10px;
+}

@@ -1,35 +1,50 @@
-/* eslint-disable no-unused-vars */
-import banner from '../assets/nuevo-banner.jpg'
-import banner_terra_mobile from '../assets/banner_terra_mobile.jpg'
-import bannerDemi from '../assets/demi.jpg'
-import bannerViolinero from '../assets/violinero.jpg'
-import bannerDemiViolinero from '../assets/demi-violinero.jpg'
-import banner_raly from '../assets/ralyquimsa.png'
-import banner_raly_mobile from '../assets/ralyquimsa_mobile.png'
-import ol_ban_cen from '../assets/OL-ban-cen.jpg'
-import ol_ban_mob from '../assets/OL-ban-mob.jpg'
-import ol_nuevo from '../assets/BANNER-CENTRAL-ol_ol.jpg'
-import ol_nuevo_mobile from '../assets/BANNER-CENTRAL-ol_ol_mobile.jpg'
-import BanC_CHACA25_movil from '../assets/BanC_CHACA25_movil.jpg'
-import BanC_CHACARERA25 from '../assets/BanC_CHACARERA25.jpg'
+import { useState, useEffect } from "react";
+import api from "../api/api";
 
 const BannerSantiago = () => {
+
+
+    const [banner, setBanner] = useState(null); // Banner actual para pantalla completa
+    // Banner actual para mobile
+
+
+    // Obtener banners actuales del modelo
+    const obtenerBannersActuales = async () => {
+        try {
+            const response = await api.get("/api/get-banners"); // Endpoint para obtener los banners
+            const { banners } = response.data;
+            if (banners && banners.length > 0) {
+                const bannerActual = banners[0]; // Asumiendo que trabajamos con un único modelo
+                setBanner(bannerActual);
+                console.log(banner)
+            }
+        } catch (error) {
+            console.error("Error al obtener banners actuales:", error);
+        }
+    };
+
+    // Cargar imágenes y banners al montar el componente
+    useEffect(() => {
+        obtenerBannersActuales();
+    }, []);
     return (
         <>
-            <div className='container d-none d-md-block' >
-                <div style={{ width: "100%" }}>
-                    <a href="https://www.entradaweb.com.ar/eventos?group=272" target='_blank' rel='noreferrer'>
-                        <img src={BanC_CHACARERA25} className='w-100 mt-4 banner-sgo' style={{ height: 120 }} />
-                    </a>
+            {banner ?
+                <><div className='container d-none d-md-block' >
+                    <div style={{ width: "100%" }}>
+                        <a href={banner.url} target='_blank' rel='noreferrer'>
+                            <img src={banner.bannerFull} className='w-100 mt-4 banner-sgo' style={{ height: 120 }} />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div className='container d-block d-md-none' >
-                <div style={{ width: "100%" }}>
-                    <a href="https://www.entradaweb.com.ar/eventos?group=272" target='_blank' rel='noreferrer'>
-                        <img src={BanC_CHACA25_movil} className='w-100 mt-4 banner-sgo' style={{ height: 130 }} />
-                    </a>
-                </div>
-            </div>
+                    <div className='container d-block d-md-none' >
+                        <div style={{ width: "100%" }}>
+                            <a href={banner.url} target='_blank' rel='noreferrer'>
+                                <img src={banner.bannerMobile} className='w-100 mt-4 banner-sgo' style={{ height: 130 }} />
+                            </a>
+                        </div>
+                    </div></> : ""}
+
         </>
     )
 }

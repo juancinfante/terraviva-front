@@ -26,6 +26,7 @@ import EditarEvento from "../admin/pages/EditarEvento";
 import NuevaPublicidad from "../admin/pages/NuevaPublicidad";
 import Publicidad from "../admin/pages/Publicidad";
 import EditarPublicidad from "../admin/pages/EditarPublicidad";
+import NuevoBanner from "../admin/pages/NuevoBanner";
 
 const AppRouter = () => {
   return (
@@ -65,6 +66,7 @@ const AppRouter = () => {
                 <Route path="/editarevento/:id" element={<EditarEvento />}/>
                 <Route path="/nuevapublicidad" element={<NuevaPublicidad />}/>
                 <Route path="/editarpublicidad/:id" element={<EditarPublicidad />}/> 
+                <Route path="/nuevobanner" element={<NuevoBanner />}/> 
 
             </Routes>
     </BrowserRouter>
