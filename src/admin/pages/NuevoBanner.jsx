@@ -105,6 +105,7 @@ const NuevoBanner = () => {
         if (response.status === 200) {
           alert(`Banner ${tipo} asignado correctamente.`);
           obtenerImagenes(); // Actualizar lista de banners
+        window.location.reload()
         }
       }
 
