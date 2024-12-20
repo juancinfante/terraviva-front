@@ -16,7 +16,6 @@ const BannerSantiago = () => {
             if (banners && banners.length > 0) {
                 const bannerActual = banners[0]; // Asumiendo que trabajamos con un único modelo
                 setBanner(bannerActual);
-                console.log(banner)
             }
         } catch (error) {
             console.error("Error al obtener banners actuales:", error);

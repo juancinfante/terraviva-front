@@ -14,7 +14,7 @@ const NewBanner = () => {
     const getNoticias = async () => {
         try {
             const resp = await api.get('api/noticias/5/1');
-            setNoticias(resp.data.noticias.docs);
+            setNoticias(resp.data.docs);
         } catch (error) {
             console.log(error);
         }

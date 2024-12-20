@@ -27,7 +27,7 @@ const Noticias = () => {
     const getNoticias = async () => {
         if (params.prov !== undefined) {
             const resp = await api.get(`api/noticias/${params.prov}/${params.limit}/${params.page}`);
-            setNoticias(resp.data.noticias)
+            setNoticias(resp.data.docs)
             setData(resp.data);
         } else {
             const resp = await api.get(`api/noticias/${params.limit}/${params.page}`);
@@ -73,7 +73,7 @@ const Noticias = () => {
                     {
                         params.prov ?
                             <>
-                                <Breadcrumb.Item href="/noticias/10/1">
+                                <Breadcrumb.Item href="/noticias/5/1">
                                     Noticias
                                 </Breadcrumb.Item>
                                 <Breadcrumb.Item active>
