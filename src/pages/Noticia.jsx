@@ -49,7 +49,7 @@ const Noticia = () => {
     const getNoticias = async () => {
         try {
             const resp = await api.get('api/noticias/6/1');
-            setNoticias(resp.data.noticias.docs)
+            setNoticias(resp.data.docs)
         } catch (error) {
             console.log(error)
         }

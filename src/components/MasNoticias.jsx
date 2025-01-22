@@ -21,8 +21,8 @@ const MasNoticias = () => {
 
     const getNoticias = async () => {
         try {
-            const resp = await api.get('api/noticias/7/1');
-            setNoticias(resp.data.docs);
+            const resp = await api.get('api/masnoticias');
+            setNoticias(resp.data);
         } catch (error) {
             console.log(error)
         }
