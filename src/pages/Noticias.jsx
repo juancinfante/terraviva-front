@@ -16,6 +16,7 @@ const Noticias = () => {
     const [noticias, setNoticias] = useState([]);
     const [data, setData] = useState([]);
     const [publis, setPublis] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const params = useParams();
 
@@ -29,10 +30,12 @@ const Noticias = () => {
             const resp = await api.get(`api/noticias/${params.prov}/${params.limit}/${params.page}`);
             setNoticias(resp.data.docs)
             setData(resp.data);
+            setIsLoading(false);
         } else {
             const resp = await api.get(`api/noticias/${params.limit}/${params.page}`);
             setNoticias(resp.data.docs)
             setData(resp.data)
+            setIsLoading(false);
         }
     }
     const getPubli = async () => {
@@ -97,7 +100,7 @@ const Noticias = () => {
                                 <h1 className="border-section mb-4">Más noticias</h1>
                         }
                         {
-                            noticias.length == 0 ?
+                            isLoading ?
                             <>
                                 <div className="row">
                                     <div className="col-12 col-sm-6 col-lg-4">
@@ -171,9 +174,10 @@ const Noticias = () => {
                                         </Link>
                                     </div>
                                 </div>
-                            </>
-                                :
-
+                            </> 
+                            :
+                            noticias.length === 0 ? <h1 className="w-100 text-center">No hay noticias</h1> :
+                                
                                 noticias.map((element, index) => (
                                     <div className="row" key={index}>
                                         <div className="col-12 col-sm-6 col-lg-4">
@@ -195,6 +199,7 @@ const Noticias = () => {
                                     </div>
 
                                 ))
+                                
                         }
                         <ul className="paginationn">
 
