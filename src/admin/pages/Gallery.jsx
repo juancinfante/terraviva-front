@@ -27,7 +27,7 @@ const Gallery = () => {
   const columns = [
     {
       name: "Portada",
-      selector: row => <img src={row.fotos[0]} alt="" style={{ width: '50px', height: '50px', objectFit: 'cover' }} />,
+      selector: row => <img src={row.portada} alt="" style={{ width: '50px', height: '50px', objectFit: 'cover' }} />,
       width: '150px'
     },
     {
@@ -38,12 +38,10 @@ const Gallery = () => {
     {
       name: "PH",
       selector: row => row.ph,
-      // selector: row => row.created_at,
       width: '200px'
     },
     {
       name: "Creado",
-      //   selector: row => row.ph,
       selector: row => formatoFecha(row.created_at),
       width: '200px'
     },
