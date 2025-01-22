@@ -14,6 +14,7 @@ const Galeria = () => {
     const [albums, setAlbums] = useState([]);
     const [data, setData] = useState([]);
     const [publis, setPublis] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     // Filtrar las publicidades que tengan 'inicio'
     const publicidadesGaleria = publis.filter(publicidad => publicidad.colocar_en[0].galeria >= 1 && publicidad.colocar_en[0].galeria <= 8);
@@ -27,6 +28,7 @@ const Galeria = () => {
             const resp = await api.get(`api/albums/${params.limit}/${params.page}`);
             setAlbums(resp.data.albums.docs);
             setData(resp.data.albums);
+            setIsLoading(false);
         } catch (error) {
             console.log(error)
         }
@@ -76,14 +78,14 @@ const Galeria = () => {
                         <div className="row">
 
                             {
-                                albums.length == 0 ?
+                                isLoading ?
                                     <h1 className="text-center mt-5 mb-5">CARGANDO...</h1>
                                     :
                                     albums.map((element, index) => (
                                         <div className="col-12 col-sm-6 col-lg-4 mb-4" key={index}>
                                             <a href={`/album/${element._id}`}>
                                                 <div className="album-container">
-                                                    <img src={element.fotos[0]} alt="" />
+                                                    <img src={element.portada} alt="" />
                                                     <div className="info-album">
                                                         <h2>{element.nombre}</h2>
                                                         <p>{element.fecha}</p>
