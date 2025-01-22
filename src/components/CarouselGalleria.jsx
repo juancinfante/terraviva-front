@@ -15,6 +15,7 @@ const CarouselGalleria = () => {
             const resp = await api.get('api/albums/12/1');
             const albunes = resp.data.albums.docs;
             setAlbums(albunes.sort((a, b) => new Date(b.fecha) - new Date(a.fecha)))
+            console.log(albums)
         } catch (error) {
             console.log(error)
         }
@@ -75,7 +76,7 @@ const CarouselGalleria = () => {
                                     {grupoAlbumes.map((album, indiceAlbum) => (
                                         <div key={indiceAlbum} className="col-sm-3 d-flex flex-column" style={{ height: "300px" }}>
                                             <Link to={`/album/${album._id}`}>
-                                                <img src={album.fotos[0]} className="w-100" style={{ height: "170px", objectFit: "cover" }} />
+                                                <img src={album.portada} className="w-100" style={{ height: "170px", objectFit: "cover" }} />
                                                  <h5 style={{fontSize: "12px"}} className="mt-2">{formatDate(album.fecha)} </h5>
                                                 <h5 className="titulo-galeria mt-2 fw-bold">{album.nombre}</h5>
                                             </Link>
@@ -93,7 +94,7 @@ const CarouselGalleria = () => {
                                     {grupoAlbumes.map((album, indiceAlbum) => (
                                         <div key={indiceAlbum} className="col-12 flex-column" style={{ height: "300px" }}>
                                             <Link to={`/album/${album._id}`}>
-                                                <img src={album.fotos[0]} className="w-100" style={{ height: "200px", objectFit: "cover" }} />
+                                                <img src={album.portada} className="w-100" style={{ height: "200px", objectFit: "cover" }} />
                                                 <h5 className="titulo-galeria mt-2 fw-bold">{album.nombre}</h5>
                                             </Link>
                                         </div>
@@ -109,7 +110,7 @@ const CarouselGalleria = () => {
                                     {grupoAlbumes.map((album, indiceAlbum) => (
                                         <div key={indiceAlbum} className="col-sm-6 d-flex flex-column" style={{ height: "300px" }}>
                                             <Link to={`/album/${album._id}`}>
-                                                <img src={album.fotos[0]} className="w-100" style={{ height: "200px", objectFit: "cover" }} />
+                                                <img src={album.portada} className="w-100" style={{ height: "200px", objectFit: "cover" }} />
                                                 <h5 className="titulo-galeria mt-2 fw-bold">{album.nombre}</h5>
                                             </Link>
                                         </div>
