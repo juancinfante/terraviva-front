@@ -101,7 +101,8 @@ const NuevoAlbum = () => {
                 nombre,
                 ph,
                 fecha,
-                fotos
+                fotos,
+                portada: fotos[0]
             })
             swal(resp.data.msg, "", "success");
             setTimeout(() => {
