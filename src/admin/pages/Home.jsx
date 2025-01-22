@@ -34,7 +34,7 @@ const Home = () => {
 
   const obtenerNoticias = async () => {
     try {
-      const resp = await api.get('api/noticias/5/1');
+      const resp = await api.get('api/noticias/30/1');
       setNoticias(resp.data.docs);
     } catch (error) {
       console.log(error)
