@@ -86,42 +86,42 @@ const Agenda = () => {
     {
       name: "Flayer",
       selector: row => <img src={row.flayer} alt="" style={{ width: '50px', height: '50px', objectFit: 'cover' }} />,
-      width: '150px'
+      width: '90px'
     },
     {
       name: "Titulo",
       selector: row => row.titulo,
-      width: '250px'
+      width: '300px'
     },
     {
       name: "Provincia",
       selector: row => row.provincia,
-      width: '250px'
+      width: '150px'
     },
     {
       name: "Fecha",
       selector: row => convertirFecha(row.fecha),
-      width: '250px',
+      width: '150px',
       sortable: true,
     },
     {
       name: "Creado",
       selector: row => convertirAFormatoCorto(row.created_at),
-      width: '250px',
+      width: '150px',
       sortable: true,
     },
     {
       cell: (row) =>
         <Link className='' to={`https://terraviva.com.ar/evento/${row._id}`} target="blank">
           <Button variant="primary">VER</Button>
-        </Link>,
+        </Link>, width: '100px'
 
     },
     {
       cell: (row) =>
         <Link className='' to={`/editarevento/${row._id}`}>
           <Button variant="secondary">EDITAR</Button>
-        </Link>,
+        </Link>,width: '150px'
     },
     {
       cell: (row) => <Button variant="danger" onClick={() => handleBorrar(row._id)}>BORRAR</Button>,
