@@ -13,6 +13,7 @@ const Agenda = () => {
     const [eventos, setEventos] = useState([]);
     const [publis, setPublis] = useState([]);
     const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     // Filtrar las publicidades que tengan 'inicio'
     const publicidadesAgenda = publis.filter(publicidad => publicidad.colocar_en[0].agenda >= 1 && publicidad.colocar_en[0].agenda <= 8);
@@ -26,10 +27,12 @@ const Agenda = () => {
                 const resp = await api.get(`api/eventos/${params.limit}/${params.page}`);
                 setEventos(resp.data.eventos.docs);
                 setData(resp.data.eventos);
+                setIsLoading(false);
             } else {
                 const resp = await api.get(`api/eventos/${params.prov}/${params.limit}/${params.page}`);
                 setEventos(resp.data.docs);
                 setData(resp.data);
+                setIsLoading(false);
             }
         } catch (error) {
             console.log(error);
@@ -193,33 +196,53 @@ const Agenda = () => {
                         </Accordion>
                         <div className="row">
                             {
-                                eventos.length == 0 ?
-                                    <h1 className="text-center mt-5 mb-5">NO HAY EVENTOS PROXIMOS</h1>
+                                isLoading ?
+                                    <h1 className="text-center mt-5 mb-5">CARGANDO...</h1>
                                     :
-                                    ""
+                                    eventos.length === 0 ? <h1 className="w-100 text-center">No hay eventos</h1> : eventos.map((element, index) => (
+                                        (
+                                           <div className="col-12 col-sm-6 col-xl-4 mb-4" key={index}>
+                                               <div className="agenda-flayer2">
+                                                   <img src={element.flayer} alt="" style={{ objectFit: "cover" }} />
+                                                   <div className="info d-flex justify-content-around">
+                                                       <div className="col-3">
+                                                           <p>{obtenerFechaFormateadaDia(element.fecha)}</p>
+                                                           <p>{obtenerFechaFormateadaMes(element.fecha)}</p>
+                                                       </div>
+                                                       <div className="lugar-evento col-6">
+                                                           <p>{element.provincia}</p>
+                                                           {/* <p>{element.horario +"Hs"}</p> */}
+                                                       </div>
+                                                       <div className="col-3">
+                                                           <a href={`/evento/${element._id}`}>+ INFO</a>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>)
+                                   ))
                             }
                             {
-                                eventos.map((element, index) => (
-                                     (
-                                        <div className="col-12 col-sm-6 col-xl-4 mb-4" key={index}>
-                                            <div className="agenda-flayer2">
-                                                <img src={element.flayer} alt="" style={{ objectFit: "cover" }} />
-                                                <div className="info d-flex justify-content-around">
-                                                    <div className="col-3">
-                                                        <p>{obtenerFechaFormateadaDia(element.fecha)}</p>
-                                                        <p>{obtenerFechaFormateadaMes(element.fecha)}</p>
-                                                    </div>
-                                                    <div className="lugar-evento col-6">
-                                                        <p>{element.provincia}</p>
-                                                        {/* <p>{element.horario +"Hs"}</p> */}
-                                                    </div>
-                                                    <div className="col-3">
-                                                        <a href={`/evento/${element._id}`}>+ INFO</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>)
-                                ))
+                                // eventos.map((element, index) => (
+                                //      (
+                                //         <div className="col-12 col-sm-6 col-xl-4 mb-4" key={index}>
+                                //             <div className="agenda-flayer2">
+                                //                 <img src={element.flayer} alt="" style={{ objectFit: "cover" }} />
+                                //                 <div className="info d-flex justify-content-around">
+                                //                     <div className="col-3">
+                                //                         <p>{obtenerFechaFormateadaDia(element.fecha)}</p>
+                                //                         <p>{obtenerFechaFormateadaMes(element.fecha)}</p>
+                                //                     </div>
+                                //                     <div className="lugar-evento col-6">
+                                //                         <p>{element.provincia}</p>
+                                //                         {/* <p>{element.horario +"Hs"}</p> */}
+                                //                     </div>
+                                //                     <div className="col-3">
+                                //                         <a href={`/evento/${element._id}`}>+ INFO</a>
+                                //                     </div>
+                                //                 </div>
+                                //             </div>
+                                //         </div>)
+                                // ))
                             }
                             <ul className="paginationn">
 
