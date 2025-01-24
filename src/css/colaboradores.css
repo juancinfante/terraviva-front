@@ -1,0 +1,89 @@
+/* Estilos generales para la sección de colaboradores */
+.colaboradores-container {
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  .colaboradores-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 50px;
+  }
+  
+  .colaboradores-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas por defecto para mobile */
+    gap: 20px;
+  }
+  
+  .colaborador-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .colaborador-image {
+    width: 100%;
+    max-width: 411px;  /* Ajuste de ancho para que no se agrande más de la imagen original */
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover; /* Asegura que la imagen se recorte si no mantiene la proporción */
+    transition: opacity 0.3s ease;
+  }
+  
+  .colaborador-image:hover {
+    opacity: 0.8;
+  }
+  
+  /* Estilos del modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: white;
+    border-radius: 8px;
+    max-width: 350px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modal-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  /* Media Queries */
+  
+  /* Tablet (pantallas medianas) */
+  @media (min-width: 768px) {
+    .colaboradores-grid {
+      grid-template-columns: repeat(4, 1fr); /* 4 columnas en tablet */
+    }
+  
+    .colaborador-image {
+      max-width: 411px; /* Aseguramos que la imagen no crezca más de su tamaño original */
+    }
+  }
+  
+  /* Pantalla grande (desktop y pantallas grandes) */
+  @media (min-width: 1024px) {
+    .colaboradores-grid {
+      grid-template-columns: repeat(4, 1fr); /* 6 columnas en pantallas grandes */
+    }
+  
+    .colaborador-image {
+      max-width: 300px; /* Imágenes en su tamaño original */
+    }
+  }
+  
