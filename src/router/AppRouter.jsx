@@ -27,6 +27,7 @@ import NuevaPublicidad from "../admin/pages/NuevaPublicidad";
 import Publicidad from "../admin/pages/Publicidad";
 import EditarPublicidad from "../admin/pages/EditarPublicidad";
 import NuevoBanner from "../admin/pages/NuevoBanner";
+import Colaboradores from "../pages/Colaboradores";
 
 const AppRouter = () => {
   return (
@@ -44,6 +45,7 @@ const AppRouter = () => {
                 <Route path="/" element={<Home />}/>
                 <Route path="/agenda/:limit/:page" element={<Agenda />}/>
                 <Route path="/agenda/:prov/:limit/:page" element={<Agenda />}/>
+                <Route path="/colaboradores" element={<Colaboradores />}/>
                 
                 {/* ZONA ADMIN */}
                 <Route path="/login" element={<Login />}/>
