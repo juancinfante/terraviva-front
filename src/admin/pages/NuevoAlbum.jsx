@@ -61,36 +61,38 @@ const NuevoAlbum = () => {
         ));
     };
 
-    const uploadImageToCloudinary = (file) => {
+    const uploadImage = async (file, folder) => {
         const formData = new FormData();
-        formData.append('file', file);
-        formData.append('upload_preset', 'albums');
-        formData.append('cloud_name', 'dwjhbrsmf');
-
-        return axios.post('https://api.cloudinary.com/v1_1/dwjhbrsmf/image/upload', formData, {
-            headers: { 'X-Requested-With': 'XMLHttpRequest' },
-        });
+        formData.append("file", file);
+        formData.append("folder", folder); // 💡 Carpeta dinámica
+    
+        const response = await api.post("/api/upload-image", formData);
+    
+        return response.data.url; // ✅ Accede directamente a response.data
     };
 
     const handleUploadAll = async () => {
-        if (nombre !== "") {
-            if (ph !== "") {
-                if (fechaA !== "") {
-                    setCargando(true);
-                    const uploaders = images.map((image) => uploadImageToCloudinary(image.file));
-                    axios.all(uploaders).then(axios.spread((...allImageData) => {
-                        subirAlbumBD(allImageData.map((data) => data.data.secure_url));
-                        setImages([]);
-                        setCargando(false);
-                    }));
-                } else {
-                    swal("Ingrese fecha del Album!", "", "warning");
-                }
-            } else {
-                swal("Ingrese nombre del PH!", "", "warning");
-            }
-        } else {
-            swal("Ingrese nombre del album!", "", "warning");
+        if (!nombre) return swal("Ingrese nombre del álbum!", "", "warning");
+        if (!ph) return swal("Ingrese nombre del PH!", "", "warning");
+        if (!fechaA) return swal("Ingrese fecha del álbum!", "", "warning");
+    
+        setCargando(true);
+    
+        try {
+            // Definir la carpeta (ejemplo: "terraviva/albums/nombreDelAlbum")
+            const carpeta = `terraviva/albums/${nombre}`;
+    
+            const uploaders = images.map((image) => uploadImage(image.file, carpeta));
+    
+            const urls = await Promise.all(uploaders);
+    
+            subirAlbumBD(urls);
+            setImages([]);
+        } catch (error) {
+            console.error("Error al subir imágenes:", error);
+            swal("Error al subir imágenes!", "", "error");
+        } finally {
+            setCargando(false);
         }
     };
 

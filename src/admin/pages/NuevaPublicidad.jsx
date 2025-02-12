@@ -45,6 +45,15 @@ const NuevaPublicidad = () => {
         }
     }
 
+    const uploadImage = async (file, folder) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("folder", "terraviva/publicidad"); // 💡 Carpeta dinámica
+    
+        const response = await api.post("/api/upload-image", formData);
+    
+        return response.data.url; // ✅ Accede directamente a response.data
+    };
 
     const enviarForm = async (e) => {
         e.preventDefault();
@@ -59,16 +68,11 @@ const NuevaPublicidad = () => {
         }
 
         try {
-            // Creamos un nuevo FormData con la imagen 
-            const formData = new FormData();
-            formData.append('file', files[0]);
-            formData.append("upload_preset", "terraviva");
-            formData.append("cloud_name", "dwjhbrsmf");
 
             // Subimos la imagen redimensionada a Cloudinary
-            const res = await instance.post("https://api.cloudinary.com/v1_1/dwjhbrsmf/image/upload", formData);
-            setFoto(res.data.secure_url);
-            const foto = res.data.secure_url;
+            const url_image = await uploadImage(files[0]);
+            setFoto(url_image);
+            const foto = url_image;
 
             // Enviamos los datos del formulario junto con la URL de la imagen a tu API
             const resp = await api.post('api/publi', {

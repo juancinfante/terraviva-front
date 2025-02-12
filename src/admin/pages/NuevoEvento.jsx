@@ -53,6 +53,16 @@ const NuevoEvento = () => {
         }
     }
 
+    const uploadImage = async (file, folder) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("folder", `terraviva/agenda/${titulo}/`); // 💡 Carpeta dinámica
+    
+        const response = await api.post("/api/upload-image", formData);
+    
+        return response.data.url; // ✅ Accede directamente a response.data
+    };
+
     const enviarForm = async (e) => {
         setCargando(true);
         e.preventDefault();
@@ -99,17 +109,10 @@ const NuevoEvento = () => {
             // Redimensionamos la imagen antes de subirla a Cloudinary
             const resizedImage = await resizeImage(files[0]);
 
-            // Creamos un nuevo FormData con la imagen redimensionada
-            const formData = new FormData();
-            formData.append('file', files[0]);
-            formData.append("upload_preset", "terraviva");
-            formData.append("cloud_name", "dwjhbrsmf");
-
             // Subimos la imagen redimensionada a Cloudinary
-            const res = await instance.post("https://api.cloudinary.com/v1_1/dwjhbrsmf/image/upload", formData);
-            console.log(res)
+            const url_image = await uploadImage(files[0]);
 
-            const flayer = res.data.secure_url;
+            const flayer = url_image;
             // Enviamos los datos del formulario junto con la URL de la imagen a tu API
             const resp = await api.post('api/evento', {
                 titulo,

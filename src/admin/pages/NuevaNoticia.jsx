@@ -46,6 +46,17 @@ const NuevaNoticia = () => {
 
     const [imageInput, setImageInput] = useState();
 
+    // Función para subir la imagen a Cloudinary
+    const uploadImage = async (file) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("folder", "terraviva/noticias/");
+
+        const response = await api.post("/api/upload-image", formData);
+
+        return response.data.url; // ✅ Accede directamente a response.data
+    };
+
     const enviarForm = async (e) => {
         e.preventDefault();
         setCargando(true);
@@ -53,7 +64,7 @@ const NuevaNoticia = () => {
         const fotoEditor = localStorage.getItem("fotoPerfil");
         const nombreEditor = localStorage.getItem("Nombre");
         const apellidoEditor = localStorage.getItem("Apellido");
-        const editor = localStorage.getItem("Nombre") +" "+ localStorage.getItem("Apellido");
+        const editor = localStorage.getItem("Nombre") + " " + localStorage.getItem("Apellido");
 
         // Obtenemos el archivo de imagen del input
         const files = imageInput;
@@ -63,49 +74,12 @@ const NuevaNoticia = () => {
             return;
         }
 
-        // Función para reducir el tamaño de la imagen
-        const resizeImage = async (imageFile) => {
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                img.onload = function () {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-
-                    // Calculamos las dimensiones proporcionales para ajustar la imagen a 50 KB
-                    const MAX_SIZE = 200000; // 50 KB en bytes
-                    let scaleFactor = 1;
-                    if (imageFile.size > MAX_SIZE) {
-                        scaleFactor = Math.sqrt(MAX_SIZE / imageFile.size);
-                    }
-
-                    // Redimensionamos la imagen en el canvas
-                    canvas.width = img.width * scaleFactor;
-                    canvas.height = img.height * scaleFactor;
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-                    // Convertimos el canvas a un archivo Blob
-                    canvas.toBlob((blob) => {
-                        resolve(blob);
-                    }, 'image/jpeg', 0.9); // Calidad de compresión, puedes ajustarla según tus necesidades
-                };
-                img.src = URL.createObjectURL(imageFile);
-            });
-        };
-
         try {
-            // Redimensionamos la imagen antes de subirla a Cloudinary
-            const resizedImage = await resizeImage(files[0]);
-
-            // Creamos un nuevo FormData con la imagen redimensionada
-            const formData = new FormData();
-            formData.append('file', files[0]);
-            formData.append("upload_preset", "terraviva");
-            formData.append("cloud_name", "dwjhbrsmf");
 
             // Subimos la imagen redimensionada a Cloudinary
-            const res = await instance.post("https://api.cloudinary.com/v1_1/dwjhbrsmf/image/upload", formData);
-            setPortada(res.data.secure_url);
-            const img_portada = res.data.secure_url;
+            const url_image = await uploadImage(files[0]);
+            setPortada(url_image);
+            const img_portada = url_image;
 
             // Enviamos los datos del formulario junto con la URL de la imagen a tu API
             const resp = await api.post('api/crearnoticia', {
@@ -135,53 +109,6 @@ const NuevaNoticia = () => {
             setPortada(reader.result)
         }
     }
-
-    const compressImage = (event) => {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function (event) {
-            const img = new Image();
-            img.src = event.target.result;
-
-            img.onload = function () {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-
-                // Redimensionar la imagen manteniendo la proporción
-                const MAX_WIDTH = 800;
-                const MAX_HEIGHT = 600;
-                let width = img.width;
-                let height = img.height;
-                if (width > height) {
-                    if (width > MAX_WIDTH) {
-                        height *= MAX_WIDTH / width;
-                        width = MAX_WIDTH;
-                    }
-                } else {
-                    if (height > MAX_HEIGHT) {
-                        width *= MAX_HEIGHT / height;
-                        height = MAX_HEIGHT;
-                    }
-                }
-                canvas.width = width;
-                canvas.height = height;
-
-                // Dibujar la imagen en el lienzo
-                ctx.drawImage(img, 0, 0, width, height);
-
-                // Obtener los datos de la imagen comprimida como base64
-                const compressedDataUrl = canvas.toDataURL('image/jpeg', .6); // Cambia el segundo parámetro (0.5) para ajustar la calidad
-
-                // Mostrar la imagen comprimida
-                setPreviewSrc(compressedDataUrl);
-            };
-        };
-
-        reader.readAsDataURL(file);
-    };
-
-
 
     return (
         <>

@@ -47,7 +47,7 @@ const NuevoBanner = () => {
 
       const formData = new FormData();
       formData.append("file", imagen);
-      formData.append("folder", folder);
+      formData.append("folder", "terraviva/banners/");  // Carpeta en Cloudinary
 
       const response = await api.post('/api/upload-image', formData, {
         headers: {
