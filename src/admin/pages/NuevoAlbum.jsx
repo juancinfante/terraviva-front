@@ -11,8 +11,6 @@ import swal from 'sweetalert';
 
 const NuevoAlbum = () => {
     const [images, setImages] = useState([]);
-    const [imagesUploaded, setIamgesUploaded] = useState([]);
-
     const [nombre, setNombre] = useState("");
     const [fechaA, setFechaA] = useState("");
     const [ph, setPH] = useState(localStorage.getItem("Nombre") + " " + localStorage.getItem("Apellido"));
@@ -37,6 +35,11 @@ const NuevoAlbum = () => {
     }
 
     const handleDrop = (acceptedFiles) => {
+        if (images.length + acceptedFiles.length > 5) {
+            swal("¡Límite alcanzado!", "No puedes subir más de 30 imágenes.", "warning");
+            return;
+        }
+
         setLoading(true);
         acceptedFiles.forEach((file) => {
             const previewUrl = URL.createObjectURL(file);
@@ -64,28 +67,24 @@ const NuevoAlbum = () => {
     const uploadImage = async (file, folder) => {
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("folder", folder); // 💡 Carpeta dinámica
-    
+        formData.append("folder", folder); 
+
         const response = await api.post("/api/upload-image", formData);
-    
-        return response.data.url; // ✅ Accede directamente a response.data
+        return response.data.url;
     };
 
     const handleUploadAll = async () => {
         if (!nombre) return swal("Ingrese nombre del álbum!", "", "warning");
         if (!ph) return swal("Ingrese nombre del PH!", "", "warning");
         if (!fechaA) return swal("Ingrese fecha del álbum!", "", "warning");
-    
+
         setCargando(true);
-    
+
         try {
-            // Definir la carpeta (ejemplo: "terraviva/albums/nombreDelAlbum")
             const carpeta = `terraviva/albums/${nombre}`;
-    
             const uploaders = images.map((image) => uploadImage(image.file, carpeta));
-    
             const urls = await Promise.all(uploaders);
-    
+
             subirAlbumBD(urls);
             setImages([]);
         } catch (error) {
@@ -118,7 +117,7 @@ const NuevoAlbum = () => {
 
     useEffect(()=> {
         checkUser();
-    })
+    }, []);
 
     return (
         <>
@@ -141,46 +140,42 @@ const NuevoAlbum = () => {
                         </section>
                     )}
                 </Dropzone>
-                {loading ?
-                    (
-                        <>
-                            <h1 style={{ color: "white" }}>
-                                Cargando imágenes...
-                            </h1>
-                            <Spinner
-                                as="span"
-                                animation="border"
-                                size="sm"
-                                role="status"
-                                aria-hidden="true"
-                            />
-                        </>
-                    ) :
+                {loading ? (
+                    <>
+                        <h1 style={{ color: "white" }}>Cargando imágenes...</h1>
+                        <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />
+                    </>
+                ) : (
                     <>
                         {images.length > 0 && (
                             <div>
-                                <h2 style={{ color: "white" }}>Imágenes listas para subir</h2>
+                                <h2 style={{ color: "white" }}>Imágenes listas para subir ({images.length}/30)</h2>
                                 <div className="row">
                                     {renderImages()}
                                 </div>
                                 <button className='btn btn-primary mt-4' onClick={handleUploadAll}>
-                                    {cargando ?
-                                        <>
-                                            <Spinner
-                                                as="span"
-                                                animation="border"
-                                                size="sm"
-                                                role="status"
-                                                aria-hidden="true"
-                                            />
-                                        </> :
-                                        <>
-                                            SUBIR
-                                        </>}
+                                    {cargando ? (
+                                        <Spinner
+                                            as="span"
+                                            animation="border"
+                                            size="sm"
+                                            role="status"
+                                            aria-hidden="true"
+                                        />
+                                    ) : (
+                                        <>SUBIR</>
+                                    )}
                                 </button>
                             </div>
                         )}
-                    </>}
+                    </>
+                )}
             </div>
         </>
     );

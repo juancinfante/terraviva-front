@@ -19,7 +19,7 @@ const NuevoBanner = () => {
   const obtenerImagenes = async () => {
     try {
       setCargando(true);
-      const response = await api.get(`api/getimages/${folder}`); // Usamos api.get
+      const response = await api.get(`api/banners/`); // Usamos api.get
       setImagenes(response.data); // Suponiendo que el backend retorna las imágenes en 'data'
     } catch (error) {
       console.error("Error al obtener imágenes:", error);
@@ -28,10 +28,10 @@ const NuevoBanner = () => {
     }
   };
 
-  const obtenerBanners = async () => {
+  const obtenerBanner = async () => {
     try {
       setCargando(true); // Indicamos que estamos cargando
-      const response = await api.get('/api/get-banners'); // Solicitar banners desde la API
+      const response = await api.get('/api/get-banner'); // Solicitar banners desde la API
       setBanners(response.data.banners);
       console.log(response) // Guardamos los banners en el estado
     } catch (error) {
@@ -71,28 +71,29 @@ const NuevoBanner = () => {
   };
 
   const eliminarImagen = async (id) => {
-    const imageId = id.split('/')[1]; // Esto obtendrá solo la parte después de "clubcyt/"
-    try {
-      if (window.confirm("¿Seguro que deseas eliminar esta imagen?")) {
-        const response = await api.post(`/api/image/${imageId}`, JSON.stringify({
-          folder,
-        }), {
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        });
+    const imageId = id; // O id.split('/')[2] si necesitas solo la parte final
 
-        if (response.status === 200) {
-          alert(response.data.message || "Imagen eliminada correctamente");
-          obtenerImagenes(); // Actualizar lista de imágenes
-        } else {
-          alert(response.data.error || "Error al eliminar la imagen");
+    try {
+        if (window.confirm("¿Seguro que deseas eliminar esta imagen?")) {
+            const response = await api.delete('/api/image', {
+                data: { id: imageId }, // Enviamos el id en el cuerpo con DELETE
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.status === 200) {
+                alert(response.data.message || "Imagen eliminada correctamente");
+                obtenerImagenes();
+            } else {
+                alert(response.data.error || "Error al eliminar la imagen");
+            }
         }
-      }
     } catch (error) {
-      console.error("Error al eliminar la imagen:", error);
+        console.error("Error al eliminar la imagen:", error);
+        alert("Ocurrió un error al intentar eliminar la imagen");
     }
-  };
+};
 
   const asignarBanner = async (bannerId, tipo, image_url) => {
     try {
@@ -133,7 +134,7 @@ const NuevoBanner = () => {
   // Cargar imágenes al montar el componente
   useEffect(() => {
     obtenerImagenes();
-    obtenerBanners();
+    obtenerBanner();
   }, []);
 
   return (
