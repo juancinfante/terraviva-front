@@ -24,7 +24,7 @@ import EditarAlbum from "../admin/pages/EditarAlbum";
 import NuevoEvento from "../admin/pages/NuevoEvento";
 import EditarEvento from "../admin/pages/EditarEvento";
 import NuevaPublicidad from "../admin/pages/NuevaPublicidad";
-import Publicidad from "../admin/pages/Publicidad";
+import ContenidoPub from "../admin/pages/ContenidoPub";
 import EditarPublicidad from "../admin/pages/EditarPublicidad";
 import NuevoBanner from "../admin/pages/NuevoBanner";
 import Colaboradores from "../pages/Colaboradores";
@@ -54,7 +54,7 @@ const AppRouter = () => {
                 <Route path="/galeria" element={<Gallery />}/>
                 <Route path="/agenda" element={<AgendaAdmin />}/>
                 
-                <Route path="/publicidad" element={<Publicidad />}/>
+                <Route path="/publicidad" element={<ContenidoPub />}/>
                 <Route path="/usuarios" element={<Usuarios />}/>
                 
                  <Route path="/nuevanoticia" element={<NuevaNoticia />}/>

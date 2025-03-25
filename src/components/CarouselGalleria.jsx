@@ -15,7 +15,6 @@ const CarouselGalleria = () => {
             const resp = await api.get('api/albums/12/1');
             const albunes = resp.data.albums.docs;
             setAlbums(albunes.sort((a, b) => new Date(b.fecha) - new Date(a.fecha)))
-            console.log(albums)
         } catch (error) {
             console.log(error)
         }

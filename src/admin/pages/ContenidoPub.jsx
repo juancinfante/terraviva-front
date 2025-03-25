@@ -8,7 +8,7 @@ import api from "../../api/api"
 
 import swal from "sweetalert"
 
-const Publicidad = () => {
+const ContenidoPub = () => {
 
     const [publis, setPublis] = useState([]);
 
@@ -131,4 +131,4 @@ const Publicidad = () => {
     )
 }
 
-export default Publicidad
+export default ContenidoPub
