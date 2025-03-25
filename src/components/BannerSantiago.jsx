@@ -11,7 +11,7 @@ const BannerSantiago = () => {
     // Obtener banners actuales del modelo
     const obtenerBannersActuales = async () => {
         try {
-            const response = await api.get("/api/get-banners"); // Endpoint para obtener los banners
+            const response = await api.get("/api/get-banner"); // Endpoint para obtener los banners
             const { banners } = response.data;
             if (banners && banners.length > 0) {
                 const bannerActual = banners[0]; // Asumiendo que trabajamos con un único modelo
