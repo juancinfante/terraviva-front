@@ -35,7 +35,7 @@ const NuevoAlbum = () => {
     }
 
     const handleDrop = (acceptedFiles) => {
-        if (images.length + acceptedFiles.length > 5) {
+        if (images.length + acceptedFiles.length > 30) {
             swal("¡Límite alcanzado!", "No puedes subir más de 30 imágenes.", "warning");
             return;
         }
