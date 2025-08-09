@@ -48,7 +48,7 @@ const NuevaPublicidad = () => {
     const uploadImage = async (file, folder) => {
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("folder", "terraviva/publicidad"); // 💡 Carpeta dinámica
+        formData.append("folder", "terraviva/banners-p"); // 💡 Carpeta dinámica
     
         const response = await api.post("/api/upload-image", formData);
     
