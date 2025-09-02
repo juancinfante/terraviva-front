@@ -57,9 +57,9 @@ const NuevoEvento = () => {
         const formData = new FormData();
         formData.append("file", file);
         formData.append("folder", `terraviva/agenda/${titulo}/`); // 💡 Carpeta dinámica
-    
+
         const response = await api.post("/api/upload-image", formData);
-    
+
         return response.data.url; // ✅ Accede directamente a response.data
     };
 
@@ -123,16 +123,26 @@ const NuevoEvento = () => {
                 direccion,
                 horario
             });
+
+            // Si la API responde correctamente
+            swal(resp.data.msg, "", "success");
+
+            // Limpiar campos
             setFecha("");
             setFlayer("");
             setTexto("");
             setTitulo("");
             setDireccion("");
             setHorario("");
-            swal("Articulo creado!", "", "success");
             setCargando(false);
+
         } catch (error) {
             console.error(error);
+
+            // Si hay error en el backend, mostrar mensaje
+            const msgError = error.response?.data?.msg || "Ocurrió un error, intente nuevamente.";
+            swal(msgError, "", "error");
+            setCargando(false);
         }
     };
 
