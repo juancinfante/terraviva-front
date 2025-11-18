@@ -81,7 +81,7 @@ const NuevoAlbum = () => {
         setCargando(true);
 
         try {
-            const carpeta = `terraviva/albums/${nombre}`;
+            const carpeta = `terraviva/albums/${nombre}-${fechaA.replace(/-/g, "")}/`;
             const uploaders = images.map((image) => uploadImage(image.file, carpeta));
             const urls = await Promise.all(uploaders);
 
@@ -96,24 +96,51 @@ const NuevoAlbum = () => {
     };
 
     const subirAlbumBD = async (fotos) => {
-        const fecha = fechaA;
-        try {
-            const resp = await api.post('api/crearalbum', {
-                nombre,
-                ph,
-                fecha,
-                fotos,
-                portada: fotos[0]
-            })
-            swal(resp.data.msg, "", "success");
-            setTimeout(() => {
-                location.href = "/nuevoalbum";
-            }, "1500");
+    const fecha = fechaA;
+    try {
+        const resp = await api.post('api/crearalbum', {
+            nombre,
+            ph,
+            fecha,
+            fotos,
+            portada: fotos[0]
+        })
+        
+        // Éxito: Muestra el mensaje de éxito del backend
+        swal(resp.data.msg, "", "success"); 
+        
+        setTimeout(() => {
+            location.href = "/nuevoalbum";
+        }, "1500");
 
-        } catch (error) {
-            console.log(error)
+    } catch (error) {
+        // --- Manejo de Errores Mejorado ---
+        
+        let mensajeError = "Error al conectar con el servidor."; // Mensaje por defecto
+        
+        // 1. Verificar si el error tiene una respuesta (es un error de Axios)
+        if (error.response) {
+            // 2. Intentar obtener el mensaje de error del cuerpo de la respuesta del backend
+            // El backend 'crearAlbum' usa 'msg' para el error 400.
+            mensajeError = error.response.data.msg || "Error desconocido del servidor.";
+            
+            // Opcional: Si deseas mostrar el estado del error también
+            // console.log("Estado del error:", error.response.status); 
+        } else if (error.request) {
+            // Error de red (la solicitud fue hecha pero no se recibió respuesta)
+            mensajeError = "No se pudo conectar con el servidor. Revisa tu conexión.";
+        } else {
+            // Otros errores (configuración de la solicitud, etc.)
+            mensajeError = error.message;
         }
+
+        // Muestra el mensaje de error utilizando swal
+        swal(mensajeError, "", "error");
+        
+        console.log(error); // Mantener el log del error completo para depuración
+        // --- Fin Manejo de Errores Mejorado ---
     }
+}
 
     useEffect(()=> {
         checkUser();
